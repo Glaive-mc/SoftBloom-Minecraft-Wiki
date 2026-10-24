@@ -1,0 +1,1366 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SoftBloom Wiki</title>
+<style>
+:root{--bg:#fffafc;--sf:#fff;--tx:#2a2230;--mu:#6e6477;--ac:#c2457a;--bd:#eadbe3;--cd:#f7ecf1;--hd:56px;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#17121a;--sf:#211a25;--tx:#efe8f2;--mu:#a99bb3;--ac:#f08cb6;--bd:#3a2f40;--cd:#2d2433}}
+:root[data-theme="dark"]{--bg:#17121a;--sf:#211a25;--tx:#efe8f2;--mu:#a99bb3;--ac:#f08cb6;--bd:#3a2f40;--cd:#2d2433}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:calc(var(--hd) + env(safe-area-inset-top,0px) + 12px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--sf)}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;height:var(--hd);display:flex;align-items:center;gap:10px;padding:0 14px;background:var(--sf);border-bottom:1px solid var(--bd)}
+header b{font-size:1.1rem;white-space:nowrap}
+header button{border:1px solid var(--bd);background:var(--cd);color:var(--tx);border-radius:8px;padding:6px 10px;font:inherit;cursor:pointer}
+#menu{display:none}
+.sb{position:relative;flex:1;max-width:420px;margin-left:auto}
+#q{width:100%;padding:8px 12px;border:1px solid var(--bd);border-radius:8px;background:var(--bg);color:var(--tx);font:inherit}
+#res{position:absolute;top:100%;left:0;right:0;margin-top:6px;background:var(--sf);border:1px solid var(--bd);border-radius:10px;padding:6px;max-height:60vh;overflow:auto;box-shadow:0 8px 24px rgba(0,0,0,.18)}
+#res a{display:block;padding:8px 10px;border-radius:8px;color:var(--tx);text-decoration:none}
+#res a:hover{background:var(--cd)}#res span{display:block;color:var(--mu);font-size:.85rem}#res p{margin:8px}
+.wrap{display:grid;grid-template-columns:250px minmax(0,1fr) 210px;gap:28px;max-width:1280px;margin:0 auto;padding:0 16px}
+#nav,#toc{position:sticky;top:calc(var(--hd) + env(safe-area-inset-top,0px));align-self:start;max-height:calc(100vh - var(--hd) - env(safe-area-inset-top,0px));overflow:auto;padding:16px 0}
+#nav h3{margin:16px 0 6px;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--mu)}
+#nav a{display:block;padding:6px 10px;border-radius:8px;color:var(--tx);text-decoration:none}
+#nav a:hover{background:var(--cd)}#nav a.on{background:var(--cd);color:var(--ac);font-weight:600}
+#toc{font-size:.9rem}#toc b{display:block;margin-bottom:6px;color:var(--mu)}
+#toc a{display:block;padding:3px 0;color:var(--mu);text-decoration:none}#toc a:hover{color:var(--ac)}#toc a.h3{padding-left:12px}
+main{padding:24px 0 64px;min-width:0}
+.page[hidden]{display:none}
+h1{font-size:2rem;line-height:1.25;margin:0 0 16px}
+h2{font-size:1.4rem;margin:2rem 0 .6rem;padding-bottom:6px;border-bottom:1px solid var(--bd)}
+h3{font-size:1.15rem;margin:1.5rem 0 .4rem}
+a{color:var(--ac)}li{margin:3px 0}
+code{background:var(--cd);padding:1px 6px;border-radius:6px;font-size:.9em}
+.tw{overflow-x:auto;margin:1rem 0;max-width:100%}
+table{border-collapse:collapse;min-width:100%}
+th,td{border:1px solid var(--bd);padding:8px 12px;text-align:left;vertical-align:top}
+th{background:var(--cd)}
+#datapack-enchantments td:nth-child(2),#custom-enchants-list td:nth-child(4){min-width:230px}
+.bt{text-align:right;margin:-.4rem 0 0}.bt a{font-size:.9rem;text-decoration:none}
+#tier-simple::before{content:"";display:inline-block;width:.7em;height:.7em;border-radius:50%;background:#ffffff;border:2px solid #b5a9bd;margin-right:.5em;vertical-align:.05em}#tier-simple+.tw th{border-top:4px solid #b5a9bd}
+#tier-unique::before{content:"";display:inline-block;width:.7em;height:.7em;border-radius:50%;background:#3fa66b;border:2px solid #3fa66b;margin-right:.5em;vertical-align:.05em}#tier-unique+.tw th{border-top:4px solid #3fa66b}
+#tier-elite::before{content:"";display:inline-block;width:.7em;height:.7em;border-radius:50%;background:#3b82d6;border:2px solid #3b82d6;margin-right:.5em;vertical-align:.05em}#tier-elite+.tw th{border-top:4px solid #3b82d6}
+#tier-ultimate::before{content:"";display:inline-block;width:.7em;height:.7em;border-radius:50%;background:#e6b800;border:2px solid #e6b800;margin-right:.5em;vertical-align:.05em}#tier-ultimate+.tw th{border-top:4px solid #e6b800}
+#tier-fabled::before{content:"";display:inline-block;width:.7em;height:.7em;border-radius:50%;background:#f08a24;border:2px solid #f08a24;margin-right:.5em;vertical-align:.05em}#tier-fabled+.tw th{border-top:4px solid #f08a24}
+#tier-legendary::before{content:"";display:inline-block;width:.7em;height:.7em;border-radius:50%;background:#ec5fa0;border:2px solid #ec5fa0;margin-right:.5em;vertical-align:.05em}#tier-legendary+.tw th{border-top:4px solid #ec5fa0}
+.pn{display:flex;justify-content:space-between;gap:12px;margin-top:3rem;padding-top:16px;border-top:1px solid var(--bd)}
+.pn a{text-decoration:none;font-weight:600}
+@media(max-width:1100px){.wrap{grid-template-columns:250px minmax(0,1fr)}#toc{display:none}}
+@media(max-width:800px){
+#menu{display:block}.wrap{grid-template-columns:minmax(0,1fr)}
+#nav{position:fixed;z-index:8;left:0;top:calc(var(--hd) + env(safe-area-inset-top,0px));bottom:0;width:78%;max-width:300px;max-height:none;background:var(--sf);border-right:1px solid var(--bd);padding:8px 14px calc(16px + env(safe-area-inset-bottom,0px));transform:translateX(-105%);transition:transform .2s}
+#nav.open{transform:none}h1{font-size:1.6rem}header b{font-size:1rem}}
+
+[hidden]{display:none!important}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--ac);outline-offset:2px;border-radius:6px}
+#q:focus-visible,#ef:focus-visible{outline-offset:0}
+code.cmd{cursor:copy;text-decoration:underline dotted var(--mu);text-underline-offset:3px}
+code.cmd:hover{background:var(--bd)}
+#toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translate(-50%,16px);max-width:90vw;padding:8px 16px;border-radius:999px;background:var(--tx);color:var(--bg);font-size:.9rem;opacity:0;pointer-events:none;transition:opacity .15s,transform .15s;z-index:20}
+#toast.on{opacity:1;transform:translate(-50%,0)}
+.qs{margin:1.2rem 0;padding:14px 18px;background:var(--cd);border:1px solid var(--bd);border-left:4px solid var(--ac);border-radius:10px}
+.qs b{display:block;font-size:1.1rem}
+.qs ol{margin:8px 0 10px;padding-left:1.4em}
+.qs code{background:var(--sf)}
+.qs p{margin:0;color:var(--mu);font-size:.95rem}
+.fb{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:10px 0}
+.fb label{color:var(--mu);font-size:.9rem}
+#ea{padding:6px 10px;border:1px solid var(--bd);border-radius:8px;background:var(--bg);color:var(--tx);font:inherit;font-size:.9rem}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border:1px solid var(--bd);border-radius:999px;background:var(--sf);color:var(--tx);font:inherit;font-size:.9rem;cursor:pointer}
+.chip:hover{background:var(--cd)}
+.chip[aria-pressed="true"]{background:var(--cd);border-color:var(--c);box-shadow:inset 0 0 0 1px var(--c);font-weight:600}
+.fs{color:var(--mu);font-size:.9rem}
+.dt{display:inline-block;flex:none;width:.7em;height:.7em;border-radius:50%;background:var(--d,var(--c));border:2px solid var(--c)}
+.ed{display:none;margin-right:.5em;vertical-align:.05em}
+.filtering .ed{display:inline-block}
+#custom-enchants-list.filtering td:first-child{white-space:nowrap}
+@media print{
+:root,:root:not([data-theme="light"]),:root[data-theme="dark"]{--bg:#fff;--sf:#fff;--tx:#000;--mu:#444;--ac:#a02560;--bd:#ccc;--cd:#f3f3f3}
+body::before,header,#nav,#toc,.pn,.bt,.nf,.fb,#toast{display:none!important}
+body{font-size:11pt}
+.wrap{display:block;max-width:none;padding:0}
+main{padding:0}
+.tw{overflow:visible}
+table{min-width:0;width:100%}
+th,td{min-width:0!important}
+thead{display:table-header-group}
+tr{break-inside:avoid}
+h1,h2,h3{break-after:avoid}
+a{color:inherit;text-decoration:none}
+code.cmd{text-decoration:none}
+*{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+
+:root{--wn:#b4430f}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--wn:#ff9a62}}
+:root[data-theme="dark"]{--wn:#ff9a62}
+.co{margin:1rem 0;padding:10px 14px;border:1px solid var(--bd);border-left:4px solid var(--k,var(--ac));border-radius:10px;background:var(--cd)}
+.co b{display:block;color:var(--k,var(--ac))}
+.co.warn{--k:var(--wn);background:color-mix(in srgb,var(--wn) 8%,var(--sf))}
+.lg{color:var(--mu);font-size:.9rem}
+.lg .dt{margin:0 2px;vertical-align:-.05em}
+td.dg{border-left:6px solid var(--c);font-weight:600}
+#res .dt{margin-right:.5em;vertical-align:.05em}
+@keyframes hit{0%,55%{background:rgba(236,95,160,.35)}100%{background:transparent}}
+tr.hit td{animation:hit 2.4s ease-out}
+@media(prefers-reduced-motion:reduce){tr.hit td{animation:none;background:rgba(236,95,160,.35)}}
+#tier-simple+.tw{--tc:#b5a9bd}#tier-unique+.tw{--tc:#3fa66b}#tier-elite+.tw{--tc:#3b82d6}#tier-ultimate+.tw{--tc:#e6b800}#tier-fabled+.tw{--tc:#f08a24}#tier-legendary+.tw{--tc:#ec5fa0}
+@media screen and (max-width:640px){
+table.cards,table.cards tbody,table.cards tr{display:block}
+table.cards{min-width:0;border:0}
+table.cards thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+table.cards tr{margin:0 0 10px;padding:8px 12px;border:1px solid var(--bd);border-left:5px solid var(--tc,var(--bd));border-radius:10px;background:var(--sf)}
+table.cards td{display:grid;grid-template-columns:6.5em minmax(0,1fr);gap:8px;min-width:0!important;padding:3px 0;border:0}
+table.cards td::before{content:attr(data-label);color:var(--mu);font-size:.85rem;padding-top:.1em}
+table.cards td:first-child{display:block;margin-bottom:4px;padding-bottom:5px;border-bottom:1px solid var(--bd);font-size:1.05rem}
+table.cards td:first-child::before{content:none}
+}
+</style></head><body>
+<header><button id="menu" aria-label="Menu">☰</button><b>🌸 SoftBloom Wiki</b>
+<div class="sb"><input id="q" type="search" placeholder="Search the wiki" autocomplete="off"><div id="res" hidden></div></div>
+<button id="theme" aria-label="Toggle theme">◐</button></header>
+<div class="wrap"><nav id="nav"><h3>Start here</h3><a href="#home">Home</a><h3>Progression guide</h3><a href="#1-settle-in">1. Settle In</a><a href="#2-skills">2. Skills</a><a href="#3-making-money">3. Making Money</a><a href="#4-ranks">4. Ranks</a><a href="#5-gear-and-enchants">5. Gear and Enchants</a><a href="#custom-enchants-list">All Custom Enchants</a><a href="#datapack-enchantments">Datapack Enchants</a><a href="#6-the-9-dungeons">6. The 9 Dungeons</a><h3>Explore</h3><a href="#events">Events</a><a href="#exploring-the-world">Exploring the World</a><a href="#the-overworld">The Overworld</a><a href="#katter-s-bosses-and-enchants">Katter’s bosses and enchants</a><a href="#the-deep-blue">The Deep Blue</a><a href="#the-nether">The Nether</a><a href="#the-deeper-dark">The Deeper Dark</a><a href="#the-end">The End</a><a href="#heaven-limbo-and-the-sift">Heaven, Limbo and The Sift</a><a href="#fighting-other-players">Fighting other players</a><h3>Tips</h3><a href="#suggested-path">Suggested Path</a><a href="#good-to-know">Good to Know</a></nav><main><section class="page" id="home" data-title="SoftBloom Wiki" hidden><h1>SoftBloom Wiki</h1><p>SoftBloom is built around steady progress: learn the basics, grow
+your skills, earn money, climb ranks, then take on the dungeons and
+bosses. Go at your own pace. This guide gives you a path, and you can
+always wander off and explore.</p>
+<aside class="qs" aria-labelledby="qs-t"><b id="qs-t">Quick start</b>
+<ol>
+<li>Register with <code>/register &lt;password&gt; &lt;password&gt;</code>.</li>
+<li>Open <code>/kit</code> and claim the <strong>Starter kit</strong> and the <strong>Claim kit</strong>.</li>
+<li>Mark your land with the Golden Shovel from the Claim kit. You start with 100 claim blocks and can claim 2 separate lands.</li>
+<li>Set a home with <code>/sethome</code>. Come back any time with <code>/home</code>.</li>
+<li>Start earning: browse <code>/quest</code>, and sell what you collect at <code>/warp shop</code>.</li>
+</ol>
+<p><a href="#1-settle-in">Stage 1: Settle In</a> covers all of this in more detail. Click any command on this wiki to copy it.</p></aside>
+<h1 id="the-roadmap-at-a-glance">The Roadmap at a Glance</h1>
+<div class="tw"><table>
+<thead>
+<tr class="header">
+<th>Stage</th>
+<th>Goal</th>
+<th>What unlocks</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1. Settle in</td>
+<td>Register, get your kits, claim land, build a base</td>
+<td>Safe starting point</td>
+</tr>
+<tr class="even">
+<td>2. Skills</td>
+<td>Level up by playing</td>
+<td>Milestone rewards, rank requirements</td>
+</tr>
+<tr class="odd">
+<td>3. Money</td>
+<td>Sell resources, fish, finish quests, buy spawners</td>
+<td>Income, spawners</td>
+</tr>
+<tr class="even">
+<td>4. Ranks</td>
+<td>Play, level skills, rank up</td>
+<td>Free money, claim blocks, fly time, dungeons</td>
+</tr>
+<tr class="odd">
+<td>5. Gear</td>
+<td>Custom enchants, crates, pets, premium crate rings</td>
+<td>Stronger character</td>
+</tr>
+<tr class="even">
+<td>6. Dungeons</td>
+<td>Rank up to unlock tiers 1 to 9</td>
+<td>Keys, cosmetics, rare materials</td>
+</tr>
+<tr class="odd">
+<td>7. Explore</td>
+<td>Overworld, Resourceworld, structures, dimensions, bosses,
+events</td>
+<td>Endgame content</td>
+</tr>
+</tbody>
+</table></div>
+<div class="pn"><span></span><a href="#1-settle-in">1. Settle In →</a></div></section><section class="page" id="1-settle-in" data-title="Stage 1: Settle In (your first hour)" hidden><h1>Stage 1: Settle In (your first hour)</h1><h2 id="register">Register</h2>
+<ul>
+<li>First time here? Type
+<code>/register &lt;password&gt; &lt;password&gt;</code>.</li>
+<li>Next time you join, type <code>/login &lt;password&gt;</code>. You
+only need this if the password window doesn’t pop up on its own.</li>
+</ul>
+<h2 id="get-started">Get started</h2>
+<ul>
+<li>Claim your <strong>Starter kit</strong> from the <strong>Kits
+GUI</strong> (<code>/kit</code>). It has stone tools and basic armor,
+and you can claim it again every 24 hours.</li>
+<li>Grab the <strong>Claim kit</strong> too. It has a <strong>Golden
+Shovel</strong> and the <strong>Claim Guide</strong> book. There’s also
+a <strong>Guide kit</strong> with the Guide Book.</li>
+<li>Set a home with <code>/sethome</code> and return with
+<code>/home</code>. <code>/back</code> returns you to where you last
+were, including where you died.</li>
+<li>Ask a friend for a teleport with
+<code>/tpa &lt;player&gt;</code>.</li>
+<li>Type <code>/warp</code> to see the warps: <strong>shop, crates, pvp,
+parkour, church, blackjack, community chest, pinata, pirate koth and afk
+haven</strong>.</li>
+<li>Type <code>/rtp</code> to open a travel menu that teleports you to a
+random spot in the <strong>Overworld</strong>,
+<strong>Resourceworld</strong>, <strong>Nether</strong> or
+<strong>Limbo</strong>.</li>
+<li>Type <code>/translator</code> to chat across languages. Choose your
+<strong>Incoming</strong> messages (what others write, translated for
+you) and your <strong>Outgoing</strong> messages (what you write,
+translated for others).</li>
+<li>Type <code>/discord</code> to get the Discord link.</li>
+<li>Playing on Bedrock? Everything in this guide works for you too. A
+few custom items may look slightly different from Java.</li>
+</ul>
+<h2 id="claiming-land">Claiming land</h2>
+<ul>
+<li>You start with <strong>100 claim blocks</strong>.</li>
+<li>Use the Golden Shovel to mark two corners of your claim. Everything
+inside is protected.</li>
+<li>You can claim <strong>2 separate lands</strong>. Both can be expanded as far as your claim blocks allow.</li>
+<li>You earn <strong>50 to 100 free claim blocks every hour</strong> you
+play.</li>
+<li>Every rank-up gives you a big bonus of claim blocks on top (see the
+rank table).</li>
+<li>The Claim Guide book in your Claim kit shows you how it works.</li>
+</ul>
+<div class="pn"><a href="#home">← Home</a><a href="#2-skills">2. Skills →</a></div></section><section class="page" id="2-skills" data-title="Stage 2: Skills" hidden><h1>Stage 2: Skills</h1><p>Everything you do trains a skill. There are <strong>11
+skills</strong>: Fighting, Agility, Farming, Alchemy, Mining, Foraging,
+Excavation, Fishing, Enchanting, Archery and Defense.</p>
+<ul>
+<li>Open the skill menu with <code>/skill:skill</code>.</li>
+<li>Each skill has <strong>milestone rewards</strong> you claim once
+from its menu.</li>
+<li><strong>Skills are also your rank requirement.</strong> Each rank
+asks for a minimum level in <strong>all</strong> skills, so you can’t
+just grind one.</li>
+<li><strong>You don’t need to pick a skill to level it.</strong>
+Anything that gives XP for a skill levels that skill automatically, and
+one activity can level several skills at once. For example, killing mobs
+while mining raises both Fighting and Mining.</li>
+<li>Tip: just play how you like. Check the skill menu now and then to
+see which skills are behind, then do something that gives them XP.</li>
+</ul>
+<div class="pn"><a href="#1-settle-in">← 1. Settle In</a><a href="#3-making-money">3. Making Money →</a></div></section><section class="page" id="3-making-money" data-title="Stage 3: Making Money" hidden><h1>Stage 3: Making Money</h1><ul>
+<li><strong>Sell</strong> at <code>/warp shop</code>. Ores, mob drops,
+crops, ocean items and blocks all sell.</li>
+<li><strong>Even More Fishing:</strong> use <code>/emf toggle</code> to
+switch between vanilla fishing and the Even More Fishing plugin, which
+adds custom fish of different rarities. Sell your catch at
+<code>/emf shop</code>: the rarer the fish, the higher the price.</li>
+<li><strong>Spawners</strong> cost between <strong>$3,000</strong> and
+<strong>$450,000</strong>. Start with the cheapest and upgrade as you
+earn.</li>
+</ul>
+<div class="co" role="note"><b>Heads up</b><strong>Limit: 4 spawners per chunk.</strong> If you try to place more, you’ll get a message.</div>
+<ul>
+<li>Rank-ups cost nothing. They give you free money, claim blocks and
+fly time.</li>
+<li><strong>Free money:</strong> chat games, fishing contests, quests
+(<code>/quest</code>), crates and your daily calendar all pay out.</li>
+<li><strong>Quests:</strong> type <code>/quest</code> to browse over
+1,600 quests. Each one asks you to do something you’d do anyway and pays
+money when you finish it. Most come in tiers: finish one to unlock the
+next, harder one, and each quest can be completed once.
+<ul>
+<li><strong>Categories:</strong> mining, digging, woodcutting, farming,
+fishing, hunter, crafting, smelting, brewing, enchanting, building,
+collecting, weaponsmith, activities (milking, shearing, taming,
+breeding, trading and bartering) and misc (walking and playtime).</li>
+<li><strong>EXP quests</strong> pay XP instead of money, and
+<strong>Impossible quests</strong> are huge goals with the biggest
+rewards.</li>
+</ul></li>
+</ul>
+<div class="pn"><a href="#2-skills">← 2. Skills</a><a href="#4-ranks">4. Ranks →</a></div></section><section class="page" id="4-ranks" data-title="Stage 4: Ranks" hidden><h1>Stage 4: Ranks</h1><p>Your rank climbs through 10 steps, from <strong>Member</strong> to
+<strong>Eternal</strong>. To rank up you need <strong>playtime</strong>
+and a <strong>minimum level in every skill</strong>. There is no fee:
+each rank-up pays you <strong>free money, claim blocks and fly
+time</strong> as an instant reward.</p>
+<div class="tw"><table>
+<thead>
+<tr class="header">
+<th>Rank-up</th>
+<th>Playtime</th>
+<th>All skills</th>
+<th>You get</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Member → <strong>Settler</strong></td>
+<td>2h</td>
+<td>5</td>
+<td>$2,500, 800 claim blocks, 20m fly</td>
+</tr>
+<tr class="even">
+<td>Settler → <strong>Explorer</strong></td>
+<td>8h</td>
+<td>10</td>
+<td>$5,000, 1,200 claim blocks, 40m fly</td>
+</tr>
+<tr class="odd">
+<td>Explorer → <strong>Adventurer</strong></td>
+<td>16h</td>
+<td>16</td>
+<td>$8,500, 1,800 claim blocks, 1h fly</td>
+</tr>
+<tr class="even">
+<td>Adventurer → <strong>Pathfinder</strong></td>
+<td>48h</td>
+<td>24</td>
+<td>$13,000, 2,500 claim blocks, 1h30m fly</td>
+</tr>
+<tr class="odd">
+<td>Pathfinder → <strong>Veteran</strong></td>
+<td>120h</td>
+<td>33</td>
+<td>$20,000, 3,500 claim blocks, 2h fly</td>
+</tr>
+<tr class="even">
+<td>Veteran → <strong>Elder</strong></td>
+<td>240h</td>
+<td>43</td>
+<td>$32,500, 5,000 claim blocks, 2h30m fly</td>
+</tr>
+<tr class="odd">
+<td>Elder → <strong>Pioneer</strong></td>
+<td>480h</td>
+<td>54</td>
+<td>$50,000, 7,000 claim blocks, 3h30m fly</td>
+</tr>
+<tr class="even">
+<td>Pioneer → <strong>Ancient</strong></td>
+<td>1,080h</td>
+<td>64</td>
+<td>$75,000, 10,000 claim blocks, 6h fly</td>
+</tr>
+<tr class="odd">
+<td>Ancient → <strong>Eternal</strong></td>
+<td>2,160h</td>
+<td>75</td>
+<td>$100,000, 22,000 claim blocks, 15h fly</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="how-to-rank-up">How to rank up</h2>
+<ul>
+<li><code>/ranks</code> shows your rank progress.</li>
+<li><code>/rankup</code> shows your requirements. If something is
+missing, it tells you what.</li>
+<li>When you meet every requirement, <code>/rankup</code> opens a window
+where you accept the rank-up.</li>
+</ul>
+<p>Every rank-up unlocks a new <strong>dungeon</strong> and its warp,
+and more <strong>pet storage</strong> (see Stage 5).</p>
+<div class="co" role="note"><b>Heads up</b>Members can’t equip an elytra. Reach <strong>Settler</strong> and you can.</div>
+<h2 id="daily-reward">Daily Reward</h2>
+<p>Play <strong>60 active minutes</strong> in a calendar day to unlock
+your daily calendar reward. Claim it with <code>/calendar</code>.
+“Active” means you’re actually playing: the server watches whether you
+look around, not whether you stand still. The AFK zone won’t count.</p>
+<h2 id="voting">Voting</h2>
+<p>Type <code>/vote</code> to see the voting links, or
+<code>/voteall</code> to see every site. Votes give you crate keys and
+rewards, and they fill the piñata bar. When it’s full, a piñata spawns
+and everyone online can hit it.</p>
+<h2 id="premium-ranks">Premium ranks</h2>
+<p>Premium ranks are a separate ladder that sits alongside your rank.
+Their perks are listed in the <strong>Discord OG Shop</strong> and in
+the <strong>SoftBloom online store</strong>.</p>
+<div class="pn"><a href="#3-making-money">← 3. Making Money</a><a href="#5-gear-and-enchants">5. Gear and Enchants →</a></div></section><section class="page" id="5-gear-and-enchants" data-title="Stage 5: Gear and Enchants" hidden><h1>Stage 5: Gear and Enchants</h1><h2 id="custom-enchants">Custom enchants</h2>
+<ul>
+<li>There are <strong>173 custom enchants</strong> in six tiers: Simple,
+Unique, Elite, Ultimate, Fabled and Legendary.</li>
+<li>Open <code>/enchanter</code> to buy <strong>enchantment
+books</strong>. Right-click a tier’s book to get a random enchant from
+that tier.</li>
+<li><strong>Drag and drop</strong> a book onto your item. Each book
+shows its <strong>success</strong> and <strong>destroy</strong>
+rate.</li>
+<li>Items have <strong>2 custom enchant slots</strong>. A <strong>slot
+increaser</strong> adds up to 6 more.</li>
+<li>A <strong>White Scroll</strong> protects an item from being
+destroyed on a failed book.</li>
+<li>The <strong>Warp Shop</strong> (<code>/warp shop</code>) sells slot
+increasers, White Scrolls and other custom enchant items.</li>
+<li>Use <code>/tinkerer</code> to trade unwanted enchants for useful
+items and <code>/alchemist</code> to combine books.</li>
+</ul>
+<div class="co warn" role="note"><b>Warning</b>Grindstones remove custom enchants, so don’t use one on an item you want to keep.</div>
+<h2 id="what-custom-enchants-apply-to">What custom enchants apply to</h2>
+<p>The 173 custom enchants split by the item they go on. Weapons have the most (88), then armor (52).</p>
+<div class="tw"><table>
+<thead>
+<tr><th>Category</th><th>Applies to</th><th>Enchants</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Weapons</strong></td><td>Sword</td><td>31</td></tr>
+<tr><td><strong></strong></td><td>Sword + Axe</td><td>22</td></tr>
+<tr><td><strong></strong></td><td>Axe (combat)</td><td>10</td></tr>
+<tr><td><strong></strong></td><td>Bow</td><td>5</td></tr>
+<tr><td><strong></strong></td><td>Crossbow</td><td>3</td></tr>
+<tr><td><strong></strong></td><td>Bow + Crossbow</td><td>4</td></tr>
+<tr><td><strong></strong></td><td>Bow + Crossbow + Trident</td><td>5</td></tr>
+<tr><td><strong></strong></td><td>Trident</td><td>7</td></tr>
+<tr><td><strong></strong></td><td>All weapons</td><td>1</td></tr>
+<tr><td><strong>Tools</strong></td><td>Pickaxe</td><td>5</td></tr>
+<tr><td><strong></strong></td><td>Axe (utility)</td><td>1</td></tr>
+<tr><td><strong></strong></td><td>Hoe</td><td>6</td></tr>
+<tr><td><strong></strong></td><td>Axe + Pickaxe + Shovel</td><td>4</td></tr>
+<tr><td><strong></strong></td><td>Pickaxe + Shovel</td><td>2</td></tr>
+<tr><td><strong></strong></td><td>All tools</td><td>1</td></tr>
+<tr><td><strong>Armor</strong></td><td>All armor</td><td>30</td></tr>
+<tr><td><strong></strong></td><td>Helmet</td><td>4</td></tr>
+<tr><td><strong></strong></td><td>Chestplate</td><td>5</td></tr>
+<tr><td><strong></strong></td><td>Leggings</td><td>2</td></tr>
+<tr><td><strong></strong></td><td>Boots</td><td>11</td></tr>
+<tr><td><strong>Others</strong></td><td>Fishing rod</td><td>7</td></tr>
+<tr><td><strong></strong></td><td>Elytra</td><td>5</td></tr>
+<tr><td><strong></strong></td><td>Goat horn</td><td>1</td></tr>
+<tr><td><strong>Hybrid</strong></td><td>Weapons + tools</td><td>1</td></tr>
+</tbody>
+</table></div>
+<p><strong>Total: 173</strong> (Weapons 88, Armor 52, Tools 19, Others 13, Hybrid 1). See every enchant with its effect in <a href="#custom-enchants-list">All Custom Enchants</a>, or find enchants from exploring in <a href="#datapack-enchantments">Datapack Enchants</a>.</p>
+<h2 id="crates-and-keys">Crates and keys</h2>
+<ul>
+<li><strong>Basic</strong>, <strong>Advanced</strong> and
+<strong>Vote</strong> crates are open to everyone, and dungeons and
+events have their own crates.</li>
+<li>Keys come from fishing contests, chat trivia, voting, dungeons and
+events.</li>
+<li>Some crate rewards are <strong>vouchers</strong> that you redeem
+once, such as fly time and claim blocks.</li>
+</ul>
+<h2 id="pets">Pets</h2>
+<p>Level a pet and choose a <strong>skill tree</strong>: Combat, Farm,
+PvP, Ranger, Ride or Utility. Ride pets are fast mounts, Farm and
+Utility pets pick up items and carry an inventory, and Combat or PvP
+pets help in a fight. Your pet storage grows as you rank up.</p>
+<h2 id="rings">Rings</h2>
+<p>Wearable rings give permanent bonuses while they’re in your
+inventory. Stronger gems and golden rings are better, and Sapphire rings
+boost your skill XP. Rings stack, so you can wear several. Rings can
+only be obtained from <strong>premium crates</strong>.</p>
+<h2 id="handy-tricks">Handy Tricks</h2>
+<ul>
+<li><strong>Bottle your XP:</strong> hold a glass bottle and right-click
+an enchanting table. It costs 12 XP and gives you an XP bottle. To get
+your XP back in full, <strong>smelt the bottle in a furnace</strong> (12
+XP plus your glass bottle). Throwing it returns only 3 to 11 XP.</li>
+<li><strong>Armored Elytra:</strong> drop an elytra and a chestplate on
+the same anvil and wait a second. They merge into one item that flies
+like an elytra and has the chestplate’s armor stats, with enchantments
+kept. Drop the merged item on a grindstone to split it back. If the
+elytra wears out, the item splits instead of breaking.</li>
+<li><strong>Budding amethyst:</strong> mine it with Silk Touch and it
+drops as a block.</li>
+</ul>
+<div class="co warn" role="note"><b>Warning</b><strong>Anvil:</strong> there’s no “Too Expensive” limit, so check the cost before you click.</div>
+<ul>
+<li><strong>Villagers:</strong> trades restock instantly, up to 30
+trades before a short cooldown.</li>
+<li><strong>Elevators:</strong> place <strong>Iron Blocks</strong> on
+top of each other. Jump on one to go up to the next iron block, and
+crouch to go down.</li>
+<li><strong>Player warps:</strong> you can create up to 2 of your
+own.</li>
+</ul>
+<div class="pn"><a href="#4-ranks">← 4. Ranks</a><a href="#custom-enchants-list">All Custom Enchants →</a></div></section><section class="page" id="custom-enchants-list" data-title="All Custom Enchants" hidden><h1>All Custom Enchants</h1>
+<p>All <strong>173 custom enchants</strong>, grouped by tier. Buy a tier’s books at <code>/enchanter</code>. Right-click a book to get a random enchant from that tier. Each book shows its success and destroy rate.</p>
+<p>Tier colors: <strong>Simple</strong> is white, <strong>Unique</strong> green, <strong>Elite</strong> blue, <strong>Ultimate</strong> yellow, <strong>Fabled</strong> orange and <strong>Legendary</strong> pink.</p>
+<p><input id="ef" type="search" placeholder="Filter by name, item or effect" autocomplete="off" style="width:100%;max-width:420px;padding:8px 12px;border:1px solid var(--bd);border-radius:8px;background:var(--bg);color:var(--tx);font:inherit"></p>
+<h2 id="tier-simple">Simple (12)</h2>
+<div class="tw"><table>
+<thead>
+<tr><th>Enchant</th><th>Max level</th><th>Applies to</th><th>What it does</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Aquatic</strong></td><td>1</td><td>Helmets</td><td>Breathe underwater.</td></tr>
+<tr><td><strong>Bonecrusher</strong></td><td>3</td><td>Swords, Axes</td><td>Increases damage dealt to Skeletons.</td></tr>
+<tr><td><strong>Deathpunch</strong></td><td>5</td><td>Swords, Axes</td><td>Increases damage dealt to Zombies.</td></tr>
+<tr><td><strong>Decapitation</strong></td><td>3</td><td>Swords, Axes</td><td>Chance to have opponents head drop on death.</td></tr>
+<tr><td><strong>Epicness</strong></td><td>3</td><td>Swords</td><td>Gives particles and sound effects.</td></tr>
+<tr><td><strong>Experience</strong></td><td>5</td><td>Axes, Pickaxes, Shovels</td><td>Chance to get more experience from ores.</td></tr>
+<tr><td><strong>Forcefield</strong></td><td>5</td><td>Swords</td><td>Chance to push away your opponent.</td></tr>
+<tr><td><strong>Glowing</strong></td><td>1</td><td>Helmets</td><td>Gives permanent night vision.</td></tr>
+<tr><td><strong>Hasten</strong></td><td>3</td><td>Axes, Pickaxes, Shovels</td><td>Chance to gain Haste after breaking blocks.</td></tr>
+<tr><td><strong>Rebreather</strong></td><td>2</td><td>Pickaxes</td><td>Chance to regain air when mining under water.</td></tr>
+<tr><td><strong>Smelting</strong></td><td>3</td><td>Pickaxes, Shovels</td><td>Chance to smelt mined blocks.</td></tr>
+<tr><td><strong>Strike</strong></td><td>3</td><td>All weapons</td><td>Chance to strike lightning at the opponent.</td></tr>
+</tbody>
+</table></div>
+<p class="bt"><a href="#custom-enchants-list" onclick="event.preventDefault();window.scrollTo({top:0,behavior:'smooth'})">↑ Back to top</a></p>
+<h2 id="tier-unique">Unique (19)</h2>
+<div class="tw"><table>
+<thead>
+<tr><th>Enchant</th><th>Max level</th><th>Applies to</th><th>What it does</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Berserk</strong></td><td>5</td><td>Swords, Axes</td><td>Chance of strength and mining fatigue.</td></tr>
+<tr><td><strong>Devour</strong></td><td>3</td><td>Swords, Axes</td><td>Chance to restore food while killing mobs.</td></tr>
+<tr><td><strong>Explosive</strong></td><td>5</td><td>Bows</td><td>Chance for arrows to explode.</td></tr>
+<tr><td><strong>Explosivedemise</strong></td><td>8</td><td>Leggings</td><td>Summon creepers as your guards when near death.</td></tr>
+<tr><td><strong>Famine</strong></td><td>4</td><td>Swords, Axes</td><td>A chance to give your opponent the hunger effect.</td></tr>
+<tr><td><strong>Farmerxp</strong></td><td>3</td><td>Hoes</td><td>Gain XP when harvesting fully grown crops.</td></tr>
+<tr><td><strong>Featherweight</strong></td><td>3</td><td>Swords, Axes</td><td>Chance to get a burst of haste.</td></tr>
+<tr><td><strong>Frenzy</strong></td><td>5</td><td>Crossbows</td><td>Chance for arrows to explode.</td></tr>
+<tr><td><strong>Hunter</strong></td><td>4</td><td>Bows, Crossbows, Tridents</td><td>Increases damage dealt to Passive Mobs.</td></tr>
+<tr><td><strong>Molten</strong></td><td>4</td><td>All armor</td><td>Chance of setting your attacker ablaze.</td></tr>
+<tr><td><strong>Perish</strong></td><td>5</td><td>Bows, Crossbows, Tridents</td><td>A chance to give the wither effect.</td></tr>
+<tr><td><strong>Ravenous</strong></td><td>4</td><td>Swords, Axes</td><td>Chance to regain hunger while fighting.</td></tr>
+<tr><td><strong>Reflect</strong></td><td>5</td><td>All armor</td><td>Absorb enemy damage and reflect it back.</td></tr>
+<tr><td><strong>Replanter</strong></td><td>1</td><td>Hoes</td><td>Replants crops when you break them.</td></tr>
+<tr><td><strong>Slayer</strong></td><td>4</td><td>Swords, Axes</td><td>Increases damage dealt to Passive Mobs.</td></tr>
+<tr><td><strong>Soulless</strong></td><td>4</td><td>Bows, Crossbows, Tridents</td><td>Increases damage dealt to Hostile Mobs.</td></tr>
+<tr><td><strong>Telepathy</strong></td><td>4</td><td>All tools</td><td>Automatically places blocks broken by tools in your inventory.</td></tr>
+<tr><td><strong>Virus</strong></td><td>3</td><td>Bows, Crossbows, Tridents</td><td>A chance of giving poison effect.</td></tr>
+<tr><td><strong>Ward</strong></td><td>4</td><td>All armor</td><td>A chance to absorb enemy damage.</td></tr>
+</tbody>
+</table></div>
+<p class="bt"><a href="#custom-enchants-list" onclick="event.preventDefault();window.scrollTo({top:0,behavior:'smooth'})">↑ Back to top</a></p>
+<h2 id="tier-elite">Elite (41)</h2>
+<div class="tw"><table>
+<thead>
+<tr><th>Enchant</th><th>Max level</th><th>Applies to</th><th>What it does</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Allure</strong></td><td>3</td><td>Swords</td><td>Your attack pulls mobs towards you.</td></tr>
+<tr><td><strong>Blind</strong></td><td>3</td><td>Swords</td><td>A chance of causing blindness when attacking.</td></tr>
+<tr><td><strong>Bluntforce</strong></td><td>4</td><td>Axes</td><td>Chance to strike with great force.</td></tr>
+<tr><td><strong>Bowmaster</strong></td><td>5</td><td>Bows, Crossbows, Tridents</td><td>Multiplies damage against players who are wielding a Sword at the time they are hit.</td></tr>
+<tr><td><strong>Critical</strong></td><td>3</td><td>Swords</td><td>Increase damage done with critical hit.</td></tr>
+<tr><td><strong>Curse</strong></td><td>2</td><td>All armor</td><td>Chance to give your enemy mining fatigue.</td></tr>
+<tr><td><strong>Enderslayer</strong></td><td>5</td><td>Swords, Axes</td><td>Increases damage dealt to Enderman and Ender dragons.</td></tr>
+<tr><td><strong>Extinguish</strong></td><td>3</td><td>Leggings</td><td>Chance to extinguish yourself when on fire.</td></tr>
+<tr><td><strong>Firehook</strong></td><td>3</td><td>Fishing rods</td><td>The hook is on fire.</td></tr>
+<tr><td><strong>Frozen</strong></td><td>3</td><td>All armor</td><td>Can cause slowness to attacker when defending.</td></tr>
+<tr><td><strong>Greatsword</strong></td><td>5</td><td>Swords</td><td>Multiplies damage against players who are wielding a Bow at the time they are hit.</td></tr>
+<tr><td><strong>Hook</strong></td><td>3</td><td>Fishing rods</td><td>Get more exp from fishing.</td></tr>
+<tr><td><strong>Immolate</strong></td><td>3</td><td>Swords, Axes</td><td>Increases damage dealt to Spiders.</td></tr>
+<tr><td><strong>Impact</strong></td><td>4</td><td>Tridents</td><td>Chance to double dealt damage.</td></tr>
+<tr><td><strong>Infernal</strong></td><td>3</td><td>Swords, Axes</td><td>Explosive fire effect.</td></tr>
+<tr><td><strong>Magnet</strong></td><td>3</td><td>Swords</td><td>Your attack pulls players towards you.</td></tr>
+<tr><td><strong>Marksman</strong></td><td>4</td><td>Crossbows</td><td>Increases damage dealt with Crossbows.</td></tr>
+<tr><td><strong>Missile</strong></td><td>5</td><td>Crossbows</td><td>Arrows turn into fireballs.</td></tr>
+<tr><td><strong>Momentum</strong></td><td>3</td><td>Elytra</td><td>Chance to gain speed boost with fireworks.</td></tr>
+<tr><td><strong>Netherslayer</strong></td><td>5</td><td>Swords, Axes</td><td>Increases damage dealt to nether mobs.</td></tr>
+<tr><td><strong>Nightwalker</strong></td><td>3</td><td>Swords</td><td>Freeze mobs at night.</td></tr>
+<tr><td><strong>Paralyze</strong></td><td>4</td><td>Swords, Axes</td><td>Gives lightning effect and a chance for slowness and slow swinging.</td></tr>
+<tr><td><strong>Poison</strong></td><td>3</td><td>Swords, Axes</td><td>A chance of giving poison effect.</td></tr>
+<tr><td><strong>Poisoned</strong></td><td>4</td><td>All armor</td><td>Chance to give poison to your attacker.</td></tr>
+<tr><td><strong>Poisonedhook</strong></td><td>3</td><td>Fishing rods</td><td>Poisons the hook.</td></tr>
+<tr><td><strong>Poseidon</strong></td><td>4</td><td>Tridents</td><td>Increases damage dealt with Tridents.</td></tr>
+<tr><td><strong>Reaper</strong></td><td>4</td><td>Axes</td><td>A chance to give your opponent the Wither and Blindness effects while dealing damage.</td></tr>
+<tr><td><strong>Replenish</strong></td><td>3</td><td>Pickaxes</td><td>Chance to restore food while mining.</td></tr>
+<tr><td><strong>Rocketescape</strong></td><td>3</td><td>Boots</td><td>Blast off into the air at low HP.</td></tr>
+<tr><td><strong>Shockwave</strong></td><td>5</td><td>Chestplates</td><td>Chance to push back your attacker when your health is low.</td></tr>
+<tr><td><strong>Smokebomb</strong></td><td>8</td><td>Helmets</td><td>When you are near death, you will spawn a smoke bomb to distract your enemies.</td></tr>
+<tr><td><strong>Snap</strong></td><td>3</td><td>Fishing rods</td><td>Pull hit entity towards you.</td></tr>
+<tr><td><strong>Snare</strong></td><td>4</td><td>Bows, Crossbows</td><td>Chance to slow and fatigue enemies with projectiles.</td></tr>
+<tr><td><strong>Spark</strong></td><td>3</td><td>Tridents</td><td>Light opponents on fire.</td></tr>
+<tr><td><strong>Springs</strong></td><td>3</td><td>Boots</td><td>Gives jump boost.</td></tr>
+<tr><td><strong>Suspend</strong></td><td>3</td><td>Swords</td><td>Chance to cause no knockback to mobs.</td></tr>
+<tr><td><strong>Trickster</strong></td><td>8</td><td>All armor</td><td>When hit you have a chance to teleport directly behind you opponent.</td></tr>
+<tr><td><strong>Vampire</strong></td><td>3</td><td>Swords</td><td>A chance to heal you for up to 3hp a few seconds after you strike.</td></tr>
+<tr><td><strong>Veinminer</strong></td><td>3</td><td>Pickaxes</td><td>Mine entire vein of ores.</td></tr>
+<tr><td><strong>Voodoo</strong></td><td>6</td><td>All armor</td><td>Gives a chance to deal weakness.</td></tr>
+<tr><td><strong>Wither</strong></td><td>5</td><td>All armor</td><td>A chance to give the wither effect.</td></tr>
+</tbody>
+</table></div>
+<p class="bt"><a href="#custom-enchants-list" onclick="event.preventDefault();window.scrollTo({top:0,behavior:'smooth'})">↑ Back to top</a></p>
+<h2 id="tier-ultimate">Ultimate (47)</h2>
+<div class="tw"><table>
+<thead>
+<tr><th>Enchant</th><th>Max level</th><th>Applies to</th><th>What it does</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Aegis</strong></td><td>3</td><td>Boots</td><td>Chance to gain speed when taking fall damage.</td></tr>
+<tr><td><strong>Ambit</strong></td><td>7</td><td>Swords, Axes</td><td>Damages mobs within a radius that increases with the level of enchant.</td></tr>
+<tr><td><strong>Angelic</strong></td><td>5</td><td>Chestplates</td><td>Heals when damaged.</td></tr>
+<tr><td><strong>Archer</strong></td><td>4</td><td>Bows</td><td>Increases damage dealt with bows.</td></tr>
+<tr><td><strong>Arrowbreak</strong></td><td>6</td><td>Axes</td><td>Chance for arrows to bounce off you while holding item with this enchant.</td></tr>
+<tr><td><strong>Arrowdeflect</strong></td><td>4</td><td>All armor</td><td>Chance to prevent enemy arrow from dealing damage.</td></tr>
+<tr><td><strong>Bleed</strong></td><td>6</td><td>Axes</td><td>Make your opponent bleed.</td></tr>
+<tr><td><strong>Block</strong></td><td>3</td><td>Swords</td><td>A chance to negate an attack and deal up to 4 damage back.</td></tr>
+<tr><td><strong>Carrotplanter</strong></td><td>3</td><td>Hoes</td><td>Plant carrots in a 3x3 area by shift+right-clicking.</td></tr>
+<tr><td><strong>Cleave</strong></td><td>7</td><td>Axes</td><td>Damages players within a radius that increases with the level of enchant.</td></tr>
+<tr><td><strong>Confuse</strong></td><td>4</td><td>Swords</td><td>Chance to give nausea effect.</td></tr>
+<tr><td><strong>Creeperarmor</strong></td><td>3</td><td>All armor</td><td>Chance to be immune to explosive damage, at higher levels you have a chance to heal.</td></tr>
+<tr><td><strong>Diminish</strong></td><td>1</td><td>Axes</td><td>Chance to give your enemy mining fatigue.</td></tr>
+<tr><td><strong>Disappear</strong></td><td>4</td><td>All armor</td><td>Chance to become invisible when low on health.</td></tr>
+<tr><td><strong>Disintegrate</strong></td><td>4</td><td>Swords</td><td>Chance to deal extra durability damage to all enemy armor with every attack.</td></tr>
+<tr><td><strong>Distance</strong></td><td>4</td><td>Swords, Axes</td><td>Chance to distance yourself from your enemies and gain regeneration.</td></tr>
+<tr><td><strong>Dodge</strong></td><td>5</td><td>All armor</td><td>Chance to dodge physical enemy, chance increases when sneaking.</td></tr>
+<tr><td><strong>Endmaster</strong></td><td>3</td><td>Swords</td><td>Double damage to mobs in End.</td></tr>
+<tr><td><strong>Exalted</strong></td><td>4</td><td>Swords</td><td>A chance of removing bad potion effects.</td></tr>
+<tr><td><strong>Harvest</strong></td><td>9</td><td>Hoes</td><td>Chance to harvest in 3x3 area.</td></tr>
+<tr><td><strong>Heavy</strong></td><td>5</td><td>All armor</td><td>Decreases damage from enemy bows by 2% per level.</td></tr>
+<tr><td><strong>Hellfire</strong></td><td>5</td><td>Bows</td><td>Arrows turn into fireballs.</td></tr>
+<tr><td><strong>Iceaspect</strong></td><td>3</td><td>Swords</td><td>A chance of causing the slowness effect on your enemy.</td></tr>
+<tr><td><strong>Immolation</strong></td><td>3</td><td>Swords</td><td>Set all mobs in radius on fire.</td></tr>
+<tr><td><strong>Implants</strong></td><td>3</td><td>Helmets</td><td>Chance to restore food every few seconds.</td></tr>
+<tr><td><strong>Interrupt</strong></td><td>2</td><td>Swords</td><td>Chance to give your enemy mining fatigue.</td></tr>
+<tr><td><strong>Jellylegs</strong></td><td>3</td><td>Boots</td><td>Chance to negate fall damage.</td></tr>
+<tr><td><strong>Longbow</strong></td><td>4</td><td>Bows, Crossbows</td><td>Greatly increases damage dealt to enemy players that have a bow in their hands.</td></tr>
+<tr><td><strong>Lucky</strong></td><td>3</td><td>Fishing rods</td><td>Chance to increase luck while fishing.</td></tr>
+<tr><td><strong>Netherling</strong></td><td>3</td><td>Swords</td><td>Double damage to mobs in Nether.</td></tr>
+<tr><td><strong>Nightowl</strong></td><td>3</td><td>Swords</td><td>Deal more damage to mobs at night.</td></tr>
+<tr><td><strong>Obsidianshield</strong></td><td>1</td><td>All armor</td><td>Gives permanent fire resistance.</td></tr>
+<tr><td><strong>Permafrost</strong></td><td>5</td><td>Swords</td><td>Chance slow and bleed opponents.</td></tr>
+<tr><td><strong>Piercing</strong></td><td>5</td><td>Bows, Crossbows</td><td>Inflicts more damage.</td></tr>
+<tr><td><strong>Planter</strong></td><td>3</td><td>Hoes</td><td>Plant seeds in a 3x3 area by shift+right-clicking.</td></tr>
+<tr><td><strong>Plummet</strong></td><td>3</td><td>Boots</td><td>Deal damage to nearby mobs when taking fall damage.</td></tr>
+<tr><td><strong>Potatoplanter</strong></td><td>3</td><td>Hoes</td><td>Plant potatoes in a 3x3 area by shift+right-clicking.</td></tr>
+<tr><td><strong>Ragdoll</strong></td><td>4</td><td>All armor</td><td>Chance to be pushed back when getting hit.</td></tr>
+<tr><td><strong>Reinforced</strong></td><td>4</td><td>Elytra</td><td>Reduces damage dealt to you.</td></tr>
+<tr><td><strong>Safeguard</strong></td><td>2</td><td>All armor</td><td>Chance to gain Damage Resistance when defending.</td></tr>
+<tr><td><strong>Sharpnesshook</strong></td><td>9</td><td>Fishing rods</td><td>Deal damage with the hook.</td></tr>
+<tr><td><strong>Shatter</strong></td><td>4</td><td>Axes</td><td>Chance to deal extra durability damage to all enemy armor with every attack.</td></tr>
+<tr><td><strong>Sniper</strong></td><td>5</td><td>Bows</td><td>Headshots with bows deal double damage.</td></tr>
+<tr><td><strong>Striker</strong></td><td>3</td><td>Bows</td><td>Rain arrows over opponent.</td></tr>
+<tr><td><strong>Swordsman</strong></td><td>5</td><td>All armor</td><td>Chance to reduces incoming damage while wielding a sword by up to 22% at max level.</td></tr>
+<tr><td><strong>Tank</strong></td><td>4</td><td>All armor</td><td>Chance to decreases damage from enemy axes by 2% per level.</td></tr>
+<tr><td><strong>Timber</strong></td><td>3</td><td>Axes</td><td>Chance to break a tree in one hit.</td></tr>
+</tbody>
+</table></div>
+<p class="bt"><a href="#custom-enchants-list" onclick="event.preventDefault();window.scrollTo({top:0,behavior:'smooth'})">↑ Back to top</a></p>
+<h2 id="tier-fabled">Fabled (28)</h2>
+<div class="tw"><table>
+<thead>
+<tr><th>Enchant</th><th>Max level</th><th>Applies to</th><th>What it does</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Callallies</strong></td><td>3</td><td>Goat horns</td><td>Call your allies to your aid if you are in danger.</td></tr>
+<tr><td><strong>Chunky</strong></td><td>6</td><td>Chestplates</td><td>Chance to receive less damage.</td></tr>
+<tr><td><strong>Convulse</strong></td><td>6</td><td>Boots</td><td>Chance to throw your attackers into the air.</td></tr>
+<tr><td><strong>Diploid</strong></td><td>5</td><td>Swords</td><td>Chance to multiply mob drops.</td></tr>
+<tr><td><strong>Disarm</strong></td><td>3</td><td>Swords</td><td>Chance to disarm opponent.</td></tr>
+<tr><td><strong>Disarmor</strong></td><td>8</td><td>Swords</td><td>Chance of unequipping random armor piece from your opponent.</td></tr>
+<tr><td><strong>Doublestrike</strong></td><td>3</td><td>Swords</td><td>A chance to strike twice.</td></tr>
+<tr><td><strong>Fuddle</strong></td><td>3</td><td>Swords</td><td>Disorganize opponent’s hotbar.</td></tr>
+<tr><td><strong>Gemify</strong></td><td>1</td><td>Pickaxes</td><td>Chance for an ore block to turn into it’s block.</td></tr>
+<tr><td><strong>Guardians</strong></td><td>10</td><td>All armor</td><td>A chance to spawn iron golems to assist you and watch over you.</td></tr>
+<tr><td><strong>Haste</strong></td><td>3</td><td>Axes, Pickaxes, Shovels</td><td>Allows you to swing your tools faster.</td></tr>
+<tr><td><strong>Immortal</strong></td><td>4</td><td>All armor</td><td>Chance to prevents your armor from taking durability damage.</td></tr>
+<tr><td><strong>Judgement</strong></td><td>5</td><td>Elytra</td><td>Chance of poisoning opponent and gaining regeneration.</td></tr>
+<tr><td><strong>Killaura</strong></td><td>5</td><td>Swords</td><td>Chance to kill multiple monsters in radius.</td></tr>
+<tr><td><strong>Lifesteal</strong></td><td>5</td><td>Swords</td><td>A chance to steal health when attacking.</td></tr>
+<tr><td><strong>Multiplication</strong></td><td>5</td><td>Pickaxes</td><td>Chance to multiply ore drops.</td></tr>
+<tr><td><strong>Neutralize</strong></td><td>2</td><td>Bows, Crossbows</td><td>Chance to disarm opponent.</td></tr>
+<tr><td><strong>Nulify</strong></td><td>4</td><td>Swords, Axes</td><td>Chance to deal double damage while leaving enemy blind.</td></tr>
+<tr><td><strong>Overload</strong></td><td>3</td><td>All armor</td><td>Unlocks additional hearts.</td></tr>
+<tr><td><strong>Phoenix</strong></td><td>3</td><td>Chestplates</td><td>Chance to revive yourself when killed.</td></tr>
+<tr><td><strong>Reforged</strong></td><td>10</td><td>Weapons and tools</td><td>Protects weapons and tools durability, items will be take longer to break.</td></tr>
+<tr><td><strong>Restore</strong></td><td>4</td><td>Axes, Pickaxes, Shovels</td><td>Upon breaking, item has a chance to lose this enchantment and repair half of its durability.</td></tr>
+<tr><td><strong>Rush</strong></td><td>3</td><td>Elytra</td><td>Chance of speed boost when taking off with elytra.</td></tr>
+<tr><td><strong>Scare</strong></td><td>5</td><td>Swords, Axes</td><td>Chance to replace your opponents helmet to a pumpkin for a short time.</td></tr>
+<tr><td><strong>Spirits</strong></td><td>10</td><td>All armor</td><td>Chance to spawn guard blazes.</td></tr>
+<tr><td><strong>Trench</strong></td><td>9</td><td>Pickaxes, Shovels</td><td>Chance to break in 3x3 area.</td></tr>
+<tr><td><strong>Undeadruse</strong></td><td>10</td><td>Boots</td><td>When hit you have a chance to spawn zombie hordes to distract and disorient your opponents.</td></tr>
+<tr><td><strong>Waterwalker</strong></td><td>1</td><td>Boots</td><td>Walk on Water.</td></tr>
+</tbody>
+</table></div>
+<p class="bt"><a href="#custom-enchants-list" onclick="event.preventDefault();window.scrollTo({top:0,behavior:'smooth'})">↑ Back to top</a></p>
+<h2 id="tier-legendary">Legendary (26)</h2>
+<div class="tw"><table>
+<thead>
+<tr><th>Enchant</th><th>Max level</th><th>Applies to</th><th>What it does</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Aqua</strong></td><td>4</td><td>Boots</td><td>Deal double damage while in water.</td></tr>
+<tr><td><strong>Armored</strong></td><td>4</td><td>All armor</td><td>Decreases damage from enemy swords by 2% per level.</td></tr>
+<tr><td><strong>Bait</strong></td><td>3</td><td>Fishing rods</td><td>Chance to receive double fishing drops.</td></tr>
+<tr><td><strong>Barbarian</strong></td><td>4</td><td>Axes</td><td>Chance to inflicts more axe damage.</td></tr>
+<tr><td><strong>Beastslayer</strong></td><td>4</td><td>Swords, Axes</td><td>Increases damage dealt to Hostile Mobs.</td></tr>
+<tr><td><strong>Blacksmith</strong></td><td>5</td><td>Axes</td><td>Repair your weapon in exchange for dealing less damage.</td></tr>
+<tr><td><strong>Chaos</strong></td><td>5</td><td>Tridents</td><td>Deal weakness and wither effects.</td></tr>
+<tr><td><strong>Deadshot</strong></td><td>5</td><td>Tridents</td><td>Headshots with tridents deal double damage.</td></tr>
+<tr><td><strong>Deranged</strong></td><td>3</td><td>Swords</td><td>Strike lightning at nearby players.</td></tr>
+<tr><td><strong>Divert</strong></td><td>5</td><td>All armor</td><td>Chance of poisoning opponent and gaining regeneration.</td></tr>
+<tr><td><strong>Fumble</strong></td><td>3</td><td>Chestplates</td><td>Chance to explode enemy when hit by their arrows.</td></tr>
+<tr><td><strong>Gears</strong></td><td>3</td><td>Boots</td><td>Added speed when equipped.</td></tr>
+<tr><td><strong>Hardened</strong></td><td>3</td><td>All armor</td><td>Chance to recover durability when damaged by players.</td></tr>
+<tr><td><strong>Inflame</strong></td><td>3</td><td>Axes</td><td>Set all players in radius on fire.</td></tr>
+<tr><td><strong>Inquisitive</strong></td><td>4</td><td>Swords</td><td>Chance to increase EXP drops from mobs.</td></tr>
+<tr><td><strong>Launch</strong></td><td>3</td><td>Swords</td><td>Launch yourself by right-clicking.</td></tr>
+<tr><td><strong>Lavawalker</strong></td><td>1</td><td>Boots</td><td>Walk on Lava.</td></tr>
+<tr><td><strong>Lucid</strong></td><td>3</td><td>All armor</td><td>Chance to cure blindness and gain night vision when hit.</td></tr>
+<tr><td><strong>Patch</strong></td><td>3</td><td>All armor</td><td>Chance to recover durability when damaged by mobs.</td></tr>
+<tr><td><strong>Rebound</strong></td><td>3</td><td>Swords, Axes</td><td>Gain some health back after kills.</td></tr>
+<tr><td><strong>Slingshot</strong></td><td>3</td><td>Elytra</td><td>Boost yourself into flight by right-clicking.</td></tr>
+<tr><td><strong>Strife</strong></td><td>3</td><td>Tridents</td><td>Increases Trident melee damage.</td></tr>
+<tr><td><strong>Thunderlord</strong></td><td>3</td><td>Swords, Axes</td><td>Strike monsters with lightning every 3 consecutive hits.</td></tr>
+<tr><td><strong>Turmoil</strong></td><td>3</td><td>All armor</td><td>Chance to prevent opponents guards from spawning.</td></tr>
+<tr><td><strong>Twinge</strong></td><td>4</td><td>Tridents</td><td>Make your enemy bleed, if hit using melee attack.</td></tr>
+<tr><td><strong>Unholy</strong></td><td>5</td><td>All armor</td><td>Defend with weakness and wither effects.</td></tr>
+</tbody>
+</table></div>
+<p class="bt"><a href="#custom-enchants-list" onclick="event.preventDefault();window.scrollTo({top:0,behavior:'smooth'})">↑ Back to top</a></p>
+<p>Looking for enchants from exploring? See <a href="#datapack-enchantments">Datapack Enchants</a>.</p>
+<div class="pn"><a href="#5-gear-and-enchants">← 5. Gear and Enchants</a><a href="#datapack-enchantments">Datapack Enchants →</a></div></section><section class="page" id="datapack-enchantments" data-title="Datapack Enchants" hidden><h1>Datapack Enchants</h1>
+<p>Some enchants don’t come from the <code>/enchanter</code>. They belong to the world’s datapacks and are found while exploring.</p>
+<h2 id="katters-structures">Katter’s Structures (Overworld and Deep Blue)</h2>
+<p>Most of these come from bookshelves in the Overworld and the Deep Blue. Web Walker is an Arachne boss drop, and Enlightning only appears on pre-enchanted items. See <a href="#katter-s-bosses-and-enchants">Katter’s bosses and enchants</a>.</p>
+<div class="tw"><table>
+<thead>
+<tr><th>Enchant</th><th>What it does</th><th>Applies to</th><th>Comes from</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Blunt</strong></td><td>More damage against armored targets. Max level I. Can’t be combined with Sharpness, Bane of Arthropods or Smite.</td><td>Swords, spears and axes</td><td>Bookshelves in the Overworld</td></tr>
+<tr><td><strong>Heavy</strong></td><td>More damage, but lower attack speed and agility. Max level V.</td><td>Swords, spears and axes</td><td>Bookshelves in the Overworld</td></tr>
+<tr><td><strong>Light</strong></td><td>More agility, but lower defense. Max level II. Can’t be combined with Blast Protection.</td><td>Helmets, chestplates, leggings and boots</td><td>Bookshelves in the Overworld</td></tr>
+<tr><td><strong>Curse of Crystal</strong></td><td>Greatly increases damage, but the weapon becomes fragile. Max level I. Can’t be combined with Unbreaking or Mending.</td><td>Swords, spears and axes</td><td>Bookshelves in the Overworld</td></tr>
+<tr><td><strong>Curse of Alchemy</strong></td><td>Grants random potion effects.</td><td>Chestplates</td><td>Bookshelves in the Deep Blue</td></tr>
+<tr><td><strong>Ocean Heart</strong></td><td>Grants Conduit Power while in water.</td><td>Chestplates</td><td>Bookshelves in the Deep Blue</td></tr>
+<tr><td><strong>Web Walker</strong></td><td>Move faster through cobwebs and gain the Weaving effect. Can’t be combined with Depth Strider or Soul Speed.</td><td>Boots</td><td>Arachne boss drop</td></tr>
+<tr><td><strong>Enlightning</strong></td><td>Summons lightning when you hit a lightning rod.</td><td>Blaze Rod</td><td>Only on pre-enchanted items: Raj Lightning Rod and Enlightning Rod</td></tr>
+</tbody>
+</table></div>
+<p class="bt"><a href="#datapack-enchantments" onclick="event.preventDefault();window.scrollTo({top:0,behavior:'smooth'})">↑ Back to top</a></p>
+<h2 id="deeper-dark-enchants">Deeper Dark (sculk enchants)</h2>
+<p>Sculk enchants have blue text and only exist in the Deeper Dark. To use a <strong>sculk converter</strong> for enchanting, place an enchantable item in it (30 XP, and more soul fire means more enchanting power). If nothing happens, trigger it again to roll a different enchant. See <a href="#the-deeper-dark">The Deeper Dark</a>.</p>
+<div class="tw"><table>
+<thead>
+<tr><th>Enchant</th><th>What it does</th><th>Applies to</th><th>How to get it</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Clearsight</strong></td><td>Protects you from Blindness I and reduces the fog of Darkness I.</td><td>Helmets</td><td>Armor loot in structures, sculk traps, sculk converter</td></tr>
+<tr><td><strong>Sonic Boom</strong></td><td>Lets you fire the Warden’s sonic attack: sneak while looking down to charge, then un-sneak to fire. Players only.</td><td>Chestplates</td><td>Armor loot in structures, sculk traps, sculk converter</td></tr>
+<tr><td><strong>Safefall</strong></td><td>Increases your safe fall distance. 3 levels.</td><td>Leggings</td><td>Armor loot in structures, sculk traps, sculk converter</td></tr>
+<tr><td><strong>Darkspeed</strong></td><td>Move faster in complete darkness (light level 0). 3 levels.</td><td>Boots</td><td>Armor loot in structures, sculk traps, sculk converter</td></tr>
+<tr><td><strong>Resonate</strong></td><td>Mobs that hit you start to glow, and you can block sonic attacks (except the Warden’s own).</td><td>Shields</td><td>Sculk traps, sculk converter</td></tr>
+<tr><td><strong>Shrieker Sense</strong></td><td>Highlights any sculk shrieker you look at, even through walls.</td><td>Spyglasses</td><td>Sculk converter only</td></tr>
+</tbody>
+</table></div>
+<p class="bt"><a href="#datapack-enchantments" onclick="event.preventDefault();window.scrollTo({top:0,behavior:'smooth'})">↑ Back to top</a></p>
+<h2 id="dragonkind-enchants">Dragonkind Evolved (dragon enchants)</h2>
+<p>These can’t come from an enchanting table. They arrive on the custom items an Ender Dragon drops. Once you own every dragon item (except the Dragonheart Anchor), a dragon may drop an <strong>enchanted book</strong> with one of these instead, though not every enchant can appear on a book. See <a href="#the-end">The End</a>.</p>
+<div class="tw"><table>
+<thead>
+<tr><th>Enchant</th><th>What it does</th><th>Applies to</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Curse of Deterioration</strong></td><td>Curse on every dragon item. It can’t be removed in a grindstone, and the item can’t be repaired with Mending.</td><td>All dragon items</td></tr>
+<tr><td><strong>Wingspan</strong></td><td>Hitting a mob creates a stronger, Sweeping Edge-like sweep.</td><td>Swords</td></tr>
+<tr><td><strong>Dragonbane</strong></td><td>Deals extra damage to Ender Dragons.</td><td>Weapons</td></tr>
+<tr><td><strong>Exhalation</strong></td><td>Arrows deal 15 damage and hit harder against dragons. They also reach End Crystals and dragons from farther away (8 blocks) but can’t pierce Forcefield crystals.</td><td>Crossbows</td></tr>
+<tr><td><strong>Pillaring</strong></td><td>Mining a block also mines the next 3 blocks in a row. Uses durability and respects Unbreaking.</td><td>Pickaxes</td></tr>
+<tr><td><strong>Dragonhearted</strong></td><td>Extra max hearts equal to the level. Stacks with each piece you wear.</td><td>Armor and elytra</td></tr>
+<tr><td><strong>Dragonyield</strong></td><td>Thorns-like damage that only works on dragons. Stacks with each piece.</td><td>Armor</td></tr>
+<tr><td><strong>Voidwalk</strong></td><td>Hover over the void while there are no blocks beneath you. Handy for crossing the Outer End without an elytra.</td><td>Boots</td></tr>
+<tr><td><strong>Clear Skies</strong></td><td>While blocking, dragon breath clouds vanish instantly.</td><td>Shields</td></tr>
+<tr><td><strong>Kickback</strong></td><td>When you block a mob’s attack, it is knocked back and takes damage (more against dragons).</td><td>Shields</td></tr>
+<tr><td><strong>Altitude</strong></td><td>While flying, looking upward gives a strong levitation effect.</td><td>Elytra</td></tr>
+<tr><td><strong>Dragonsight</strong></td><td>Highlights hidden ores in the direction you look. The item slowly loses durability while worn.</td><td>Helmets and Dragon Eyes</td></tr>
+<tr><td><strong>Dragon Lungs</strong></td><td>Gives the effects of Aqua Affinity and Respiration.</td><td>Helmets</td></tr>
+</tbody>
+</table></div>
+<p class="bt"><a href="#datapack-enchantments" onclick="event.preventDefault();window.scrollTo({top:0,behavior:'smooth'})">↑ Back to top</a></p>
+<div class="pn"><a href="#custom-enchants-list">← All Custom Enchants</a><a href="#6-the-9-dungeons">6. The 9 Dungeons →</a></div></section><section class="page" id="6-the-9-dungeons" data-title="Stage 6: The 9 Dungeons" hidden><h1>Stage 6: The 9 Dungeons</h1><p>Every rank-up unlocks a new dungeon and its warp. Open
+<code>/warp</code> to travel to them. Go in order: each tier is harder
+than the last.</p>
+<p class="lg">Difficulty colour: tier 1 (easiest) <i class="dt" style="--c:#4caf6a" aria-hidden="true"></i><i class="dt" style="--c:#8bc34a" aria-hidden="true"></i><i class="dt" style="--c:#c6c63a" aria-hidden="true"></i><i class="dt" style="--c:#f2b632" aria-hidden="true"></i><i class="dt" style="--c:#f28c28" aria-hidden="true"></i><i class="dt" style="--c:#ee6a2c" aria-hidden="true"></i><i class="dt" style="--c:#e04848" aria-hidden="true"></i><i class="dt" style="--c:#c2307a" aria-hidden="true"></i><i class="dt" style="--c:#7b3fb0" aria-hidden="true"></i> tier 9 (hardest). The stripe on each row uses the same colours.</p>
+<div class="tw"><table>
+<thead>
+<tr class="header">
+<th>Tier</th>
+<th>Dungeon</th>
+<th>Unlocked at</th>
+<th>Theme</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td class="dg" style="--c:#4caf6a">1</td>
+<td>Cursed Hollow</td>
+<td>Settler</td>
+<td>Starter dungeon</td>
+</tr>
+<tr class="even">
+<td class="dg" style="--c:#8bc34a">2</td>
+<td>Pale Woodland</td>
+<td>Explorer</td>
+<td>Dark forest</td>
+</tr>
+<tr class="odd">
+<td class="dg" style="--c:#c6c63a">3</td>
+<td>Murkroot Bog</td>
+<td>Adventurer</td>
+<td>Swamp bog</td>
+</tr>
+<tr class="even">
+<td class="dg" style="--c:#f2b632">4</td>
+<td>Sunscorch Tombs</td>
+<td>Pathfinder</td>
+<td>Desert tombs</td>
+</tr>
+<tr class="odd">
+<td class="dg" style="--c:#f28c28">5</td>
+<td>Frozen Tundra</td>
+<td>Veteran</td>
+<td>Ice and snow</td>
+</tr>
+<tr class="even">
+<td class="dg" style="--c:#ee6a2c">6</td>
+<td>Abyssal Trench</td>
+<td>Elder</td>
+<td>Underwater depths</td>
+</tr>
+<tr class="odd">
+<td class="dg" style="--c:#e04848">7</td>
+<td>Outpost of the Fallen King</td>
+<td>Pioneer</td>
+<td>Fortress and its king</td>
+</tr>
+<tr class="even">
+<td class="dg" style="--c:#c2307a">8</td>
+<td>Nether Inferno</td>
+<td>Ancient</td>
+<td>Nether</td>
+</tr>
+<tr class="odd">
+<td class="dg" style="--c:#7b3fb0">9</td>
+<td>End Deep Dark</td>
+<td>Eternal</td>
+<td>Final tier</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="how-a-dungeon-works">How a dungeon works</h2>
+<ul>
+<li>Mobs spawn near their spawners when players are close. If you run
+too far, they leash back and heal.</li>
+<li>Dungeon bosses spawn <strong>somewhere inside the dungeon</strong>,
+and a boss returns <strong>every 6 hours</strong>. Finding it is up to
+you.</li>
+<li>Keys can be obtained from each dungeon’s bosses. Every boss drops a
+<strong>cosmetic key</strong> for a cosmetic that is <strong>exclusive
+to that dungeon</strong>.</li>
+<li>Some normal dungeon mobs have a small chance to drop that dungeon’s
+<strong>key</strong>.</li>
+<li>Keys open that dungeon’s crate at <code>/warp crates</code>.
+Example: Cursed Hollow keys open the Cursed Hollow crate.</li>
+<li>Each dungeon has a <strong>trader</strong> with decent trades. Bring
+the loot you collect there.</li>
+<li>Dungeons drop <strong>crafting materials</strong> specific to that
+tier (tier 7: squid tentacles, magic crystals, ectoplasm; tier 8: pig
+leather, magma gel, ghast eyes).</li>
+<li>Bring food, potions and friends.</li>
+</ul>
+<div class="pn"><a href="#datapack-enchantments">← Datapack Enchants</a><a href="#events">Events →</a></div></section><section class="page" id="events" data-title="Events" hidden><h1>Events</h1><ul>
+<li><strong>Fishing contests</strong> start on weekdays every 4 to 6
+hours when <strong>4 or more players</strong> are online. Top 3 win XP,
+keys and diamonds (1st place gets 3,000 XP and 2 Advanced keys).
+Everyone who takes part gets a diamond.</li>
+<li><strong>KOTH</strong> starts every 4 to 6 hours on <strong>Saturday
+and Sunday</strong> when <strong>4 or more players</strong> are online.
+Find it at <code>/warp piratekoth</code>.</li>
+<li><strong>Chat games</strong> appear in chat all the time: math, quiz,
+trivia and reaction races. First correct answer wins diamonds, emeralds,
+XP, and sometimes fly time or a Basic key. Trivia pays best.</li>
+<li><strong>Piñata party:</strong> votes fill a bar, then a piñata
+spawns for everyone.</li>
+</ul>
+<div class="pn"><a href="#6-the-9-dungeons">← 6. The 9 Dungeons</a><a href="#exploring-the-world">Exploring the World →</a></div></section><section class="page" id="exploring-the-world" data-title="Exploring the World" hidden><h1>Exploring the World</h1><p>SoftBloom’s world is packed with extra structures, dungeons,
+creatures and whole dimensions. You don’t have to follow an order, but
+the deeper you go, the better the loot.</p>
+<div class="pn"><a href="#events">← Events</a><a href="#the-overworld">The Overworld →</a></div></section><section class="page" id="the-overworld" data-title="The Overworld" hidden><h1>The Overworld</h1><ul>
+<li><strong>Resourceworld:</strong> use the Resourceworld portal at
+<code>/spawn</code>, in the portals area, or pick it from the
+<code>/rtp</code> menu.</li>
+<li><strong>Fuller forests:</strong> trees are bigger and more varied,
+so wood is easy to find.</li>
+<li><strong>Redesigned villages:</strong> plains, taiga, desert,
+savanna, snowy, cherry grove and swamp villages have new looks. They
+trade like normal villages.</li>
+<li><strong>Katter’s villages:</strong> cherry, jungle, swamp, ocean,
+underground, sky, ruined, mesa, birch and pillager villages. Keep an eye
+on the clouds and under the ground. Mountain, ocean and desert
+<strong>villager statues</strong> mark special spots.</li>
+<li><strong>Underground dungeons:</strong> more than 30 dungeon types
+sit under the biomes, such as cold, mouldy, webbed, infested, lush,
+deepwater, frozen, dusty tomb, scorched tomb and muddy dungeons, plus
+ruins and ancient city remnants. Watch your step when you hear
+spawners.</li>
+<li><strong>Katter’s landmarks and dungeons:</strong> desert dungeon,
+sky dungeon, armory, a better vanilla dungeon and 4 mini-dungeons, witch
+circles, shroom caves, windmills, graveyards, spider dens, trader
+outposts, magic towers, skyholds, ocean ships, fossils, Skyrtle and Far
+Watch. Villages and ruins hold books written from the viewpoint of
+villagers, Theron and Nox. Giant birch, dark oak and cherry trees grow
+here too.</li>
+<li><strong>New creatures:</strong>
+<ul>
+<li>Friendly: Dirt Golem (plants saplings and flowers you give it), Tuff
+Golem (holds items for you), Glare, Penguin (trades ice items for raw
+cod), Mushling, Rat (may trade cheese), Snail, Hedgehog, Butterfly,
+Moth, Wisp, Jellyfish, Nautilus Crab (buries items in beach sand you can
+brush up) and the Piggy Bank (drops loot when hit and vanishes after 15
+minutes).</li>
+<li>Hostile: Bloomer (a creeper that leaves moss), Cruncher (eats ores
+in the Badlands and drops them when hit), Vulture and Enderkin (trades
+diamonds and teleports when hurt).</li>
+<li><strong>Pufftail</strong> is a boss, summoned with a
+<strong>Nautilus Horn</strong>.</li>
+</ul></li>
+</ul>
+<div class="pn"><a href="#exploring-the-world">← Exploring the World</a><a href="#katter-s-bosses-and-enchants">Katter’s bosses and enchants →</a></div></section><section class="page" id="katter-s-bosses-and-enchants" data-title="Katter’s bosses and enchants" hidden><h1>Katter’s bosses and enchants</h1><ul>
+<li><strong>Bosses:</strong> Raj Raksha, Tenkū Mizu Gami, Arachne, Magus
+Theron and Rústa. Magus Theron drops 4 spells, and Rústa is tied to
+random totems.</li>
+<li><strong>Custom enchants:</strong> Blunt, Heavy, Light, Curse of
+Crystal, Curse of Alchemy, Ocean Heart, Web Walker and Enlightning.
+See what each one does in <a href="#datapack-enchantments">Datapack Enchants</a>.</li>
+<li>Look for <strong>random totems</strong> and a <strong>Raj Lightning
+Rod</strong> block that strikes lightning in an area.</li>
+</ul>
+<div class="pn"><a href="#the-overworld">← The Overworld</a><a href="#the-deep-blue">The Deep Blue →</a></div></section><section class="page" id="the-deep-blue" data-title="The Deep Blue (Katter’s structures)" hidden><h1>The Deep Blue (Katter’s structures)</h1><ul>
+<li><strong>Enter:</strong> use the Deep Blue portal at
+<code>/spawn</code>, in the portal areas. You can also build your own
+Katter’s Deep Blue portal door and use that.</li>
+</ul>
+<div class="pn"><a href="#katter-s-bosses-and-enchants">← Katter’s bosses and enchants</a><a href="#the-nether">The Nether →</a></div></section><section class="page" id="the-nether" data-title="The Nether (Incendium)" hidden><h1>The Nether (Incendium)</h1><p>The Nether has been rebuilt with 8 biomes, including <strong>Quartz
+Flats</strong>, <strong>Withered Forest</strong> and <strong>Infernal
+Dunes</strong>. Don’t expect a plain netherrack tunnel.</p>
+<div class="tw"><table>
+<thead>
+<tr class="header">
+<th>Place</th>
+<th>What’s there</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Forbidden Castle</strong> (Ash Barrens)</td>
+<td>One of the biggest structures in the game. Piglins guard it. Loot:
+<strong>Greatsword of Sacrifice</strong> (high damage) and <strong>Hefty
+Pickaxe</strong>.</td>
+</tr>
+<tr class="even">
+<td><strong>Sanctum</strong></td>
+<td>Guarded by illagers, who protect dark secrets and strong
+weapons.</td>
+</tr>
+<tr class="odd">
+<td><strong>Quartz Kitchen</strong></td>
+<td>Run by the skeleton chef <strong>Torte</strong>.</td>
+</tr>
+<tr class="even">
+<td><strong>Nether Reactor</strong></td>
+<td>Defended by the <strong>Withered Director</strong>.</td>
+</tr>
+<tr class="odd">
+<td><strong>Abandoned Tower</strong></td>
+<td>Rescue the <strong>Ghastling</strong>: it defends you from
+Ghasts.</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>Hovering Inferno:</strong> an all-powerful boss you can
+summon. Beat it to win the <strong>Trailblazer</strong>, a flame-spewing
+bow.</li>
+<li><strong>Hazmat Suit:</strong> protects against all poisonous
+attacks.</li>
+<li>Look out for <strong>Toxic Slimes</strong> in the Toxic Heap and
+<strong>Restless Spirits</strong> in the Withered Forest.</li>
+<li>There are more than 25 custom items in total.</li>
+</ul>
+<div class="pn"><a href="#the-deep-blue">← The Deep Blue</a><a href="#the-deeper-dark">The Deeper Dark →</a></div></section><section class="page" id="the-deeper-dark" data-title="The Deeper Dark" hidden><h1>The Deeper Dark</h1><p>A sculk dimension far below the Ancient Cities.</p>
+<ul>
+<li><strong>Enter:</strong> use the Deeper Dark portal at
+<code>/spawn</code>, in the portal areas.</li>
+<li><strong>Leave:</strong> type <code>/spawn</code>, use
+<code>/warp</code>, or teleport to one of your player homes.</li>
+<li><strong>Biomes:</strong> Deeper Dark, Deeper Dark Cavern, Volcanic
+Caverns (basalt, lava and a central lava river), Amethyst Mines, Deep
+Oasis (no sculk, with plants, <strong>sniffers</strong> and sniffer
+nests), Ancient Dark (sculk-covered and dangerous, and touching sculk
+can summon a Warden) and the Obsidian Barrier wall.</li>
+<li><strong>Structures:</strong> Ancient Villages, Ancient Fortresses,
+Sculk Traps (spawner dungeons with enchanted books and XP bottles),
+Amethyst Mineshafts and Laboratories.</li>
+<li><strong>Shockwave:</strong> a fast, loud mob in the amethyst
+mineshafts. Surround yourself with blocks and wait for it to pass.</li>
+<li><strong>Sculk enchants:</strong> Clearsight (helmets), Sonic Boom
+(chestplates), Safefall (leggings), Darkspeed (boots), Resonate
+(shields) and Shrieker Sense (spyglasses). See what each one does in
+<a href="#datapack-enchantments">Datapack Enchants</a>.</li>
+<li><strong>Sculk conversion:</strong> build a converter from conversion
+altar fragments on a sculk catalyst, then feed it XP and soul fire to
+turn items into new ones. Examples: amethyst shard into echo shard,
+awkward potion into XP bottle or splash blindness, deepslate into
+reinforced deepslate, sand into soul sand, compass into <strong>Warden
+Tracker</strong>.</li>
+<li><strong>Useful items:</strong> locator compasses for Laboratories,
+Amethyst Mineshafts and Ancient Fortresses, plus the Warden
+Tracker.</li>
+<li><strong>Wardens drop real loot:</strong> echo shards, ores, golden
+apples, enchanted books and armor trim templates. They have a loot
+cooldown, so farming one repeatedly won’t work.</li>
+</ul>
+<div class="pn"><a href="#the-nether">← The Nether</a><a href="#the-end">The End →</a></div></section><section class="page" id="the-end" data-title="The End (Nullscape and the Ender Dragon)" hidden><h1>The End (Nullscape and the Ender Dragon)</h1><ul>
+<li><strong>Nullscape:</strong> the End now towers up to 384 blocks high
+with shattered islands, floating valleys, crystallized peaks, porous
+sponge-like terrain, stacked rounded islands and stretched alien
+landscapes. Each region of the End has its own look and feel, so a long
+flight shows you something new.</li>
+<li><strong>End Cities:</strong> still hold treasure, including the
+<em>Essence of LIMBO</em>.</li>
+</ul>
+<p><strong>Dragonkind Evolved: the reworked dragon fight</strong></p>
+<p>Every dragon you respawn is tougher than the last. Tiers climb from
+<strong>Fledgling</strong> to <strong>Powerful, Cruel, Immortal,
+Ferocious</strong> and <strong>Primordial</strong>, with more health and
+nastier tricks.</p>
+<ul>
+<li><strong>Every dragon:</strong> body slams, End rod spikes and rings
+of shulker bullets. When it is desperate or out of crystals, it grounds
+players with high gravity and rains fireballs that leave breath
+clouds.</li>
+<li><strong>End crystals:</strong> they regenerate (twice in the first
+fight, more later) and gain abilities: cage, forcefield, fiery aura,
+laser, Enderbee (makes you drop your items), witch, anti-grav, cursed,
+launcher and portal.</li>
+<li><strong>Ominous fights:</strong> respawn the dragon with <strong>Bad
+Omen</strong> and the difficulty goes up a tier, but loot is
+<strong>doubled</strong>.</li>
+<li><strong>Dragon types:</strong></li>
+</ul>
+<div class="tw"><table>
+<thead>
+<tr class="header">
+<th>Type</th>
+<th>Signature</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Zombified, Mossy, Warped</td>
+<td>Poison or hunger clouds, servants, and a ground that changes.</td>
+</tr>
+<tr class="even">
+<td>Sculk</td>
+<td>Darkness breath and Sonic Boom.</td>
+</tr>
+<tr class="odd">
+<td>Frost</td>
+<td>Extreme slowness, ice and igloos that trap you.</td>
+</tr>
+<tr class="even">
+<td>Dragon Tyrant</td>
+<td>Wither breath, Wither Skeleton servants, soul fire.</td>
+</tr>
+<tr class="odd">
+<td>Skeletal</td>
+<td>Perches often and is invulnerable while its skeleton servants
+live.</td>
+</tr>
+<tr class="even">
+<td>Blazing</td>
+<td>Fire on the ground and Blaze servants.</td>
+</tr>
+<tr class="odd">
+<td>Elder</td>
+<td>Casts spells on up to 3 players.</td>
+</tr>
+<tr class="even">
+<td>Dragon Wight</td>
+<td>Silent, very fast, never perches.</td>
+</tr>
+<tr class="odd">
+<td>Beacon</td>
+<td>A damaging beam that alternates between targets.</td>
+</tr>
+<tr class="even">
+<td>Desert</td>
+<td>Sand and cacti, unblockable fireballs and Hoglin servants.</td>
+</tr>
+<tr class="odd">
+<td>Thunder</td>
+<td>Lightning hazards, and always drops a <strong>Channeling
+Trident</strong>.</td>
+</tr>
+<tr class="even">
+<td>Artillery</td>
+<td>Buried landmines and arcing missiles.</td>
+</tr>
+<tr class="odd">
+<td>The Last Dragon and the 10,000 Dragon</td>
+<td>Special fights at the 20th and 30th dragon on the server.</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>Rewards:</strong> each dragon drops loot near the exit
+portal plus a dragon-themed item. You’re less likely to get an item you
+already own.
+<ul>
+<li><strong>Dragonslayer Sword</strong>, <strong>Dragon-Sinew
+Crossbow</strong>, <strong>Dragontooth Pickaxe</strong>,
+<strong>Dragonhide Armor</strong> (4 pieces, stronger than netherite),
+<strong>Dragonskull Shield</strong>, <strong>Dragonscale Wings</strong>,
+<strong>Draconic Scepter</strong>, <strong>Dragon Eyes</strong> helmet
+and the <strong>Dragonheart Anchor</strong> (a placeable recovery point
+you can use 3 times).</li>
+<li>Dragon gear carries custom enchants you can’t get anywhere else:
+Wingspan, Dragonbane, Exhalation, Pillaring, Dragonhearted, Dragonyield,
+Voidwalk, Clear Skies, Kickback, Altitude, Dragonsight and Dragon
+Lungs. See what each one does in <a href="#datapack-enchantments">Datapack Enchants</a>.</li>
+<li>All dragon gear carries the <strong>Curse of Deterioration</strong>,
+which can’t be removed.</li>
+</ul></li>
+<li>Advancements track every dragon type, difficulty and item.</li>
+</ul>
+<div class="pn"><a href="#the-deeper-dark">← The Deeper Dark</a><a href="#heaven-limbo-and-the-sift">Heaven, Limbo and The Sift →</a></div></section><section class="page" id="heaven-limbo-and-the-sift" data-title="Heaven, Limbo and The Sift" hidden><h1>Heaven, Limbo and The Sift</h1><ul>
+<li><strong>Heaven:</strong> a peaceful sky dimension with permanent
+daylight, no hostile mobs, forests, flowers, friendly animals and
+villages with valuable loot. You need an <strong>elytra</strong>: fly up
+past <strong>y=300</strong> to reach it. (Reach Settler first, because
+Members can’t equip an elytra.)</li>
+<li><strong>Limbo:</strong> a hidden realm with 9 biomes, huts, ruined
+camps, a factory, a fort and a huge dungeon. It has its own gear and
+currency. Travel there from the <code>/rtp</code> menu. You can also eat
+the <em>Essence of LIMBO</em> from End city treasure to travel there.
+The <em>Overworld Orb</em> builds a way back.</li>
+<li><strong>The Sift:</strong> end-game content, recommended for
+<strong>Veteran</strong> rank and above. A crystal dimension with four
+regions (Pink Meadows, Frost Forest, Red Spires and Shattered Peaks),
+floating islands, 11 creatures, 38 custom items and five bosses: Prism
+Warden, Spire Tyrant, Frost Matriarch, Storm Wisp and The Sifter.
+<ul>
+<li>Build an upright frame of <strong>Amethyst Blocks</strong>, then
+light it with a <strong>Sift Catalyst</strong>. The Catalyst is crafted
+from an <strong>ender pearl and amethyst</strong>, and all The Sift’s
+recipes are in the crafting table.</li>
+<li>Mine Shard Ore for shard tools, use the Sift Compass to find
+structures, and follow the hints above your hotbar.</li>
+</ul></li>
+</ul>
+<div class="pn"><a href="#the-end">← The End</a><a href="#fighting-other-players">Fighting other players →</a></div></section><section class="page" id="fighting-other-players" data-title="Fighting other players" hidden><h1>Fighting other players</h1><p>PvP is <strong>off by default in the overworld</strong>, and you can toggle it yourself when you want to fight.</p>
+<div class="co warn" role="note"><b>Warning</b>Every other world is PvP-on, so be careful.</div>
+<div class="pn"><a href="#heaven-limbo-and-the-sift">← Heaven, Limbo and The Sift</a><a href="#suggested-path">Suggested Path →</a></div></section><section class="page" id="suggested-path" data-title="Suggested Path: First to Last" hidden><h1>Suggested Path: First to Last</h1><p>You can play in any order, but this is the path we recommend. Ranks
+are the milestones, and the Overworld is packed with things to find
+along the way, so keep exploring it at every stage.</p>
+<p><strong>Member to Settler: get set up</strong></p>
+<ul>
+<li>Claim your kits with <code>/kit</code>, claim land, and set
+<code>/sethome</code>.</li>
+<li>Claim your <code>/calendar</code> reward and <code>/vote</code>
+every day.</li>
+<li>Just play. Any activity that gives skill XP levels that skill, so
+reaching level 5 in every skill comes naturally.</li>
+<li>Open <code>/quest</code> to get paid for things you’re already
+doing.</li>
+<li>Sell at <code>/warp shop</code> and try <code>/emf toggle</code> for
+fishing money.</li>
+<li>Use <code>/rtp</code> to explore the Overworld or gather materials
+in the Resourceworld.</li>
+</ul>
+<p><strong>Settler to Adventurer: dungeons 1 to 3</strong></p>
+<ul>
+<li>Do dungeons 1 to 3 and buy the cheapest spawners (4 per chunk).</li>
+<li>Get your first enchant books and White Scrolls.</li>
+<li>Join fishing contests and KOTH when they run.</li>
+<li>Elytra unlocks at Settler, so you can fly up to Heaven.</li>
+</ul>
+<p><strong>Pathfinder to Elder: dungeons 4 to 6</strong></p>
+<ul>
+<li>Do dungeons 4 to 6.</li>
+<li>Explore the Nether and Katter’s structures, then the Deep Blue.</li>
+<li>Upgrade your spawners and gear.</li>
+<li>Start chasing rings from premium crates.</li>
+</ul>
+<p><strong>Pioneer to Ancient: dungeons 7 and 8</strong></p>
+<ul>
+<li>Do dungeons 7 and 8.</li>
+<li>Take on the Deeper Dark, because Wardens are dangerous.</li>
+<li>Start The Sift if you haven’t yet (recommended from Veteran).</li>
+<li>Try the first dragon tiers and visit Limbo.</li>
+</ul>
+<p><strong>Eternal: dungeon 9 and beyond</strong></p>
+<ul>
+<li>Do dungeon 9, the harder dragon tiers and Ominous fights, and
+collect the dragon gear and cosmetics.</li>
+</ul>
+<div class="pn"><a href="#fighting-other-players">← Fighting other players</a><a href="#good-to-know">Good to Know →</a></div></section><section class="page" id="good-to-know" data-title="Good to Know" hidden><h1>Good to Know</h1><div class="co warn" role="note"><b>Warning</b><strong>Cleanup:</strong> stray mobs and items are cleared about every 6 minutes. Don’t leave valuable items lying on the ground.</div>
+<ul>
+<li><strong>Stacking:</strong> nearby mobs and dropped items merge into
+a stack, so you may see a number instead of a crowd.</li>
+<li><strong>Stuck or confused?</strong> Type <code>/discord</code> and
+ask for help.</li>
+</ul>
+<div class="pn"><a href="#suggested-path">← Suggested Path</a><span></span></div></section></main><aside id="toc"></aside></div>
+<div id="toast" role="status" aria-live="polite"></div>
+<script>
+(function(){
+var $=function(s){return document.querySelector(s)},$$=function(s){return Array.prototype.slice.call(document.querySelectorAll(s))};
+function tx(el){var d=document.createElement('div');d.innerHTML=el.innerHTML.replace(/<\/(td|th|tr|li|p|h[1-6]|div)>/gi,'$& ');return d.textContent}
+var idx=$$('.page').map(function(p){return{el:p,slug:p.id,title:p.dataset.title,text:tx(p).toLowerCase().replace(/\s+/g,' ')}});
+var links=$$('#nav a'),toc=$('#toc'),nav=$('#nav');
+function show(){
+var s=decodeURIComponent(location.hash.slice(1))||'home';
+var cur=idx.filter(function(i){return i.slug===s})[0]||idx[0];
+idx.forEach(function(i){i.el.hidden=i!==cur});
+links.forEach(function(a){a.classList.toggle('on',a.getAttribute('href')==='#'+cur.slug)});
+document.title=cur.title+' · SoftBloom Wiki';
+toc.innerHTML='';var hs=Array.prototype.slice.call(cur.el.querySelectorAll('h2,h3'));
+if(hs.length){var t=document.createElement('b');t.textContent='On this page';toc.appendChild(t)}
+hs.forEach(function(h){var a=document.createElement('a');a.textContent=h.textContent;a.className=h.tagName.toLowerCase();a.href='#'+cur.slug;a.onclick=function(e){e.preventDefault();h.scrollIntoView({behavior:'smooth'})};toc.appendChild(a)});
+window.scrollTo(0,0);nav.classList.remove('open')}
+window.addEventListener('hashchange',show);show();
+$('#menu').onclick=function(){nav.classList.toggle('open')};
+$('#theme').onclick=function(){var r=document.documentElement,d=r.dataset.theme?r.dataset.theme==='dark':matchMedia('(prefers-color-scheme: dark)').matches;r.dataset.theme=d?'light':'dark'};
+var q=$('#q'),res=$('#res');
+q.addEventListener('input',function(){
+var v=q.value.trim().toLowerCase();res.innerHTML='';res.hidden=v.length<2;if(v.length<2)return;
+var hits=idx.map(function(i){return{i:i,p:i.text.indexOf(v),t:i.title.toLowerCase().indexOf(v)>=0}}).filter(function(h){return h.p>=0||h.t}).sort(function(a,b){return(b.t-a.t)||(a.p-b.p)}).slice(0,8);
+var eh=window.sbEnchants?window.sbEnchants(v):[];
+if(!hits.length&&!eh.length){res.innerHTML='<p>No matches.</p>';return}
+eh.forEach(function(a){res.appendChild(a)});
+hits.forEach(function(h){var a=document.createElement('a');a.href='#'+h.i.slug;var b=document.createElement('b');b.textContent=h.i.title;a.appendChild(b);
+if(h.p>=0){var sp=document.createElement('span');sp.textContent='…'+h.i.text.slice(Math.max(0,h.p-40),h.p+80)+'…';a.appendChild(sp)}
+a.onclick=function(){res.hidden=true;q.value=''};res.appendChild(a)})});
+})();
+</script>
+<script>
+(function(){
+var f=document.getElementById("ef"),page=document.getElementById("custom-enchants-list");
+if(!f||!page)return;
+var T=[["simple","Simple","#b5a9bd","#ffffff"],["unique","Unique","#3fa66b"],["elite","Elite","#3b82d6"],["ultimate","Ultimate","#e6b800"],["fabled","Fabled","#f08a24"],["legendary","Legendary","#ec5fa0"]];
+var ARMOR=["Helmets","Chestplates","Leggings","Boots"],WEAP=["Swords","Axes","Bows","Crossbows","Tridents"],TOOL=["Pickaxes","Axes","Shovels","Hoes"];
+var ORDER=["Swords","Axes","Pickaxes","Shovels","Hoes","Bows","Crossbows","Tridents","Fishing rods","Elytra","Goat horns","Helmets","Chestplates","Leggings","Boots"];
+var META={"all armor":ARMOR,"all weapons":WEAP,"all tools":TOOL,"weapons and tools":WEAP.concat(TOOL)};
+function mk(tag,cls,txt){var e=document.createElement(tag);if(cls)e.className=cls;if(txt)e.textContent=txt;return e}
+function dot(t,cls){var d=mk("i",cls);d.style.setProperty("--c",t[2]);if(t[3])d.style.setProperty("--d",t[3]);return d}
+var secs=[],found={};
+T.forEach(function(t){
+var h=document.getElementById("tier-"+t[0]);if(!h)return;
+var tw=h.nextElementSibling;if(!tw||!tw.classList.contains("tw"))return;
+var bt=tw.nextElementSibling;if(!bt||!bt.classList.contains("bt"))bt=null;
+var rows=Array.prototype.map.call(tw.querySelectorAll("tbody tr"),function(tr){
+var c=tr.children,k={};
+(c[2]?c[2].textContent:"").split(",").forEach(function(x){
+x=x.trim();if(!x)return;var l=x.toLowerCase();
+if(META[l]){META[l].forEach(function(y){k[y.toLowerCase()]=1})}else{k[l]=1;found[x]=1}});
+var d=dot(t,"dt ed");d.setAttribute("role","img");d.setAttribute("aria-label",t[1]+" tier");d.title=t[1];
+if(c[0])c[0].insertBefore(d,c[0].firstChild);
+return{tr:tr,text:tr.textContent.toLowerCase(),k:k}});
+secs.push({id:t[0],t:t,h:h,tw:tw,bt:bt,rows:rows})});
+var opts=ORDER.filter(function(n){return found[n]}).concat(Object.keys(found).filter(function(n){return ORDER.indexOf(n)<0}).sort());
+var on={},txt="",item="";
+var total=secs.reduce(function(n,s){return n+s.rows.length},0);
+f.setAttribute("aria-label","Filter enchants by name, item or effect");
+var anchor=f.parentNode;anchor.classList.add("nf");
+var box=mk("div","fb");box.setAttribute("role","group");box.setAttribute("aria-label","Filter by tier");
+var chips=secs.map(function(s){
+var b=mk("button","chip");b.type="button";b.style.setProperty("--c",s.t[2]);b.setAttribute("aria-pressed","false");
+b.appendChild(dot(s.t,"dt"));b.appendChild(document.createTextNode(s.t[1]));
+b.addEventListener("click",function(){if(on[s.id])delete on[s.id];else on[s.id]=1;b.setAttribute("aria-pressed",on[s.id]?"true":"false");apply()});
+box.appendChild(b);return b});
+var row=mk("div","fb"),lab=mk("label",null,"Applies to");lab.htmlFor="ea";
+var sel=mk("select");sel.id="ea";
+var o0=mk("option",null,"Any item");o0.value="";sel.appendChild(o0);
+opts.forEach(function(n){var o=mk("option",null,n);o.value=n.toLowerCase();sel.appendChild(o)});
+var clr=mk("button","chip","Clear filters");clr.type="button";clr.id="fclr";
+var st=mk("span","fs");st.id="fc";st.setAttribute("role","status");st.setAttribute("aria-live","polite");
+[lab,sel,clr,st].forEach(function(e){row.appendChild(e)});
+anchor.parentNode.insertBefore(box,anchor.nextSibling);box.parentNode.insertBefore(row,box.nextSibling);
+function syncToc(){var t=document.getElementById("toc");if(!t)return;
+Array.prototype.forEach.call(t.querySelectorAll("a"),function(a){
+var m=secs.filter(function(s){return s.h.textContent===a.textContent})[0];a.hidden=!!(m&&m.h.hidden)})}
+function apply(){
+var act=Object.keys(on).length>0,fl=act||txt!==""||item!=="",shown=0;
+page.classList.toggle("filtering",fl);
+secs.forEach(function(s){
+var vis=0,tierOk=!act||!!on[s.id];
+s.rows.forEach(function(r){
+var ok=tierOk&&(txt===""||r.text.indexOf(txt)>=0)&&(item===""||r.k[item]===1);
+r.tr.hidden=!ok;if(ok)vis++});
+shown+=vis;var hide=vis===0;s.h.hidden=hide;s.tw.hidden=hide;if(s.bt)s.bt.hidden=hide});
+clr.hidden=!fl;
+st.textContent=!fl?total+" enchants":shown===0?"No enchants match. Try clearing a filter.":"Showing "+shown+" of "+total+" enchants";
+syncToc()}
+f.addEventListener("input",function(){txt=f.value.trim().toLowerCase();apply()});
+sel.addEventListener("change",function(){item=sel.value;apply()});
+clr.addEventListener("click",function(){on={};chips.forEach(function(b){b.setAttribute("aria-pressed","false")});f.value="";txt="";sel.value="";item="";apply()});
+window.addEventListener("hashchange",syncToc);
+apply()})();
+</script>
+<script>
+(function(){
+var main=document.querySelector("main"),toast=document.getElementById("toast"),tt;
+if(!main||!toast)return;
+function say(m){toast.textContent=m;toast.classList.add("on");clearTimeout(tt);tt=setTimeout(function(){toast.classList.remove("on")},1800)}
+function legacy(t){return new Promise(function(ok,no){var a=document.createElement("textarea");a.value=t;a.setAttribute("readonly","");a.style.cssText="position:fixed;top:0;left:0;opacity:0";document.body.appendChild(a);a.select();var r=false;try{r=document.execCommand("copy")}catch(e){}document.body.removeChild(a);r?ok():no()})}
+function copy(t){return(navigator.clipboard&&navigator.clipboard.writeText?navigator.clipboard.writeText(t):Promise.reject()).catch(function(){return legacy(t)})}
+function cmdOf(el){var t=el.textContent,i=t.indexOf("<");return i>0?t.slice(0,i):t}
+function run(el){var c=cmdOf(el);copy(c).then(function(){say("Copied "+c.trim())},function(){say("Could not copy. Select the command and copy it by hand.")})}
+Array.prototype.forEach.call(main.querySelectorAll("code"),function(c){
+if(!/^\/[a-z]/i.test(c.textContent))return;
+c.classList.add("cmd");c.tabIndex=0;c.setAttribute("role","button");c.title="Click to copy"});
+main.addEventListener("click",function(e){var c=e.target.closest&&e.target.closest("code.cmd");if(c)run(c)});
+main.addEventListener("keydown",function(e){if(e.key!=="Enter"&&e.key!==" ")return;var c=e.target.closest&&e.target.closest("code.cmd");if(c){e.preventDefault();run(c)}});
+})();
+</script><script>
+(function(){
+["custom-enchants-list","datapack-enchantments"].forEach(function(id){
+var pg=document.getElementById(id);if(!pg)return;
+Array.prototype.forEach.call(pg.querySelectorAll("table"),function(t){
+var hs=Array.prototype.map.call(t.querySelectorAll("thead th"),function(h){return h.textContent.trim()});
+if(!hs.length)return;
+t.classList.add("cards");t.setAttribute("role","table");
+Array.prototype.forEach.call(t.querySelectorAll("thead,tbody"),function(e){e.setAttribute("role","rowgroup")});
+Array.prototype.forEach.call(t.querySelectorAll("tr"),function(e){e.setAttribute("role","row")});
+Array.prototype.forEach.call(t.querySelectorAll("th"),function(e){e.setAttribute("role","columnheader")});
+Array.prototype.forEach.call(t.querySelectorAll("tbody td"),function(e){e.setAttribute("role","cell");if(hs[e.cellIndex])e.setAttribute("data-label",hs[e.cellIndex])})})})})();
+</script>
+<script>
+(function(){
+var P=["custom-enchants-list","datapack-enchantments"];
+var TC={simple:["Simple","#b5a9bd","#ffffff"],unique:["Unique","#3fa66b"],elite:["Elite","#3b82d6"],ultimate:["Ultimate","#e6b800"],fabled:["Fabled","#f08a24"],legendary:["Legendary","#ec5fa0"]};
+var list=[];
+P.forEach(function(id){
+var pg=document.getElementById(id);if(!pg)return;
+Array.prototype.forEach.call(pg.querySelectorAll("table"),function(t){
+var hs=Array.prototype.map.call(t.querySelectorAll("thead th"),function(h){return h.textContent.trim().toLowerCase()});
+function col(re){for(var i=0;i<hs.length;i++)if(re.test(hs[i]))return i;return -1}
+var ci={lv:col(/^max/),ap:col(/^applies/),fx:col(/what it does/),src:col(/comes from|how to get/)};
+var tw=t.closest(".tw"),h=tw&&tw.previousElementSibling,tid=h&&h.id&&h.id.indexOf("tier-")===0?h.id.slice(5):null;
+Array.prototype.forEach.call(t.querySelectorAll("tbody tr"),function(tr){
+var c=tr.children,g=function(i){return i>=0&&c[i]?c[i].textContent.trim():""};
+var name=c[0]?c[0].textContent.trim():"";if(!name)return;
+list.push({tr:tr,page:id,name:name,l:name.toLowerCase(),lv:g(ci.lv),ap:g(ci.ap),fx:g(ci.fx),src:g(ci.src),tier:tid&&TC[tid]?TC[tid]:null})})})});
+function go(e){
+var cur=decodeURIComponent(location.hash.slice(1));
+function done(){
+Array.prototype.forEach.call(document.querySelectorAll("tr.hit"),function(r){r.classList.remove("hit")});
+var tw=e.tr.closest(".tw");
+if(e.tr.hidden||(tw&&tw.hidden)){var c=document.getElementById("fclr");if(c)c.click()}
+e.tr.scrollIntoView({block:"center"});
+e.tr.classList.remove("hit");void e.tr.offsetWidth;e.tr.classList.add("hit");
+e.tr.tabIndex=-1;e.tr.focus({preventScroll:true});
+setTimeout(function(){e.tr.classList.remove("hit")},2600)}
+if(cur===e.page)done();else{var h=function(){window.removeEventListener("hashchange",h);done()};window.addEventListener("hashchange",h);location.hash="#"+e.page}}
+function build(e){
+var a=document.createElement("a");a.href="#"+e.page;
+var b=document.createElement("b");
+if(e.tier){var d=document.createElement("i");d.className="dt";d.style.setProperty("--c",e.tier[1]);if(e.tier[2])d.style.setProperty("--d",e.tier[2]);d.setAttribute("aria-hidden","true");b.appendChild(d)}
+b.appendChild(document.createTextNode(e.name));a.appendChild(b);
+var tx=(e.tier?e.tier[0]+" enchant":"Datapack enchant")+(e.ap?" for "+e.ap:"")+(e.lv?", max level "+e.lv:"")+". "+(e.fx||e.src);
+if(tx.length>120)tx=tx.slice(0,117)+"…";
+var sp=document.createElement("span");sp.textContent=tx;a.appendChild(sp);
+a.addEventListener("click",function(ev){ev.preventDefault();var r=document.getElementById("res"),q=document.getElementById("q");r.hidden=true;q.value="";go(e)});
+return a}
+window.sbEnchants=function(v){
+var r0=[],r1=[],r2=[];
+list.forEach(function(e){var i=e.l.indexOf(v);if(i===0)r0.push(e);else if(i>0)r1.push(e);else if((e.ap+" "+e.fx+" "+e.src).toLowerCase().indexOf(v)>=0)r2.push(e)});
+return r0.concat(r1,r2).slice(0,5).map(build)}})();
+</script>
+</body></html>
