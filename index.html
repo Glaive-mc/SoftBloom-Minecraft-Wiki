@@ -2,6 +2,12 @@
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>SoftBloom Wiki</title>
+<meta name="description" content="The SoftBloom SMP wiki: new player guide, ranks, dungeons, custom enchants, events and a command cheat sheet.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="SoftBloom Wiki">
+<meta property="og:description" content="New player guide, ranks, dungeons, custom enchants, events and commands for the SoftBloom SMP.">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E%F0%9F%8C%B8%3C/text%3E%3C/svg%3E">
 <style>
 :root{--bg:#fffafc;--sf:#fff;--tx:#2a2230;--mu:#6e6477;--ac:#c2457a;--bd:#eadbe3;--cd:#f7ecf1;--hd:56px;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#17121a;--sf:#211a25;--tx:#efe8f2;--mu:#a99bb3;--ac:#f08cb6;--bd:#3a2f40;--cd:#2d2433}}
@@ -117,14 +123,118 @@ table.cards td::before{content:attr(data-label);color:var(--mu);font-size:.85rem
 table.cards td:first-child{display:block;margin-bottom:4px;padding-bottom:5px;border-bottom:1px solid var(--bd);font-size:1.05rem}
 table.cards td:first-child::before{content:none}
 }
+
+a.dc{display:inline-flex;align-items:center;border:1px solid var(--bd);background:var(--ac);color:#fff;border-radius:8px;padding:6px 12px;font-weight:600;text-decoration:none;white-space:nowrap}
+a.dc:hover{filter:brightness(1.08)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) a.dc{color:#17121a}}
+:root[data-theme="dark"] a.dc{color:#17121a}
+@media(max-width:560px){a.dc{display:none}}
+.lk{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px;margin:1rem 0}
+.lk a{display:block;padding:12px 14px;border:1px solid var(--bd);border-radius:12px;background:var(--cd);color:var(--tx);text-decoration:none}
+.lk a:hover{border-color:var(--ac)}
+.lk b{display:block;color:var(--ac)}
+.lk span{display:block;color:var(--mu);font-size:.9rem;overflow-wrap:anywhere}
+@media print{a.dc{display:none!important}}
+
+.si{margin:1.2rem 0;padding:14px 18px;background:var(--cd);border:1px solid var(--bd);border-left:4px solid var(--ac);border-radius:10px}
+.si b{display:block;font-size:1.1rem;margin-bottom:6px}
+.si .g{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px 24px}
+.si span.l{display:block;color:var(--mu);font-size:.85rem}
+.si code{cursor:copy;background:var(--sf);font-size:1rem}
+.tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:12px 0}
+.tools input[type=search],.tools input[type=number],.tools select{padding:8px 12px;border:1px solid var(--bd);border-radius:8px;background:var(--bg);color:var(--tx);font:inherit}
+.tools input[type=search]{flex:1;min-width:200px}
+.tools label{color:var(--mu);font-size:.9rem}
+.calc{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:12px 0}
+.calc label{display:block;color:var(--mu);font-size:.9rem;margin-bottom:4px}
+.calc input,.calc select{width:100%;padding:9px 12px;border:1px solid var(--bd);border-radius:8px;background:var(--bg);color:var(--tx);font:inherit}
+#calc-out{margin:1rem 0}
+.rs{padding:14px 18px;border:1px solid var(--bd);border-radius:12px;background:var(--cd);margin:10px 0}
+.rs.ok{border-left:4px solid #3fa66b}.rs.no{border-left:4px solid var(--wn)}
+.rs b{font-size:1.1rem}
+.bar{height:10px;border-radius:999px;background:var(--bd);overflow:hidden;margin:4px 0 10px}.bar i{display:block;height:100%;background:var(--ac)}
+details.fq{border:1px solid var(--bd);border-radius:10px;margin:8px 0;background:var(--sf)}
+details.fq summary{cursor:pointer;padding:12px 16px;font-weight:600;list-style:none}
+details.fq summary::-webkit-details-marker{display:none}
+details.fq summary::after{content:"+";float:right;color:var(--ac);font-weight:700}
+details.fq[open] summary::after{content:"–"}
+details.fq .a{padding:0 16px 12px}
+details.fq .a p{margin:.4rem 0}
+.pr{font-variant-numeric:tabular-nums;white-space:nowrap}
+@media print{.tools,.calc,#calc-out{display:none}details.fq{break-inside:avoid}details.fq .a{display:block}}
+
+/* ===== design v2: cards, chips, ladders ===== */
+.hero{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin:1rem 0}
+.stat{padding:12px 14px;border:1px solid var(--bd);border-radius:12px;background:var(--cd);text-align:center}
+.stat b{display:block;font-size:1.6rem;line-height:1.2;color:var(--ac)}
+.stat span{color:var(--mu);font-size:.85rem}
+.cg{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;margin:1rem 0}
+.cd{position:relative;padding:14px 16px;border:1px solid var(--bd);border-top:4px solid var(--c,var(--ac));border-radius:12px;background:var(--sf);min-width:0}
+.cd h3{margin:0 0 4px;font-size:1.05rem;line-height:1.35}
+.cd p{margin:.3rem 0;color:var(--mu);font-size:.92rem}
+.cd .ic{font-size:1.6rem;line-height:1;margin-bottom:6px}
+.cd.wide{grid-column:1/-1}
+.bdg{display:inline-block;vertical-align:.1em;padding:1px 9px;border-radius:999px;font-size:.74rem;font-weight:700;color:var(--on,#fff);background:var(--c,var(--ac));white-space:nowrap}
+.pill{display:inline-block;padding:1px 9px;margin:2px 3px 2px 0;border-radius:999px;font-size:.82rem;background:var(--cd);border:1px solid var(--bd);white-space:nowrap}
+.pill.lv{font-variant-numeric:tabular-nums;min-width:2.1em;text-align:center;background:color-mix(in srgb,var(--c,var(--ac)) 14%,var(--sf));border-color:color-mix(in srgb,var(--c,var(--ac)) 50%,var(--bd))}
+.rw{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}
+.rw .pill{margin:0;background:color-mix(in srgb,var(--c,var(--ac)) 12%,var(--sf));border-color:color-mix(in srgb,var(--c,var(--ac)) 45%,var(--bd))}
+h3.tg::before{content:"";display:inline-block;width:.7em;height:.7em;border-radius:50%;background:var(--c);margin-right:.5em;vertical-align:.05em}
+.tw[style*="--tc"] th{border-top:4px solid var(--tc)}
+.cn{opacity:.65;font-size:.8em;margin-left:2px}
+.chip .cn{font-variant-numeric:tabular-nums}
+.sell{color:#2f8f5b;font-weight:700}.buy{color:#2f6fbf;font-weight:700}.none{color:var(--mu)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .sell{color:#6fd49a}:root:not([data-theme="light"]) .buy{color:#7db4f2}}
+:root[data-theme="dark"] .sell{color:#6fd49a}:root[data-theme="dark"] .buy{color:#7db4f2}
+.wk{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px;margin:1rem 0}
+.dy{padding:8px 4px;border:1px solid var(--bd);border-top:4px solid var(--c,var(--bd));border-radius:10px;background:var(--sf);text-align:center;min-width:0}
+.dy b{display:block;font-size:.85rem}.dy span{display:block;font-size:.72rem;color:var(--mu);line-height:1.25;margin-top:2px;overflow-wrap:anywhere}
+.dy.off{opacity:.55;border-top-color:var(--bd)}
+.pod{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:12px 0}
+.pod .cd .md{font-size:1.8rem;line-height:1}
+.pod[hidden]{display:none}
+.lad{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin:1rem 0}
+.nd{padding:10px 12px;border:1px solid var(--bd);border-radius:12px;background:var(--sf);position:relative;opacity:.75}
+.nd b{display:block}.nd span{display:block;color:var(--mu);font-size:.82rem}
+.nd.dn{opacity:1;background:var(--cd);border-color:color-mix(in srgb,var(--ac) 35%,var(--bd))}
+.nd.dn::after{content:"✓";position:absolute;right:10px;top:8px;color:var(--ac);font-weight:700}
+.nd.ok{opacity:1;border:2px solid #3fa66b;background:color-mix(in srgb,#3fa66b 10%,var(--sf))}
+.nd.ok::after{content:"Ready";position:absolute;right:8px;top:8px;font-size:.7rem;font-weight:700;color:#2f8f5b}
+.nd.nx{opacity:1;border:2px solid var(--ac)}
+.nd.nx::after{content:"Next";position:absolute;right:8px;top:8px;font-size:.7rem;font-weight:700;color:var(--ac)}
+.nd.me{opacity:1;background:var(--ac);border-color:var(--ac);color:#fff}
+.nd.me span{color:inherit;opacity:.85}
+.nd.me::after{content:"You";position:absolute;right:8px;top:8px;font-size:.7rem;font-weight:700}
+.dots{letter-spacing:.12em;color:var(--ac);font-size:1.05rem}.dots i{font-style:normal;opacity:.25}
+.stp{counter-reset:s;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:1rem 0;padding:0;list-style:none}
+.stp li{counter-increment:s;position:relative;padding:14px 16px 14px 56px;border:1px solid var(--bd);border-radius:12px;background:var(--sf);margin:0}
+.stp li::before{content:counter(s);position:absolute;left:14px;top:12px;width:30px;height:30px;border-radius:50%;background:var(--ac);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700}
+.sx{margin:6px 0;color:var(--mu);font-size:.9rem}
+.tools .chip{font-size:.85rem}
+details.fq{border-left:4px solid var(--c,var(--ac))}
+.cmdsec[hidden],.pg[hidden],.cd[hidden],details.fq[hidden]{display:none}
+.tile{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;padding:8px 12px;border:1px solid var(--bd);border-left:4px solid var(--c,var(--ac));border-radius:10px;background:var(--sf);min-width:0}
+.tile b{display:block}.tile .pill{margin:3px 3px 0 0}
+.tg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:8px;margin:.6rem 0}
+@media(max-width:640px){.pod{grid-template-columns:1fr}.wk{gap:4px}.dy{padding:6px 2px}.dy b{font-size:.78rem}.dy span{font-size:.62rem}.cg{grid-template-columns:1fr}}
+@media print{.fb,.tools{display:none!important}.cd,.nd,.dy,.stat{break-inside:avoid}}
+
+.nd b{padding-right:2.4em}
+.stat{display:flex;flex-direction:column;justify-content:center;align-items:center}
+.stat b{overflow-wrap:anywhere;text-align:center}
+.cd .ct{font-weight:700;font-size:1.05rem;line-height:1.35;margin:0 0 4px}
+.lad.l3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.nd.pl{opacity:1;background:var(--cd);border-color:color-mix(in srgb,var(--ac) 35%,var(--bd))}
+@media(max-width:640px){.lad.l3{grid-template-columns:repeat(2,minmax(0,1fr))}}
 </style></head><body>
 <header><button id="menu" aria-label="Menu">☰</button><b>🌸 SoftBloom Wiki</b>
 <div class="sb"><input id="q" type="search" placeholder="Search the wiki" autocomplete="off"><div id="res" hidden></div></div>
-<button id="theme" aria-label="Toggle theme">◐</button></header>
-<div class="wrap"><nav id="nav"><h3>Start here</h3><a href="#home">Home</a><h3>Progression guide</h3><a href="#1-settle-in">1. Settle In</a><a href="#2-skills">2. Skills</a><a href="#3-making-money">3. Making Money</a><a href="#4-ranks">4. Ranks</a><a href="#5-gear-and-enchants">5. Gear and Enchants</a><a href="#custom-enchants-list">All Custom Enchants</a><a href="#datapack-enchantments">Datapack Enchants</a><a href="#6-the-9-dungeons">6. The 9 Dungeons</a><h3>Explore</h3><a href="#events">Events</a><a href="#exploring-the-world">Exploring the World</a><a href="#the-overworld">The Overworld</a><a href="#katter-s-bosses-and-enchants">Katter’s bosses and enchants</a><a href="#the-deep-blue">The Deep Blue</a><a href="#the-nether">The Nether</a><a href="#the-deeper-dark">The Deeper Dark</a><a href="#the-end">The End</a><a href="#heaven-limbo-and-the-sift">Heaven, Limbo and The Sift</a><a href="#fighting-other-players">Fighting other players</a><h3>Tips</h3><a href="#suggested-path">Suggested Path</a><a href="#good-to-know">Good to Know</a></nav><main><section class="page" id="home" data-title="SoftBloom Wiki" hidden><h1>SoftBloom Wiki</h1><p>SoftBloom is built around steady progress: learn the basics, grow
+<a class="dc" href="https://discord.com/invite/RKbhhCMbZ5" target="_blank" rel="noopener">Discord</a><button id="theme" aria-label="Toggle theme">◐</button></header>
+<div class="wrap"><nav id="nav"><h3>Start here</h3><a href="#home">Home</a><a href="#commands">Command Cheat Sheet</a><a href="#faq">FAQ</a><a href="#community">Community</a><h3>Progression guide</h3><a href="#1-settle-in">1. Settle In</a><a href="#2-skills">2. Skills</a><a href="#3-making-money">3. Making Money</a><a href="#4-ranks">4. Ranks</a><a href="#5-gear-and-enchants">5. Gear and Enchants</a><a href="#custom-enchants-list">All Custom Enchants</a><a href="#datapack-enchantments">Datapack Enchants</a><a href="#6-the-9-dungeons">6. The 9 Dungeons</a><h3>Systems</h3><a href="#pets">Pets</a><a href="#quests">Quests</a><a href="#fishing">Fishing</a><a href="#chat-games">Chat Games</a><a href="#kits">Kits</a><a href="#premium-ranks">Premium Ranks</a><a href="#shop-prices">Shop Prices</a><a href="#rank-calculator">Rank Calculator</a><h3>Explore</h3><a href="#events">Events</a><a href="#exploring-the-world">Exploring the World</a><a href="#the-overworld">The Overworld</a><a href="#katter-s-bosses-and-enchants">Katter’s bosses and enchants</a><a href="#the-deep-blue">The Deep Blue</a><a href="#the-nether">The Nether</a><a href="#the-deeper-dark">The Deeper Dark</a><a href="#the-end">The End</a><a href="#heaven-limbo-and-the-sift">Heaven, Limbo and The Sift</a><a href="#fighting-other-players">Fighting other players</a><h3>Tips</h3><a href="#suggested-path">Suggested Path</a><a href="#good-to-know">Good to Know</a></nav><main><section class="page" id="home" data-title="SoftBloom Wiki" hidden><h1>SoftBloom Wiki</h1><p>SoftBloom is built around steady progress: learn the basics, grow
 your skills, earn money, climb ranks, then take on the dungeons and
 bosses. Go at your own pace. This guide gives you a path, and you can
 always wander off and explore.</p>
+<div class="si" role="region" aria-label="Join SoftBloom"><b>Join SoftBloom SMP</b><div class="g"><div><span class="l">Java Edition · 1.21.11</span><code data-copy="sftblmorg.usga.me:12006" title="Click to copy">sftblmorg.usga.me:12006</code></div><div><span class="l">Bedrock Edition · 1.21.11 up to Latest</span><code data-copy="sftblmorg.usga.me" title="Click to copy">sftblmorg.usga.me</code> Port <code data-copy="12006" title="Click to copy">12006</code></div></div></div>
 <aside class="qs" aria-labelledby="qs-t"><b id="qs-t">Quick start</b>
 <ol>
 <li>Register with <code>/register &lt;password&gt; &lt;password&gt;</code>.</li>
@@ -134,6 +244,7 @@ always wander off and explore.</p>
 <li>Start earning: browse <code>/quest</code>, and sell what you collect at <code>/warp shop</code>.</li>
 </ol>
 <p><a href="#1-settle-in">Stage 1: Settle In</a> covers all of this in more detail. Click any command on this wiki to copy it.</p></aside>
+<p>Need a command fast? Open the <a href="#commands">Command Cheat Sheet</a>. Want to meet the community? See <a href="#community">Community</a> for Discord, social media and the store.</p>
 <h1 id="the-roadmap-at-a-glance">The Roadmap at a Glance</h1>
 <div class="tw"><table>
 <thead>
@@ -192,8 +303,8 @@ only need this if the password window doesn’t pop up on its own.</li>
 <h2 id="get-started">Get started</h2>
 <ul>
 <li>Claim your <strong>Starter kit</strong> from the <strong>Kits
-GUI</strong> (<code>/kit</code>). It has stone tools and basic armor,
-and you can claim it again every 24 hours.</li>
+GUI</strong> (<code>/kit</code>). It has enchanted stone tools, basic armor,
+food and a backpack, and you can claim it <strong>once</strong>. See the <a href="#kits">Kits page</a>.</li>
 <li>Grab the <strong>Claim kit</strong> too. It has a <strong>Golden
 Shovel</strong> and the <strong>Claim Guide</strong> book. There’s also
 a <strong>Guide kit</strong> with the Guide Book.</li>
@@ -349,6 +460,7 @@ time</strong> as an instant reward.</p>
 </tbody>
 </table></div>
 <h2 id="how-to-rank-up">How to rank up</h2>
+<p>Not sure how far along you are? Try the <a href="#rank-calculator">Rank Calculator</a>.</p>
 <ul>
 <li><code>/ranks</code> shows your rank progress.</li>
 <li><code>/rankup</code> shows your requirements. If something is
@@ -369,10 +481,10 @@ look around, not whether you stand still. The AFK zone won’t count.</p>
 <code>/voteall</code> to see every site. Votes give you crate keys and
 rewards, and they fill the piñata bar. When it’s full, a piñata spawns
 and everyone online can hit it.</p>
-<h2 id="premium-ranks">Premium ranks</h2>
+<h2 id="premium-ranks-stage-3">Premium ranks</h2>
 <p>Premium ranks are a separate ladder that sits alongside your rank.
 Their perks are listed in the <strong>Discord OG Shop</strong> and in
-the <strong>SoftBloom online store</strong>.</p>
+the <strong>SoftBloom online store</strong>. See the <a href="#premium-ranks">Premium Ranks page</a> for every perk.</p>
 <div class="pn"><a href="#3-making-money">← 3. Making Money</a><a href="#5-gear-and-enchants">5. Gear and Enchants →</a></div></section><section class="page" id="5-gear-and-enchants" data-title="Stage 5: Gear and Enchants" hidden><h1>Stage 5: Gear and Enchants</h1><h2 id="custom-enchants">Custom enchants</h2>
 <ul>
 <li>There are <strong>173 custom enchants</strong> in six tiers: Simple,
@@ -430,18 +542,17 @@ items and <code>/alchemist</code> to combine books.</li>
 <h2 id="crates-and-keys">Crates and keys</h2>
 <ul>
 <li><strong>Basic</strong>, <strong>Advanced</strong> and
-<strong>Vote</strong> crates are open to everyone, and dungeons and
-events have their own crates.</li>
+<strong>Vote</strong> crates are open to everyone, each dungeon has its own crate inside the dungeon, and events have their own crates.</li>
 <li>Keys come from fishing contests, chat trivia, voting, dungeons and
 events.</li>
 <li>Some crate rewards are <strong>vouchers</strong> that you redeem
 once, such as fly time and claim blocks.</li>
 </ul>
-<h2 id="pets">Pets</h2>
+<h2 id="pets-in-stage-5">Pets</h2>
 <p>Level a pet and choose a <strong>skill tree</strong>: Combat, Farm,
 PvP, Ranger, Ride or Utility. Ride pets are fast mounts, Farm and
 Utility pets pick up items and carry an inventory, and Combat or PvP
-pets help in a fight. Your pet storage grows as you rank up.</p>
+pets help in a fight. Your pet storage grows as you rank up. See the <a href="#pets">Pets page</a> for every skill tree.</p>
 <h2 id="rings">Rings</h2>
 <p>Wearable rings give permanent bonuses while they’re in your
 inventory. Stronger gems and golden rings are better, and Sapphire rings
@@ -844,11 +955,10 @@ you.</li>
 to that dungeon</strong>.</li>
 <li>Some normal dungeon mobs have a small chance to drop that dungeon’s
 <strong>key</strong>.</li>
-<li>Keys open that dungeon’s crate at <code>/warp crates</code>.
-Example: Cursed Hollow keys open the Cursed Hollow crate.</li>
-<li>Each dungeon has a <strong>trader</strong> with decent trades. Bring
+<li>Every dungeon has its own <strong>crate</strong> inside the dungeon. Find it and use that dungeon’s keys there to get your reward. Example: Cursed Hollow keys open the crate inside Cursed Hollow.</li>
+<li>Each dungeon has a <strong>trader</strong> inside it with decent trades. Bring
 the loot you collect there.</li>
-<li>Dungeons drop <strong>crafting materials</strong> specific to that
+<li>Dungeons drop <strong>trading materials</strong> specific to that
 tier (tier 7: squid tentacles, magic crystals, ectoplasm; tier 8: pig
 leather, magma gel, ghast eyes).</li>
 <li>Bring food, potions and friends.</li>
@@ -862,8 +972,8 @@ Everyone who takes part gets a diamond.</li>
 and Sunday</strong> when <strong>4 or more players</strong> are online.
 Find it at <code>/warp piratekoth</code>.</li>
 <li><strong>Chat games</strong> appear in chat all the time: math, quiz,
-trivia and reaction races. First correct answer wins diamonds, emeralds,
-XP, and sometimes fly time or a Basic key. Trivia pays best.</li>
+trivia, reaction and word scramble. See the <a href="#chat-games">Chat Games page</a>. First correct answer wins diamonds, emeralds,
+gold, XP, and sometimes fly time or a Basic key. Trivia pays best.</li>
 <li><strong>Piñata party:</strong> votes fill a bar, then a piñata
 spawns for everyone.</li>
 </ul>
@@ -1143,7 +1253,7 @@ recipes are in the crafting table.</li>
 structures, and follow the hints above your hotbar.</li>
 </ul></li>
 </ul>
-<div class="pn"><a href="#the-end">← The End</a><a href="#fighting-other-players">Fighting other players →</a></div></section><section class="page" id="fighting-other-players" data-title="Fighting other players" hidden><h1>Fighting other players</h1><p>PvP is <strong>off by default in the overworld</strong>, and you can toggle it yourself when you want to fight.</p>
+<div class="pn"><a href="#the-end">← The End</a><a href="#fighting-other-players">Fighting other players →</a></div></section><section class="page" id="fighting-other-players" data-title="Fighting other players" hidden><h1>Fighting other players</h1><p>PvP is <strong>off by default in the overworld</strong>. Type <code>/pvp</code> to turn it on or off whenever you want to fight.</p>
 <div class="co warn" role="note"><b>Warning</b>Every other world is PvP-on, so be careful.</div>
 <div class="pn"><a href="#heaven-limbo-and-the-sift">← Heaven, Limbo and The Sift</a><a href="#suggested-path">Suggested Path →</a></div></section><section class="page" id="suggested-path" data-title="Suggested Path: First to Last" hidden><h1>Suggested Path: First to Last</h1><p>You can play in any order, but this is the path we recommend. Ranks
 are the milestones, and the Overworld is packed with things to find
@@ -1193,11 +1303,531 @@ collect the dragon gear and cosmetics.</li>
 <ul>
 <li><strong>Stacking:</strong> nearby mobs and dropped items merge into
 a stack, so you may see a number instead of a crowd.</li>
-<li><strong>Stuck or confused?</strong> Type <code>/discord</code> and
-ask for help.</li>
+<li><strong>Stuck or confused?</strong> Type <code>/discord</code> or
+<a href="https://discord.com/invite/RKbhhCMbZ5" target="_blank" rel="noopener">join our Discord</a> and ask for help. The <a href="#commands">Command Cheat Sheet</a> lists every command in one place.</li>
 </ul>
-<div class="pn"><a href="#suggested-path">← Suggested Path</a><span></span></div></section></main><aside id="toc"></aside></div>
+<div class="pn"><a href="#suggested-path">← Suggested Path</a><a href="#commands">Command Cheat Sheet →</a></div></section><section class="page" id="commands" data-title="Command Cheat Sheet" hidden><h1>Command Cheat Sheet</h1>
+<p>Every command from this guide in one place. Click a command to copy it.</p>
+<div class="tools"><input type="search" id="cm-q" placeholder="Search commands, like home or pvp" aria-label="Search commands" autocomplete="off"></div>
+<div class="fb" id="cm-f" role="group" aria-label="Filter by group"><button type="button" class="chip" data-v="" aria-pressed="false" style="--c:var(--ac)">All <span class="cn">32</span></button><button type="button" class="chip" data-v="cmd-getting-started" aria-pressed="false" style="--c:#3fa66b"><i class="dt" style="--c:#3fa66b"></i>Getting started <span class="cn">5</span></button><button type="button" class="chip" data-v="cmd-travel-and-homes" aria-pressed="false" style="--c:#3b82d6"><i class="dt" style="--c:#3b82d6"></i>Travel and homes <span class="cn">11</span></button><button type="button" class="chip" data-v="cmd-progress-and-rewards" aria-pressed="false" style="--c:#d9a400"><i class="dt" style="--c:#d9a400"></i>Progress and rewards <span class="cn">7</span></button><button type="button" class="chip" data-v="cmd-money-and-gear" aria-pressed="false" style="--c:#9b6bd6"><i class="dt" style="--c:#9b6bd6"></i>Money and gear <span class="cn">7</span></button><button type="button" class="chip" data-v="cmd-events" aria-pressed="false" style="--c:#e5484d"><i class="dt" style="--c:#e5484d"></i>Events and PvP <span class="cn">2</span></button></div>
+<p class="fs" id="cm-n" role="status" aria-live="polite"></p>
+<div class="pg" data-g="cmd-getting-started"><h2 id="cmd-getting-started" style="--c:#3fa66b">Getting started</h2>
+<div class="tw" style="--tc:#3fa66b"><table class="cards">
+<thead><tr><th>Command</th><th>What it does</th></tr></thead>
+<tbody>
+<tr class="odd"><td data-label="Command"><code>/register &lt;password&gt; &lt;password&gt;</code></td><td data-label="What it does">Create your account the first time you join.</td></tr>
+<tr class="even"><td data-label="Command"><code>/login &lt;password&gt;</code></td><td data-label="What it does">Log in when you come back. You only need it if the password window does not appear.</td></tr>
+<tr class="odd"><td data-label="Command"><code>/kit</code></td><td data-label="What it does">Open the Kits GUI. Claim your Starter kit, Claim kit and Guide kit.</td></tr>
+<tr class="even"><td data-label="Command"><code>/discord</code></td><td data-label="What it does">Get the Discord link.</td></tr>
+<tr class="odd"><td data-label="Command"><code>/translator</code></td><td data-label="What it does">Choose how chat is translated for you (Incoming) and for others (Outgoing).</td></tr>
+</tbody></table></div></div>
+<div class="pg" data-g="cmd-travel-and-homes"><h2 id="cmd-travel-and-homes" style="--c:#3b82d6">Travel and homes</h2>
+<div class="tw" style="--tc:#3b82d6"><table class="cards">
+<thead><tr><th>Command</th><th>What it does</th></tr></thead>
+<tbody>
+<tr class="odd"><td data-label="Command"><code>/sethome</code></td><td data-label="What it does">Set a home where you stand.</td></tr>
+<tr class="even"><td data-label="Command"><code>/home</code></td><td data-label="What it does">Teleport to your home.</td></tr>
+<tr class="odd"><td data-label="Command"><code>/delhome</code></td><td data-label="What it does">Delete a home.</td></tr>
+<tr class="even"><td data-label="Command"><code>/back</code></td><td data-label="What it does">Return to where you last were, including where you died.</td></tr>
+<tr class="odd"><td data-label="Command"><code>/spawn</code></td><td data-label="What it does">Go to spawn. The portals area is here.</td></tr>
+<tr class="even"><td data-label="Command"><code>/warp</code></td><td data-label="What it does">List all warps. Use <code>/warp &lt;name&gt;</code> to travel, for example <code>/warp shop</code>, <code>/warp crates</code> or a dungeon warp.</td></tr>
+<tr class="odd"><td data-label="Command"><code>/rtp</code></td><td data-label="What it does">Open the random teleport menu: Overworld, Resourceworld, Nether or Limbo.</td></tr>
+<tr class="even"><td data-label="Command"><code>/tpa &lt;player&gt;</code></td><td data-label="What it does">Ask to teleport to a player.</td></tr>
+<tr class="odd"><td data-label="Command"><code>/tpahere &lt;player&gt;</code></td><td data-label="What it does">Ask a player to teleport to you.</td></tr>
+<tr class="even"><td data-label="Command"><code>/tpaccept</code></td><td data-label="What it does">Accept a teleport request.</td></tr>
+<tr class="odd"><td data-label="Command"><code>/playerwarp</code></td><td data-label="What it does">Create and visit player warps. You can have 2 of your own.</td></tr>
+</tbody></table></div></div>
+<div class="pg" data-g="cmd-progress-and-rewards"><h2 id="cmd-progress-and-rewards" style="--c:#d9a400">Progress and rewards</h2>
+<div class="tw" style="--tc:#d9a400"><table class="cards">
+<thead><tr><th>Command</th><th>What it does</th></tr></thead>
+<tbody>
+<tr class="odd"><td data-label="Command"><code>/skill:skill</code></td><td data-label="What it does">Open the skill menu and claim milestone rewards.</td></tr>
+<tr class="even"><td data-label="Command"><code>/ranks</code></td><td data-label="What it does">See your rank progress.</td></tr>
+<tr class="odd"><td data-label="Command"><code>/rankup</code></td><td data-label="What it does">See your rank-up requirements. When you meet them, a window opens so you can accept.</td></tr>
+<tr class="even"><td data-label="Command"><code>/quest</code></td><td data-label="What it does">Browse and track quests that pay money.</td></tr>
+<tr class="odd"><td data-label="Command"><code>/calendar</code></td><td data-label="What it does">Claim your daily calendar reward after 60 active minutes.</td></tr>
+<tr class="even"><td data-label="Command"><code>/vote</code></td><td data-label="What it does">Show the voting links.</td></tr>
+<tr class="odd"><td data-label="Command"><code>/voteall</code></td><td data-label="What it does">Show every voting site.</td></tr>
+</tbody></table></div></div>
+<div class="pg" data-g="cmd-money-and-gear"><h2 id="cmd-money-and-gear" style="--c:#9b6bd6">Money and gear</h2>
+<div class="tw" style="--tc:#9b6bd6"><table class="cards">
+<thead><tr><th>Command</th><th>What it does</th></tr></thead>
+<tbody>
+<tr class="odd"><td data-label="Command"><code>/warp shop</code></td><td data-label="What it does">The server shop. Sell resources, and buy spawners, White Scrolls and slot increasers.</td></tr>
+<tr class="even"><td data-label="Command"><code>/emf toggle</code></td><td data-label="What it does">Switch between vanilla fishing and Even More Fishing.</td></tr>
+<tr class="odd"><td data-label="Command"><code>/emf shop</code></td><td data-label="What it does">Sell your Even More Fishing catch. Rarer fish pay more.</td></tr>
+<tr class="even"><td data-label="Command"><code>/enchanter</code></td><td data-label="What it does">Buy custom enchantment books.</td></tr>
+<tr class="odd"><td data-label="Command"><code>/tinkerer</code></td><td data-label="What it does">Trade unwanted custom enchants for useful items.</td></tr>
+<tr class="even"><td data-label="Command"><code>/alchemist</code></td><td data-label="What it does">Combine custom enchantment books.</td></tr>
+<tr class="odd"><td data-label="Command"><code>/warp crates</code></td><td data-label="What it does">Go to the crates and open them with your keys. Dungeon keys are used at the crate inside their dungeon instead.</td></tr>
+</tbody></table></div></div>
+<div class="pg" data-g="cmd-events"><h2 id="cmd-events" style="--c:#e5484d">Events and PvP</h2>
+<div class="tw" style="--tc:#e5484d"><table class="cards">
+<thead><tr><th>Command</th><th>What it does</th></tr></thead>
+<tbody>
+<tr class="odd"><td data-label="Command"><code>/pvp</code></td><td data-label="What it does">Toggle PvP on or off. It is off by default in the Overworld. Every other world is always PvP-on.</td></tr>
+<tr class="even"><td data-label="Command"><code>/warp piratekoth</code></td><td data-label="What it does">Travel to the KOTH arena. KOTH runs on Saturday and Sunday.</td></tr>
+</tbody></table></div></div>
+<div class="pn"><a href="#good-to-know">← Good to Know</a><a href="#faq">FAQ →</a></div></section>
+<section class="page" id="community" data-title="Community" hidden><h1>Community</h1>
+<p>Join the community, watch the latest from the server, and support SoftBloom.</p>
+<div class="lk">
+<a href="https://discord.com/invite/RKbhhCMbZ5" target="_blank" rel="noopener"><b>Discord</b><span>Chat, get help and join events</span></a>
+<a href="https://softbloom.craftingstore.net/" target="_blank" rel="noopener"><b>Store</b><span>Premium ranks and crates</span></a>
+<a href="https://modrinth.com/server/softbloom-smp" target="_blank" rel="noopener"><b>Modrinth listing</b><span>Server page on Modrinth</span></a>
+<a href="https://www.youtube.com/@sftblmSMP" target="_blank" rel="noopener"><b>YouTube</b><span>@sftblmSMP</span></a>
+<a href="https://www.tiktok.com/@softbloomsmp" target="_blank" rel="noopener"><b>TikTok (server)</b><span>@softbloomsmp</span></a>
+<a href="https://www.tiktok.com/@val_vinson" target="_blank" rel="noopener"><b>TikTok (Val)</b><span>@val_vinson</span></a>
+<a href="https://www.instagram.com/softbloomsmp?igsh=cG9rb2R5c2cya2U2" target="_blank" rel="noopener"><b>Instagram</b><span>@softbloomsmp</span></a>
+</div>
+<p>Perks for premium ranks are listed in the <strong>Discord OG Shop</strong> and the store.</p>
+<div class="pn"><a href="#faq">← FAQ</a><a href="#pets">Pets →</a></div></section>
+<section class="page" id="pets" data-title="Pets" hidden><h1>Pets</h1>
+<p>Pets follow you, fight for you, carry items and buff you. Every pet levels up as you play and gains new abilities from its <strong>skill tree</strong>.</p>
+<div class="hero"><div class="stat"><b>6</b><span>skill trees</span></div><div class="stat"><b>1 to 6</b><span>pet slots by rank</span></div><div class="stat"><b>100</b><span>max skill level</span></div></div>
+<div class="co" role="note"><b>Getting a pet</b>Capture a mob with a lead to make it your pet. Name it, switch between pets, store them and release them with the pet commands further down.</div>
+<h2 id="pet-slots">How many pets you can keep</h2>
+<p>Your pet storage grows as you rank up. Premium ranks raise it up to 9. See <a href="#premium-ranks">Premium Ranks</a>.</p>
+<div class="lad l3"><div class="nd pl"><b>Member, Settler</b><span class="dots" aria-label="1 pet slots">●<i>●●●●●</i></span><span>1 pet slot</span></div><div class="nd pl"><b>Explorer</b><span class="dots" aria-label="2 pet slots">●●<i>●●●●</i></span><span>2 pet slots</span></div><div class="nd pl"><b>Adventurer, Pathfinder</b><span class="dots" aria-label="3 pet slots">●●●<i>●●●</i></span><span>3 pet slots</span></div><div class="nd pl"><b>Veteran, Elder</b><span class="dots" aria-label="4 pet slots">●●●●<i>●●</i></span><span>4 pet slots</span></div><div class="nd pl"><b>Pioneer, Ancient</b><span class="dots" aria-label="5 pet slots">●●●●●<i>●</i></span><span>5 pet slots</span></div><div class="nd pl"><b>Eternal</b><span class="dots" aria-label="6 pet slots">●●●●●●<i></i></span><span>6 pet slots</span></div></div>
+<h2 id="pet-trees">Skill trees</h2>
+<p>Pick the tree that matches how you play. The <strong>Ranger</strong> tree can only be used by <strong>skeleton, stray, pillager and piglin</strong> pets.</p>
+<div class="cg"><div class="cd" style="--c:#e5484d"><div class="ic" aria-hidden="true">⚔️</div><div class="ct">Combat </div><p>Fighting and tanking</p><div class="rw" style="--c:#e5484d"><span class="pill">Damage</span><span class="pill">Health</span><span class="pill">Thorns</span><span class="pill">Knockback</span></div></div>
+<div class="cd" style="--c:#d9a400"><div class="ic" aria-hidden="true">🎒</div><div class="ct">Utility </div><p>Hauling loot and healing</p><div class="rw" style="--c:#d9a400"><span class="pill">Biggest backpack</span><span class="pill">Item and XP pickup</span><span class="pill">Self-heal</span><span class="pill">Haste beacon</span></div></div>
+<div class="cd" style="--c:#f08a24"><div class="ic" aria-hidden="true">🛡️</div><div class="ct">PvP </div><p>Fighting players and tough mobs</p><div class="rw" style="--c:#f08a24"><span class="pill">Damage</span><span class="pill">Slow and fire</span><span class="pill">Resistance and Strength beacon</span></div></div>
+<div class="cd" style="--c:#3b82d6"><div class="ic" aria-hidden="true">🐴</div><div class="ct">Ride </div><p>Travel</p><div class="rw" style="--c:#3b82d6"><span class="pill">Rideable</span><span class="pill">Speed and jump</span><span class="pill">Speed beacon</span></div></div>
+<div class="cd" style="--c:#3fa66b"><div class="ic" aria-hidden="true">🌾</div><div class="ct">Farm </div><p>Farming and collecting</p><div class="rw" style="--c:#3fa66b"><span class="pill">Early backpack</span><span class="pill">Item and XP pickup</span><span class="pill">Poison</span></div></div>
+<div class="cd" style="--c:#9b6bd6"><div class="ic" aria-hidden="true">🏹</div><div class="ct">Ranger </div><p>Ranged damage. Skeleton, stray, pillager and piglin pets only</p><div class="rw" style="--c:#9b6bd6"><span class="pill">Arrows</span><span class="pill">Slow and poison</span></div></div>
+</div>
+<h2 id="pet-skills">Skills by tree</h2>
+<p>Each ability unlocks at a set <strong>pet level</strong>. The numbers below are those levels.</p>
+<div class="fb" id="pet-f" role="group" aria-label="Filter by tree"><button type="button" class="chip" data-v="" aria-pressed="false" style="--c:var(--ac)">All trees</button><button type="button" class="chip" data-v="Combat" aria-pressed="false" style="--c:#e5484d"><i class="dt" style="--c:#e5484d"></i>Combat</button><button type="button" class="chip" data-v="Utility" aria-pressed="false" style="--c:#d9a400"><i class="dt" style="--c:#d9a400"></i>Utility</button><button type="button" class="chip" data-v="PvP" aria-pressed="false" style="--c:#f08a24"><i class="dt" style="--c:#f08a24"></i>PvP</button><button type="button" class="chip" data-v="Ride" aria-pressed="false" style="--c:#3b82d6"><i class="dt" style="--c:#3b82d6"></i>Ride</button><button type="button" class="chip" data-v="Farm" aria-pressed="false" style="--c:#3fa66b"><i class="dt" style="--c:#3fa66b"></i>Farm</button><button type="button" class="chip" data-v="Ranger" aria-pressed="false" style="--c:#9b6bd6"><i class="dt" style="--c:#9b6bd6"></i>Ranger</button></div>
+<div class="pg" data-g="Combat"><h3 class="tg" id="pet-combat" style="--c:#e5484d">Combat tree</h3>
+<div class="tw" style="--tc:#e5484d"><table class="cards">
+<thead><tr><th>Skill</th><th>What it does</th><th>Unlocks at pet level</th></tr></thead>
+<tbody>
+<tr class="odd"><td data-label="Skill"><strong>Damage</strong></td><td data-label="What it does">+1 damage each time. Total +11.</td><td data-label="Unlocks at pet level"><span class="pill lv" style="--c:#e5484d">1</span><span class="pill lv" style="--c:#e5484d">4</span><span class="pill lv" style="--c:#e5484d">8</span><span class="pill lv" style="--c:#e5484d">13</span><span class="pill lv" style="--c:#e5484d">19</span><span class="pill lv" style="--c:#e5484d">26</span><span class="pill lv" style="--c:#e5484d">34</span><span class="pill lv" style="--c:#e5484d">44</span><span class="pill lv" style="--c:#e5484d">56</span><span class="pill lv" style="--c:#e5484d">72</span><span class="pill lv" style="--c:#e5484d">90</span></td></tr>
+<tr class="even"><td data-label="Skill"><strong>Life</strong></td><td data-label="What it does">+1 heart each time. Total +10 hearts.</td><td data-label="Unlocks at pet level"><span class="pill lv" style="--c:#e5484d">4</span><span class="pill lv" style="--c:#e5484d">11</span><span class="pill lv" style="--c:#e5484d">18</span><span class="pill lv" style="--c:#e5484d">26</span><span class="pill lv" style="--c:#e5484d">35</span><span class="pill lv" style="--c:#e5484d">45</span><span class="pill lv" style="--c:#e5484d">57</span><span class="pill lv" style="--c:#e5484d">70</span><span class="pill lv" style="--c:#e5484d">84</span><span class="pill lv" style="--c:#e5484d">96</span></td></tr>
+<tr class="odd"><td data-label="Skill"><strong>Thorns</strong></td><td data-label="What it does">Reflects damage back at attackers.</td><td data-label="Unlocks at pet level"><span class="pill lv" style="--c:#e5484d">5</span><span class="pill lv" style="--c:#e5484d">16</span><span class="pill lv" style="--c:#e5484d">30</span><span class="pill lv" style="--c:#e5484d">50</span></td></tr>
+<tr class="even"><td data-label="Skill"><strong>Knockback</strong></td><td data-label="What it does">Chance to knock enemies back.</td><td data-label="Unlocks at pet level"><span class="pill lv" style="--c:#e5484d">10</span><span class="pill lv" style="--c:#e5484d">22</span><span class="pill lv" style="--c:#e5484d">36</span><span class="pill lv" style="--c:#e5484d">52</span><span class="pill lv" style="--c:#e5484d">70</span><span class="pill lv" style="--c:#e5484d">88</span></td></tr>
+<tr class="odd"><td data-label="Skill"><strong>Backpack</strong></td><td data-label="What it does">+1 inventory row.</td><td data-label="Unlocks at pet level"><span class="pill lv" style="--c:#e5484d">6</span><span class="pill lv" style="--c:#e5484d">100</span></td></tr>
+<tr class="even"><td data-label="Skill"><strong>Control</strong></td><td data-label="What it does">You can command the pet.</td><td data-label="Unlocks at pet level"><span class="pill lv" style="--c:#e5484d">7</span></td></tr>
+</tbody></table></div>
+</div>
+<div class="pg" data-g="Utility"><h3 class="tg" id="pet-utility" style="--c:#d9a400">Utility tree</h3>
+<div class="tw" style="--tc:#d9a400"><table class="cards">
+<thead><tr><th>Skill</th><th>What it does</th><th>Unlocks at pet level</th></tr></thead>
+<tbody>
+<tr class="odd"><td data-label="Skill"><strong>Backpack</strong></td><td data-label="What it does">+1 inventory row each time. 6 rows in total, the biggest of any tree.</td><td data-label="Unlocks at pet level"><span class="pill lv" style="--c:#d9a400">2</span><span class="pill lv" style="--c:#d9a400">5</span><span class="pill lv" style="--c:#d9a400">10</span><span class="pill lv" style="--c:#d9a400">15</span><span class="pill lv" style="--c:#d9a400">30</span><span class="pill lv" style="--c:#d9a400">100</span></td></tr>
+<tr class="even"><td data-label="Skill"><strong>Pickup</strong></td><td data-label="What it does">Picks up items around it. From level 60 it also collects XP.</td><td data-label="Unlocks at pet level"><span class="pill lv" style="--c:#d9a400">6</span><span class="pill lv" style="--c:#d9a400">12</span><span class="pill lv" style="--c:#d9a400">25</span><span class="pill lv" style="--c:#d9a400">40</span><span class="pill lv" style="--c:#d9a400">60</span><span class="pill lv" style="--c:#d9a400">85</span><span class="pill lv" style="--c:#d9a400">100</span></td></tr>
+<tr class="odd"><td data-label="Skill"><strong>Life</strong></td><td data-label="What it does">Extra health.</td><td data-label="Unlocks at pet level"><span class="pill lv" style="--c:#d9a400">3</span><span class="pill lv" style="--c:#d9a400">8</span><span class="pill lv" style="--c:#d9a400">18</span><span class="pill lv" style="--c:#d9a400">35</span><span class="pill lv" style="--c:#d9a400">55</span><span class="pill lv" style="--c:#d9a400">80</span><span class="pill lv" style="--c:#d9a400">98</span></td></tr>
+<tr class="even"><td data-label="Skill"><strong>Heal</strong></td><td data-label="What it does">Heals itself over time.</td><td data-label="Unlocks at pet level"><span class="pill lv" style="--c:#d9a400">10</span><span class="pill lv" style="--c:#d9a400">70</span><span class="pill lv" style="--c:#d9a400">95</span></td></tr>
+<tr class="odd"><td data-label="Skill"><strong>Beacon</strong></td><td data-label="What it does">Gives nearby players Haste.</td><td data-label="Unlocks at pet level"><span class="pill lv" style="--c:#d9a400">30</span><span class="pill lv" style="--c:#d9a400">75</span></td></tr>
+</tbody></table></div>
+</div>
+<div class="pg" data-g="PvP"><h3 class="tg" id="pet-pvp" style="--c:#f08a24">PvP tree</h3>
+<div class="tw" style="--tc:#f08a24"><table class="cards">
+<thead><tr><th>Skill</th><th>What it does</th><th>Unlocks at pet level</th></tr></thead>
+<tbody>
+<tr class="odd"><td data-label="Skill"><strong>Damage</strong></td><td data-label="What it does">Damage upgrades, mostly early. Total +7.5.</td><td data-label="Unlocks at pet level"><span class="pill lv" style="--c:#f08a24">1</span><span class="pill lv" style="--c:#f08a24">3</span><span class="pill lv" style="--c:#f08a24">6</span><span class="pill lv" style="--c:#f08a24">11</span><span class="pill lv" style="--c:#f08a24">17</span><span class="pill lv" style="--c:#f08a24">25</span><span class="pill lv" style="--c:#f08a24">34</span><span class="pill lv" style="--c:#f08a24">45</span><span class="pill lv" style="--c:#f08a24">57</span><span class="pill lv" style="--c:#f08a24">70</span><span class="pill lv" style="--c:#f08a24">84</span><span class="pill lv" style="--c:#f08a24">97</span></td></tr>
+<tr class="even"><td data-label="Skill"><strong>Life</strong></td><td data-label="What it does">+1 heart each time. Total +7 hearts.</td><td data-label="Unlocks at pet level"><span class="pill lv" style="--c:#f08a24">5</span><span class="pill lv" style="--c:#f08a24">10</span><span class="pill lv" style="--c:#f08a24">20</span><span class="pill lv" style="--c:#f08a24">35</span><span class="pill lv" style="--c:#f08a24">55</span><span class="pill lv" style="--c:#f08a24">75</span><span class="pill lv" style="--c:#f08a24">95</span></td></tr>
+<tr class="odd"><td data-label="Skill"><strong>Slow</strong></td><td data-label="What it does">Chance to slow enemies.</td><td data-label="Unlocks at pet level"><span class="pill lv" style="--c:#f08a24">4</span><span class="pill lv" style="--c:#f08a24">14</span><span class="pill lv" style="--c:#f08a24">30</span><span class="pill lv" style="--c:#f08a24">55</span><span class="pill lv" style="--c:#f08a24">80</span></td></tr>
+<tr class="even"><td data-label="Skill"><strong>Fire</strong></td><td data-label="What it does">Chance to set enemies on fire.</td><td data-label="Unlocks at pet level"><span class="pill lv" style="--c:#f08a24">5</span><span class="pill lv" style="--c:#f08a24">24</span><span class="pill lv" style="--c:#f08a24">48</span><span class="pill lv" style="--c:#f08a24">72</span><span class="pill lv" style="--c:#f08a24">95</span></td></tr>
+<tr class="odd"><td data-label="Skill"><strong>Beacon</strong></td><td data-label="What it does">Resistance (levels 15, 90) and Strength (level 40) for nearby players.</td><td data-label="Unlocks at pet level"><span class="pill lv" style="--c:#f08a24">15</span><span class="pill lv" style="--c:#f08a24">40</span><span class="pill lv" style="--c:#f08a24">90</span></td></tr>
+<tr class="even"><td data-label="Skill"><strong>Sprint</strong></td><td data-label="What it does">The pet can sprint.</td><td data-label="Unlocks at pet level"><span class="pill lv" style="--c:#f08a24">4</span></td></tr>
+<tr class="odd"><td data-label="Skill"><strong>Control</strong></td><td data-label="What it does">You can command the pet.</td><td data-label="Unlocks at pet level"><span class="pill lv" style="--c:#f08a24">3</span></td></tr>
+<tr class="even"><td data-label="Skill"><strong>Backpack</strong></td><td data-label="What it does">+1 inventory row.</td><td data-label="Unlocks at pet level"><span class="pill lv" style="--c:#f08a24">6</span></td></tr>
+</tbody></table></div>
+</div>
+<div class="pg" data-g="Ride"><h3 class="tg" id="pet-ride" style="--c:#3b82d6">Ride tree</h3>
+<div class="tw" style="--tc:#3b82d6"><table class="cards">
+<thead><tr><th>Skill</th><th>What it does</th><th>Unlocks at pet level</th></tr></thead>
+<tbody>
+<tr class="odd"><td data-label="Skill"><strong>Ride</strong></td><td data-label="What it does">You can ride it. Each upgrade adds speed and jump height.</td><td data-label="Unlocks at pet level"><span class="pill lv" style="--c:#3b82d6">1</span><span class="pill lv" style="--c:#3b82d6">3</span><span class="pill lv" style="--c:#3b82d6">20</span><span class="pill lv" style="--c:#3b82d6">40</span><span class="pill lv" style="--c:#3b82d6">65</span><span class="pill lv" style="--c:#3b82d6">90</span></td></tr>
+<tr class="even"><td data-label="Skill"><strong>Sprint</strong></td><td data-label="What it does">The pet can sprint.</td><td data-label="Unlocks at pet level"><span class="pill lv" style="--c:#3b82d6">6</span></td></tr>
+<tr class="odd"><td data-label="Skill"><strong>Beacon</strong></td><td data-label="What it does">Gives nearby players Speed.</td><td data-label="Unlocks at pet level"><span class="pill lv" style="--c:#3b82d6">10</span><span class="pill lv" style="--c:#3b82d6">50</span><span class="pill lv" style="--c:#3b82d6">85</span></td></tr>
+<tr class="even"><td data-label="Skill"><strong>Ranged</strong></td><td data-label="What it does">Light snowball attacks.</td><td data-label="Unlocks at pet level"><span class="pill lv" style="--c:#3b82d6">2</span><span class="pill lv" style="--c:#3b82d6">18</span><span class="pill lv" style="--c:#3b82d6">50</span><span class="pill lv" style="--c:#3b82d6">82</span></td></tr>
+<tr class="odd"><td data-label="Skill"><strong>Life</strong></td><td data-label="What it does">Extra health.</td><td data-label="Unlocks at pet level"><span class="pill lv" style="--c:#3b82d6">15</span><span class="pill lv" style="--c:#3b82d6">45</span><span class="pill lv" style="--c:#3b82d6">80</span></td></tr>
+<tr class="even"><td data-label="Skill"><strong>Thorns</strong></td><td data-label="What it does">A little thorns.</td><td data-label="Unlocks at pet level"><span class="pill lv" style="--c:#3b82d6">9</span><span class="pill lv" style="--c:#3b82d6">45</span><span class="pill lv" style="--c:#3b82d6">80</span></td></tr>
+<tr class="odd"><td data-label="Skill"><strong>Backpack</strong></td><td data-label="What it does">A small inventory.</td><td data-label="Unlocks at pet level"><span class="pill lv" style="--c:#3b82d6">3</span><span class="pill lv" style="--c:#3b82d6">100</span></td></tr>
+<tr class="even"><td data-label="Skill"><strong>Pickup</strong></td><td data-label="What it does">Item pickup.</td><td data-label="Unlocks at pet level"><span class="pill lv" style="--c:#3b82d6">85</span></td></tr>
+<tr class="odd"><td data-label="Skill"><strong>Control</strong></td><td data-label="What it does">You can command the pet.</td><td data-label="Unlocks at pet level"><span class="pill lv" style="--c:#3b82d6">6</span></td></tr>
+</tbody></table></div>
+</div>
+<div class="pg" data-g="Farm"><h3 class="tg" id="pet-farm" style="--c:#3fa66b">Farm tree</h3>
+<div class="tw" style="--tc:#3fa66b"><table class="cards">
+<thead><tr><th>Skill</th><th>What it does</th><th>Unlocks at pet level</th></tr></thead>
+<tbody>
+<tr class="odd"><td data-label="Skill"><strong>Pickup</strong></td><td data-label="What it does">Picks up items around it. From level 30 it also collects XP.</td><td data-label="Unlocks at pet level"><span class="pill lv" style="--c:#3fa66b">2</span><span class="pill lv" style="--c:#3fa66b">10</span><span class="pill lv" style="--c:#3fa66b">30</span><span class="pill lv" style="--c:#3fa66b">60</span></td></tr>
+<tr class="even"><td data-label="Skill"><strong>Backpack</strong></td><td data-label="What it does">+1 inventory row each time. Gets rows early.</td><td data-label="Unlocks at pet level"><span class="pill lv" style="--c:#3fa66b">1</span><span class="pill lv" style="--c:#3fa66b">8</span><span class="pill lv" style="--c:#3fa66b">35</span><span class="pill lv" style="--c:#3fa66b">75</span></td></tr>
+<tr class="odd"><td data-label="Skill"><strong>Damage</strong></td><td data-label="What it does">Melee damage.</td><td data-label="Unlocks at pet level"><span class="pill lv" style="--c:#3fa66b">3</span><span class="pill lv" style="--c:#3fa66b">12</span><span class="pill lv" style="--c:#3fa66b">28</span><span class="pill lv" style="--c:#3fa66b">50</span><span class="pill lv" style="--c:#3fa66b">75</span></td></tr>
+<tr class="even"><td data-label="Skill"><strong>Ranged</strong></td><td data-label="What it does">Snowball ranged attacks.</td><td data-label="Unlocks at pet level"><span class="pill lv" style="--c:#3fa66b">7</span><span class="pill lv" style="--c:#3fa66b">40</span><span class="pill lv" style="--c:#3fa66b">80</span></td></tr>
+<tr class="odd"><td data-label="Skill"><strong>Thorns</strong></td><td data-label="What it does">Reflects damage back at attackers.</td><td data-label="Unlocks at pet level"><span class="pill lv" style="--c:#3fa66b">6</span><span class="pill lv" style="--c:#3fa66b">35</span><span class="pill lv" style="--c:#3fa66b">70</span></td></tr>
+<tr class="even"><td data-label="Skill"><strong>Poison</strong></td><td data-label="What it does">Chance to poison enemies.</td><td data-label="Unlocks at pet level"><span class="pill lv" style="--c:#3fa66b">9</span><span class="pill lv" style="--c:#3fa66b">30</span><span class="pill lv" style="--c:#3fa66b">55</span><span class="pill lv" style="--c:#3fa66b">80</span></td></tr>
+<tr class="odd"><td data-label="Skill"><strong>Life</strong></td><td data-label="What it does">Extra health.</td><td data-label="Unlocks at pet level"><span class="pill lv" style="--c:#3fa66b">10</span><span class="pill lv" style="--c:#3fa66b">30</span><span class="pill lv" style="--c:#3fa66b">55</span><span class="pill lv" style="--c:#3fa66b">80</span></td></tr>
+<tr class="even"><td data-label="Skill"><strong>Control</strong></td><td data-label="What it does">You can command the pet.</td><td data-label="Unlocks at pet level"><span class="pill lv" style="--c:#3fa66b">8</span></td></tr>
+</tbody></table></div>
+</div>
+<div class="pg" data-g="Ranger"><h3 class="tg" id="pet-ranger" style="--c:#9b6bd6">Ranger tree</h3>
+<p class="sx"><strong>Only for skeleton, stray, pillager and piglin pets.</strong></p><div class="tw" style="--tc:#9b6bd6"><table class="cards">
+<thead><tr><th>Skill</th><th>What it does</th><th>Unlocks at pet level</th></tr></thead>
+<tbody>
+<tr class="odd"><td data-label="Skill"><strong>Ranged</strong></td><td data-label="What it does">Arrows. Every upgrade adds damage, with a big boost at level 100.</td><td data-label="Unlocks at pet level"><span class="pill lv" style="--c:#9b6bd6">3</span><span class="pill lv" style="--c:#9b6bd6">12</span><span class="pill lv" style="--c:#9b6bd6">24</span><span class="pill lv" style="--c:#9b6bd6">38</span><span class="pill lv" style="--c:#9b6bd6">52</span><span class="pill lv" style="--c:#9b6bd6">66</span><span class="pill lv" style="--c:#9b6bd6">80</span><span class="pill lv" style="--c:#9b6bd6">92</span><span class="pill lv" style="--c:#9b6bd6">100</span></td></tr>
+<tr class="even"><td data-label="Skill"><strong>Slow</strong></td><td data-label="What it does">Chance to slow targets.</td><td data-label="Unlocks at pet level"><span class="pill lv" style="--c:#9b6bd6">10</span><span class="pill lv" style="--c:#9b6bd6">30</span><span class="pill lv" style="--c:#9b6bd6">50</span><span class="pill lv" style="--c:#9b6bd6">70</span><span class="pill lv" style="--c:#9b6bd6">90</span></td></tr>
+<tr class="odd"><td data-label="Skill"><strong>Poison</strong></td><td data-label="What it does">Chance to poison targets.</td><td data-label="Unlocks at pet level"><span class="pill lv" style="--c:#9b6bd6">18</span><span class="pill lv" style="--c:#9b6bd6">40</span><span class="pill lv" style="--c:#9b6bd6">62</span><span class="pill lv" style="--c:#9b6bd6">84</span></td></tr>
+<tr class="even"><td data-label="Skill"><strong>Life</strong></td><td data-label="What it does">Extra health.</td><td data-label="Unlocks at pet level"><span class="pill lv" style="--c:#9b6bd6">12</span><span class="pill lv" style="--c:#9b6bd6">28</span><span class="pill lv" style="--c:#9b6bd6">44</span><span class="pill lv" style="--c:#9b6bd6">60</span><span class="pill lv" style="--c:#9b6bd6">76</span><span class="pill lv" style="--c:#9b6bd6">92</span></td></tr>
+</tbody></table></div>
+</div>
+<h2 id="pet-commands">Pet commands</h2>
+<div class="tw" style="--tc:#9b6bd6"><table class="cards">
+<thead><tr><th>Command</th><th>What it does</th></tr></thead>
+<tbody>
+<tr class="odd"><td data-label="Command"><code>/petinfo</code></td><td data-label="What it does">Show your pet's level and stats.</td></tr>
+<tr class="even"><td data-label="Command"><code>/petlist</code></td><td data-label="What it does">List your pets.</td></tr>
+<tr class="odd"><td data-label="Command"><code>/petname</code></td><td data-label="What it does">Rename your pet.</td></tr>
+<tr class="even"><td data-label="Command"><code>/petswitch</code></td><td data-label="What it does">Switch to another pet.</td></tr>
+<tr class="odd"><td data-label="Command"><code>/petstore</code></td><td data-label="What it does">Put your pet into storage.</td></tr>
+<tr class="even"><td data-label="Command"><code>/petrelease</code></td><td data-label="What it does">Release a pet for good.</td></tr>
+<tr class="odd"><td data-label="Command"><code>/pettrade</code></td><td data-label="What it does">Trade a pet with another player.</td></tr>
+<tr class="even"><td data-label="Command"><code>/petoptions</code></td><td data-label="What it does">Change your pet's options.</td></tr>
+</tbody></table></div>
+<h2 id="pet-tips">Tips</h2>
+<ul>
+<li>Utility and Farm pets are great for hauling and collecting, and Ride pets are your mount.</li>
+<li>Pets have behavior modes (friendly, farm, duel, aggressive and raid) that unlock as they level.</li>
+<li>A pet is a mob, so keep it safe in dungeons and the Deeper Dark.</li>
+</ul>
+<div class="pn"><a href="#community">← Community</a><a href="#quests">Quests →</a></div></section>
+<section class="page" id="quests" data-title="Quests" hidden><h1>Quests</h1>
+<p>Quests pay you for things you were going to do anyway. Open the menu with <code>/quest</code>, pick a quest and just play. When you finish, the reward lands in your balance.</p>
+<div class="hero"><div class="stat"><b>1,657</b><span>quests</span></div><div class="stat"><b>17</b><span>categories</span></div><div class="stat"><b>4</b><span>tiers in most series</span></div><div class="stat"><b>1×</b><span>each quest, once</span></div></div>
+<h2 id="how-quests-work">How tiers work</h2>
+<p>Most quests come as a <strong>series</strong>. Finish a tier and the next, harder one with a bigger reward unlocks.</p>
+<div class="lad"><div class="nd pl"><b>Tier 1</b><span>Mine 640 Stone</span></div><div class="nd pl"><b>Tier 2</b><span>Mine 3,200 Stone</span></div><div class="nd pl"><b>Tier 3</b><span>Mine 6,400 Stone</span></div><div class="nd pl"><b>Tier 4</b><span>Mine 9,600 Stone</span></div></div>
+<ul>
+<li>Each quest can be completed <strong>once</strong>.</li>
+<li>Blocks you place yourself don't count towards mining quests, so you can't cheat by placing and breaking.</li>
+<li>The reward is shown in the quest's own tooltip. Harder quests pay more.</li>
+</ul>
+<h2 id="quest-categories">Quest categories</h2>
+<div class="tools"><input type="search" id="qq" placeholder="Search categories, like fishing or mining" aria-label="Search quest categories" autocomplete="off"></div>
+<div class="fb" id="qf" role="group" aria-label="Filter by group"><button type="button" class="chip" data-v="" aria-pressed="false" style="--c:var(--ac)">All <span class="cn">17</span></button><button type="button" class="chip" data-v="gather" aria-pressed="false" style="--c:#3fa66b"><i class="dt" style="--c:#3fa66b"></i>Gathering <span class="cn">6</span></button><button type="button" class="chip" data-v="combat" aria-pressed="false" style="--c:#e5484d"><i class="dt" style="--c:#e5484d"></i>Combat and smithing <span class="cn">2</span></button><button type="button" class="chip" data-v="craft" aria-pressed="false" style="--c:#3b82d6"><i class="dt" style="--c:#3b82d6"></i>Crafting and building <span class="cn">5</span></button><button type="button" class="chip" data-v="life" aria-pressed="false" style="--c:#d9a400"><i class="dt" style="--c:#d9a400"></i>Everyday <span class="cn">2</span></button><button type="button" class="chip" data-v="special" aria-pressed="false" style="--c:#9b6bd6"><i class="dt" style="--c:#9b6bd6"></i>Special <span class="cn">2</span></button></div>
+<p class="fs" id="qn" role="status" aria-live="polite"></p>
+<div class="cg" id="qg"><div class="cd" data-g="gather" data-t="mining mine stone, ores and more. a stone series climbs from 640 to 9,600 blocks." style="--c:#3fa66b"><div class="ct">Mining <span class="bdg" style="--c:#3fa66b">204</span></div><p>Mine stone, ores and more. A stone series climbs from 640 to 9,600 blocks.</p></div>
+<div class="cd" data-g="gather" data-t="digging dig dirt, grass, podzol and other soft blocks." style="--c:#3fa66b"><div class="ct">Digging <span class="bdg" style="--c:#3fa66b">48</span></div><p>Dig dirt, grass, podzol and other soft blocks.</p></div>
+<div class="cd" data-g="gather" data-t="woodcutting chop every kind of log, from 64 up to 256 per tier." style="--c:#3fa66b"><div class="ct">Woodcutting <span class="bdg" style="--c:#3fa66b">44</span></div><p>Chop every kind of log, from 64 up to 256 per tier.</p></div>
+<div class="cd" data-g="gather" data-t="farming harvest and breed. the biggest category." style="--c:#3fa66b"><div class="ct">Farming <span class="bdg" style="--c:#3fa66b">365</span></div><p>Harvest and breed. The biggest category.</p></div>
+<div class="cd" data-g="gather" data-t="fishing catch fish, specific fish and special items like name tags." style="--c:#3fa66b"><div class="ct">Fishing <span class="bdg" style="--c:#3fa66b">22</span></div><p>Catch fish, specific fish and special items like name tags.</p></div>
+<div class="cd" data-g="gather" data-t="collecting collect seeds, eggs and other drops." style="--c:#3fa66b"><div class="ct">Collecting <span class="bdg" style="--c:#3fa66b">215</span></div><p>Collect seeds, eggs and other drops.</p></div>
+<div class="cd" data-g="combat" data-t="hunter kill mobs and cure zombie villagers." style="--c:#e5484d"><div class="ct">Hunter <span class="bdg" style="--c:#e5484d">176</span></div><p>Kill mobs and cure zombie villagers.</p></div>
+<div class="cd" data-g="combat" data-t="weaponsmith craft armor and weapons, and smith items." style="--c:#e5484d"><div class="ct">Weaponsmith <span class="bdg" style="--c:#e5484d">67</span></div><p>Craft armor and weapons, and smith items.</p></div>
+<div class="cd" data-g="craft" data-t="crafting craft redstone parts, tools and other items." style="--c:#3b82d6"><div class="ct">Crafting <span class="bdg" style="--c:#3b82d6">57</span></div><p>Craft redstone parts, tools and other items.</p></div>
+<div class="cd" data-g="craft" data-t="smelting smelt raw ores and other items." style="--c:#3b82d6"><div class="ct">Smelting <span class="bdg" style="--c:#3b82d6">36</span></div><p>Smelt raw ores and other items.</p></div>
+<div class="cd" data-g="craft" data-t="brewing brew potions, from 5 up to 100." style="--c:#3b82d6"><div class="ct">Brewing <span class="bdg" style="--c:#3b82d6">4</span></div><p>Brew potions, from 5 up to 100.</p></div>
+<div class="cd" data-g="craft" data-t="enchanting earn levels and exp, enchant items and place an enchanting table." style="--c:#3b82d6"><div class="ct">Enchanting <span class="bdg" style="--c:#3b82d6">16</span></div><p>Earn levels and EXP, enchant items and place an enchanting table.</p></div>
+<div class="cd" data-g="craft" data-t="building place blocks in volume, like 256 planks of every wood." style="--c:#3b82d6"><div class="ct">Building <span class="bdg" style="--c:#3b82d6">166</span></div><p>Place blocks in volume, like 256 planks of every wood.</p></div>
+<div class="cd" data-g="life" data-t="activities milk, shear, tame, breed, trade and barter." style="--c:#d9a400"><div class="ct">Activities <span class="bdg" style="--c:#d9a400">56</span></div><p>Milk, shear, tame, breed, trade and barter.</p></div>
+<div class="cd" data-g="life" data-t="misc walk, stay online, empty buckets and use /spawn." style="--c:#d9a400"><div class="ct">Misc <span class="bdg" style="--c:#d9a400">15</span></div><p>Walk, stay online, empty buckets and use <code>/spawn</code>.</p></div>
+<div class="cd" data-g="special" data-t="exp quests pay xp instead of money." style="--c:#9b6bd6"><div class="ct">EXP quests <span class="bdg" style="--c:#9b6bd6">116</span></div><p>Pay <strong>XP</strong> instead of money.</p></div>
+<div class="cd" data-g="special" data-t="impossible quests huge goals, like harvesting 2,304 carrots. they pay the biggest rewards." style="--c:#9b6bd6"><div class="ct">Impossible quests <span class="bdg" style="--c:#9b6bd6">50</span></div><p>Huge goals, like harvesting 2,304 carrots. They pay the <strong>biggest</strong> rewards.</p></div>
+</div>
+<h2 id="quest-tips">Tips</h2>
+<ul>
+<li><strong>Start with what you do anyway.</strong> Mining, chopping and farming quests fill up while you play normally.</li>
+<li><strong>Pick a series and finish it.</strong> The last tier of each series pays the most.</li>
+<li><strong>Misc quests are easy money.</strong> Walking, staying online and running <code>/spawn</code> are quick wins.</li>
+<li><strong>Need XP?</strong> Do the EXP quests. They pay XP, so they help with enchanting.</li>
+<li><strong>Looking for a challenge?</strong> Try an Impossible quest. They take a long time, and they pay far more than anything else.</li>
+</ul>
+<p>Quest money helps with <a href="#3-making-money">making money</a>. Fishing quests pair well with the <a href="#fishing">Fishing page</a>.</p>
+<div class="pn"><a href="#pets">← Pets</a><a href="#fishing">Fishing →</a></div></section>
+<section class="page" id="fishing" data-title="Fishing" hidden><h1>Fishing</h1>
+<p>SoftBloom runs on <strong>Even More Fishing</strong>. It adds custom fish in different rarities, a shop that pays for them, and fishing contests with real prizes. Fishing also levels your Fishing skill, which counts toward ranking up.</p>
+<h2 id="fishing-start">Getting started</h2>
+<ol class="stp">
+<li><b>Switch on</b><br>Type <code>/emf toggle</code> to switch from vanilla fishing to Even More Fishing. Use it again to switch back.</li>
+<li><b>Fish</b><br>Cast a rod and catch fish of different rarities.</li>
+<li><b>Sell</b><br>Sell your catch at <code>/emf shop</code>. The <strong>rarer the fish, the higher the price</strong>.</li>
+</ol>
+<h2 id="fishing-contests">Fishing contests</h2>
+<p>Contests start on <strong>weekdays</strong>, every 4 to 6 hours, as long as <strong>4 or more players</strong> are online. Each one lasts 20 minutes. A boss bar shows the contest and a leaderboard, and you get a countdown warning before it ends.</p>
+<div class="wk" role="list"><div class="dy" role="listitem" style="--c:#3b82d6"><b>Mon</b><span>Largest fish</span></div><div class="dy" role="listitem" style="--c:#3b82d6"><b>Tue</b><span>Largest fish</span></div><div class="dy" role="listitem" style="--c:#3fa66b"><b>Wed</b><span>Most fish</span></div><div class="dy" role="listitem" style="--c:#3fa66b"><b>Thu</b><span>Most fish</span></div><div class="dy" role="listitem" style="--c:#f08a24"><b>Fri</b><span>Largest total</span></div><div class="dy off" role="listitem"><b>Sat</b><span>No contest</span></div><div class="dy off" role="listitem"><b>Sun</b><span>No contest</span></div></div>
+<h3 id="fishing-prizes">Prizes</h3>
+<p>Pick a contest to see its prizes.</p>
+<div class="fb" id="ff" role="group" aria-label="Choose a contest"><button type="button" class="chip" data-v="LF" aria-pressed="false" style="--c:#3b82d6"><i class="dt" style="--c:#3b82d6"></i>Largest Fish</button><button type="button" class="chip" data-v="MF" aria-pressed="false" style="--c:#3fa66b"><i class="dt" style="--c:#3fa66b"></i>Most Fish</button><button type="button" class="chip" data-v="LT" aria-pressed="false" style="--c:#f08a24"><i class="dt" style="--c:#f08a24"></i>Largest Total</button></div>
+<div class="pg" data-g="LF"><p class="sx"><strong>How to win:</strong> Catch the single biggest fish. Everyone who takes part also gets <strong>1 diamond</strong>.</p><div class="pod"><div class="cd" style="--c:#e6b800;--on:#2a2230"><div class="md" aria-hidden="true">🥇</div><div class="ct">1st place</div><div class="rw" style="--c:#e6b800"><span class="pill">3,000 XP</span><span class="pill">3 netherite ingots</span><span class="pill">2 Advanced keys</span></div></div><div class="cd" style="--c:#a8b0b8;--on:#2a2230"><div class="md" aria-hidden="true">🥈</div><div class="ct">2nd place</div><div class="rw" style="--c:#a8b0b8"><span class="pill">2,000 XP</span><span class="pill">3 diamonds</span><span class="pill">2 Basic keys</span></div></div><div class="cd" style="--c:#c0773b;--on:#fff"><div class="md" aria-hidden="true">🥉</div><div class="ct">3rd place</div><div class="rw" style="--c:#c0773b"><span class="pill">1,000 XP</span><span class="pill">1 diamond</span><span class="pill">1 Basic key</span></div></div></div></div>
+<div class="pg" data-g="MF" hidden><p class="sx"><strong>How to win:</strong> Catch the most fish. Everyone who takes part also gets <strong>1 diamond</strong>.</p><div class="pod"><div class="cd" style="--c:#e6b800;--on:#2a2230"><div class="md" aria-hidden="true">🥇</div><div class="ct">1st place</div><div class="rw" style="--c:#e6b800"><span class="pill">3,000 XP</span><span class="pill">10 diamonds</span><span class="pill">2 Advanced keys</span></div></div><div class="cd" style="--c:#a8b0b8;--on:#2a2230"><div class="md" aria-hidden="true">🥈</div><div class="ct">2nd place</div><div class="rw" style="--c:#a8b0b8"><span class="pill">2,000 XP</span><span class="pill">5 diamonds</span><span class="pill">2 Basic keys</span></div></div><div class="cd" style="--c:#c0773b;--on:#fff"><div class="md" aria-hidden="true">🥉</div><div class="ct">3rd place</div><div class="rw" style="--c:#c0773b"><span class="pill">1,000 XP</span><span class="pill">1 diamond</span><span class="pill">1 Basic key</span></div></div></div></div>
+<div class="pg" data-g="LT" hidden><p class="sx"><strong>How to win:</strong> Have the biggest combined size of all your catches. Everyone who takes part also gets <strong>1 diamond</strong>.</p><div class="pod"><div class="cd" style="--c:#e6b800;--on:#2a2230"><div class="md" aria-hidden="true">🥇</div><div class="ct">1st place</div><div class="rw" style="--c:#e6b800"><span class="pill">3,500 XP</span><span class="pill">3 netherite ingots</span><span class="pill">2 Advanced keys</span></div></div><div class="cd" style="--c:#a8b0b8;--on:#2a2230"><div class="md" aria-hidden="true">🥈</div><div class="ct">2nd place</div><div class="rw" style="--c:#a8b0b8"><span class="pill">2,100 XP</span><span class="pill">2 diamonds</span><span class="pill">2 Basic keys</span></div></div><div class="cd" style="--c:#c0773b;--on:#fff"><div class="md" aria-hidden="true">🥉</div><div class="ct">3rd place</div><div class="rw" style="--c:#c0773b"><span class="pill">1,000 XP</span><span class="pill">1 diamond</span><span class="pill">1 Basic key</span></div></div></div></div>
+<h2 id="fishing-gear">Gear that helps</h2>
+<p>These custom enchants go on a fishing rod. Find every enchant in <a href="#custom-enchants-list">All Custom Enchants</a>.</p>
+<div class="tw" style="--tc:#3b82d6"><table class="cards">
+<thead><tr><th>Enchant</th><th>Tier</th><th>What it does</th></tr></thead>
+<tbody>
+<tr class="odd"><td data-label="Enchant"><strong>Hook</strong></td><td data-label="Tier"><i class="dt" style="--c:#3b82d6;--d:#3b82d6"></i> Elite</td><td data-label="What it does">More XP from fishing.</td></tr>
+<tr class="even"><td data-label="Enchant"><strong>Lucky</strong></td><td data-label="Tier"><i class="dt" style="--c:#e6b800;--d:#e6b800"></i> Ultimate</td><td data-label="What it does">Chance to increase luck while fishing.</td></tr>
+<tr class="odd"><td data-label="Enchant"><strong>Bait</strong></td><td data-label="Tier"><i class="dt" style="--c:#ec5fa0;--d:#ec5fa0"></i> Legendary</td><td data-label="What it does">Chance to receive double fishing drops.</td></tr>
+<tr class="even"><td data-label="Enchant"><strong>Firehook</strong></td><td data-label="Tier"><i class="dt" style="--c:#3b82d6;--d:#3b82d6"></i> Elite</td><td data-label="What it does">The hook is on fire.</td></tr>
+<tr class="odd"><td data-label="Enchant"><strong>Poisonedhook</strong></td><td data-label="Tier"><i class="dt" style="--c:#3b82d6;--d:#3b82d6"></i> Elite</td><td data-label="What it does">Poisons the hook.</td></tr>
+<tr class="even"><td data-label="Enchant"><strong>Snap</strong></td><td data-label="Tier"><i class="dt" style="--c:#3b82d6;--d:#3b82d6"></i> Elite</td><td data-label="What it does">Pulls the hit entity towards you.</td></tr>
+<tr class="odd"><td data-label="Enchant"><strong>Sharpnesshook</strong></td><td data-label="Tier"><i class="dt" style="--c:#e6b800;--d:#e6b800"></i> Ultimate</td><td data-label="What it does">Deals damage with the hook.</td></tr>
+</tbody></table></div>
+<h2 id="fishing-tips">Tips</h2>
+<ul>
+<li>Fish during a contest. Even if you don't place, you still get a diamond for taking part.</li>
+<li>Check the fishing quests at <code>/quest</code>. They pay while you fish, and there are 22 of them.</li>
+<li>The contest keys open crates at <code>/warp crates</code>.</li>
+</ul>
+<div class="pn"><a href="#quests">← Quests</a><a href="#chat-games">Chat Games →</a></div></section>
+<section class="page" id="chat-games" data-title="Chat Games" hidden><h1>Chat Games</h1>
+<p>Chat games pop up in chat all the time. The <strong>first player to answer correctly</strong> wins. They're quick, free and a nice little bonus while you play.</p>
+<div class="hero"><div class="stat"><b>5</b><span>different games</span></div><div class="stat"><b>30 to 60s</b><span>to answer</span></div><div class="stat"><b>1st</b><span>correct answer wins</span></div></div>
+<h2 id="chat-games-list">The games</h2>
+<div class="cg"><div class="cd" style="--c:#e5484d;--on:#fff"><div class="ic" aria-hidden="true">🧮</div><div class="ct">Math Wizard <span class="bdg" style="--c:#e5484d">⏱ 60s</span></div><p>Solve the equation in chat: derivatives, integrals, logs and trig. Type the number.</p><div class="rw" style="--c:#e5484d"><span class="pill">1 to 2 diamonds</span><span class="pill">20 to 100 XP</span></div></div>
+<div class="cd" style="--c:#3b82d6;--on:#fff"><div class="ic" aria-hidden="true">❓</div><div class="ct">Quiz Challenge <span class="bdg" style="--c:#3b82d6">⏱ 45s</span></div><p>Multiple choice. Type the correct letter (A, B, C or D).</p><div class="rw" style="--c:#3b82d6"><span class="pill">1 to 2 diamonds</span><span class="pill">20 to 40 XP</span></div></div>
+<div class="cd" style="--c:#e6b800;--on:#2a2230"><div class="ic" aria-hidden="true">🎓</div><div class="ct">College Trivia <span class="bdg" style="--c:#e6b800">⏱ 30s</span> <span class="bdg" style="--c:#c2457a;--on:#fff">Best rewards</span></div><p>Answer a college-level question. Type the answer.</p><div class="rw" style="--c:#e6b800"><span class="pill">1 to 2 diamonds</span><span class="pill">1 to 50 XP</span><span class="pill">1 to 10 min fly time</span><span class="pill">1 to 2 Basic keys</span></div></div>
+<div class="cd" style="--c:#3fa66b;--on:#fff"><div class="ic" aria-hidden="true">⚡</div><div class="ct">Reaction Rush <span class="bdg" style="--c:#3fa66b">⏱ 30s</span></div><p>Be the fastest. Type the word shown, or click the button or star.</p><div class="rw" style="--c:#3fa66b"><span class="pill">1 to 9 emeralds</span><span class="pill">20 XP</span></div></div>
+<div class="cd" style="--c:#9b6bd6;--on:#fff"><div class="ic" aria-hidden="true">🔤</div><div class="ct">Word Scramble <span class="bdg" style="--c:#9b6bd6">⏱ 60s</span></div><p>Unscramble the word and type it.</p><div class="rw" style="--c:#9b6bd6"><span class="pill">1 to 5 gold ingots</span><span class="pill">1 to 2 diamonds</span><span class="pill">20 XP</span></div></div>
+</div>
+<h2 id="chat-games-tips">Tips</h2>
+<ul>
+<li><strong>Trivia pays best.</strong> It is the only game that gives fly time and a key.</li>
+<li><strong>Speed matters.</strong> Be ready to type the moment a game starts.</li>
+<li><strong>Reaction Rush</strong> sometimes shows a button. Click it. If it shows several, click the star.</li>
+<li><strong>Math and Quiz</strong> use college-level questions. Keep a calculator handy.</li>
+<li>Spelling counts. Type the answer exactly as asked.</li>
+</ul>
+<p>More ways to earn: <a href="#quests">Quests</a>, <a href="#fishing">Fishing</a> and the daily <code>/calendar</code>.</p>
+<div class="pn"><a href="#fishing">← Fishing</a><a href="#kits">Kits →</a></div></section>
+<section class="page" id="faq" data-title="FAQ" hidden><h1>FAQ</h1>
+<p>Quick answers to the questions new players ask most. Click a question to open it.</p>
+<div class="tools"><input type="search" id="fq-q" placeholder="Search questions, like rank or flight" aria-label="Search questions" autocomplete="off"></div>
+<div class="fb" id="fq-f" role="group" aria-label="Filter by topic"><button type="button" class="chip" data-v="" aria-pressed="false" style="--c:var(--ac)">All <span class="cn">19</span></button><button type="button" class="chip" data-v="start" aria-pressed="false" style="--c:#3fa66b"><i class="dt" style="--c:#3fa66b"></i>Getting started <span class="cn">4</span></button><button type="button" class="chip" data-v="prog" aria-pressed="false" style="--c:#d9a400"><i class="dt" style="--c:#d9a400"></i>Ranks and rewards <span class="cn">8</span></button><button type="button" class="chip" data-v="safe" aria-pressed="false" style="--c:#e5484d"><i class="dt" style="--c:#e5484d"></i>Safety and rules <span class="cn">4</span></button><button type="button" class="chip" data-v="world" aria-pressed="false" style="--c:#3b82d6"><i class="dt" style="--c:#3b82d6"></i>Travel and world <span class="cn">3</span></button></div>
+<p class="fs" id="fq-n" role="status" aria-live="polite"></p>
+<details class="fq" data-g="start" data-t="how do i join the server?java players connect to sftblmorg.usga.me:12006 on 1.21.11. bedrock players use sftblmorg.usga.me with port 12006, on 1.21.11 or newer. the details are on the home page." style="--c:#3fa66b"><summary>How do I join the server?</summary><div class="a"><p>Java players connect to <code>sftblmorg.usga.me:12006</code> on 1.21.11. Bedrock players use <code>sftblmorg.usga.me</code> with port <code>12006</code>, on 1.21.11 or newer. The details are on the <a href="#home">home page</a>.</p></div></details>
+<details class="fq" data-g="start" data-t="i just joined. what do i do first?type /register &amp;lt;password&amp;gt; &amp;lt;password&amp;gt;. next time you join, use /login &amp;lt;password&amp;gt; if the password window doesn&#x27;t appear. then open /kit and claim your starter kit and claim kit. see stage 1." style="--c:#3fa66b"><summary>I just joined. What do I do first?</summary><div class="a"><p>Type <code>/register &lt;password&gt; &lt;password&gt;</code>. Next time you join, use <code>/login &lt;password&gt;</code> if the password window doesn't appear. Then open <code>/kit</code> and claim your Starter kit and Claim kit. See <a href="#1-settle-in">Stage 1</a>.</p></div></details>
+<details class="fq" data-g="safe" data-t="how do i protect my base?claim land with the golden shovel from the claim kit. mark two corners and everything inside is protected. you start with 100 claim blocks, earn 50 to 100 more every hour you play, and get a bonus on every rank-up. you can claim 2 separate lands." style="--c:#e5484d"><summary>How do I protect my base?</summary><div class="a"><p>Claim land with the <strong>Golden Shovel</strong> from the Claim kit. Mark two corners and everything inside is protected. You start with 100 claim blocks, earn 50 to 100 more every hour you play, and get a bonus on every rank-up. You can claim 2 separate lands.</p></div></details>
+<details class="fq" data-g="prog" data-t="how do i rank up?you need enough playtime and a minimum level in every skill. type /rankup to see what is missing. rank-ups are free and pay money, claim blocks and fly time. use the rank calculator to see how close you are." style="--c:#d9a400"><summary>How do I rank up?</summary><div class="a"><p>You need enough <strong>playtime</strong> and a minimum level in <strong>every skill</strong>. Type <code>/rankup</code> to see what is missing. Rank-ups are free and pay money, claim blocks and fly time. Use the <a href="#rank-calculator">Rank Calculator</a> to see how close you are.</p></div></details>
+<details class="fq" data-g="prog" data-t="why can&amp;#x27;t i equip an elytra?members can&#x27;t equip an elytra. reach the settler rank (2 hours of playtime and level 5 in every skill) and you can." style="--c:#d9a400"><summary>Why can&#x27;t I equip an elytra?</summary><div class="a"><p>Members can't equip an elytra. Reach the <strong>Settler</strong> rank (2 hours of playtime and level 5 in every skill) and you can.</p></div></details>
+<details class="fq" data-g="prog" data-t="how do i make money?sell resources at /warp shop, finish quests, join fishing contests, win chat games, claim your daily /calendar reward and vote with /vote. check the shop prices to see what pays the most." style="--c:#d9a400"><summary>How do I make money?</summary><div class="a"><p>Sell resources at <code>/warp shop</code>, finish <a href="#quests">quests</a>, join <a href="#fishing">fishing contests</a>, win <a href="#chat-games">chat games</a>, claim your daily <code>/calendar</code> reward and vote with <code>/vote</code>. Check the <a href="#shop-prices">Shop Prices</a> to see what pays the most.</p></div></details>
+<details class="fq" data-g="prog" data-t="how do i get my daily reward?play 60 active minutes in a day, then type /calendar. active means you are moving your camera. standing in the afk zone doesn&#x27;t count." style="--c:#d9a400"><summary>How do I get my daily reward?</summary><div class="a"><p>Play <strong>60 active minutes</strong> in a day, then type <code>/calendar</code>. Active means you are moving your camera. Standing in the AFK zone doesn't count.</p></div></details>
+<details class="fq" data-g="world" data-t="how do i get to the dungeons?every rank-up unlocks the next dungeon. open /warp and pick it. go in order. see the 9 dungeons." style="--c:#3b82d6"><summary>How do I get to the dungeons?</summary><div class="a"><p>Every rank-up unlocks the next dungeon. Open <code>/warp</code> and pick it. Go in order. See <a href="#6-the-9-dungeons">The 9 Dungeons</a>.</p></div></details>
+<details class="fq" data-g="prog" data-t="how do i get keys?keys come from fishing contests, chat trivia, voting, dungeon mobs and dungeon bosses. use them at /warp crates." style="--c:#d9a400"><summary>How do I get keys?</summary><div class="a"><p>Keys come from fishing contests, chat trivia, voting, dungeon mobs and dungeon bosses. Dungeon keys open the crate <strong>inside that dungeon</strong>, so find the crate there. Other keys are used at <code>/warp crates</code>.</p></div></details>
+<details class="fq" data-g="prog" data-t="how do i get flight?fly time comes from rank-ups, chat trivia and some crate vouchers. climbing the ranks gives the most. elytra work too, once you reach settler." style="--c:#d9a400"><summary>How do I get flight?</summary><div class="a"><p>Fly time comes from rank-ups, chat trivia and some crate vouchers. Climbing the ranks gives the most. Elytra work too, once you reach Settler.</p></div></details>
+<details class="fq" data-g="safe" data-t="how do i turn pvp on or off?type /pvp. pvp is off by default in the overworld. every other world is always pvp-on, so be careful." style="--c:#e5484d"><summary>How do I turn PvP on or off?</summary><div class="a"><p>Type <code>/pvp</code>. PvP is off by default in the Overworld. Every other world is always PvP-on, so be careful.</p></div></details>
+<details class="fq" data-g="world" data-t="how do i get home, to spawn or back to where i died?/home goes to your home (set it with /sethome), /spawn goes to spawn and /back returns you to your last spot, including where you died." style="--c:#3b82d6"><summary>How do I get home, to spawn or back to where I died?</summary><div class="a"><p><code>/home</code> goes to your home (set it with <code>/sethome</code>), <code>/spawn</code> goes to spawn and <code>/back</code> returns you to your last spot, including where you died.</p></div></details>
+<details class="fq" data-g="world" data-t="how do i reach the deeper dark and the deep blue?use the portals at /spawn, in the portal areas. you can leave by typing /spawn, using /warp or teleporting to a home. heaven is different: fly up past y=300 with an elytra." style="--c:#3b82d6"><summary>How do I reach the Deeper Dark and the Deep Blue?</summary><div class="a"><p>Use the portals at <code>/spawn</code>, in the portal areas. You can leave by typing <code>/spawn</code>, using <code>/warp</code> or teleporting to a home. Heaven is different: fly up past y=300 with an elytra.</p></div></details>
+<details class="fq" data-g="safe" data-t="where did my items go?stray items and mobs are cleaned up about every 6 minutes, so don&#x27;t leave anything valuable on the ground. store loot in chests and keep your claim protected." style="--c:#e5484d"><summary>Where did my items go?</summary><div class="a"><p>Stray items and mobs are cleaned up about every 6 minutes, so don't leave anything valuable on the ground. Store loot in chests and keep your claim protected.</p></div></details>
+<details class="fq" data-g="safe" data-t="how many spawners can i place?four per chunk. if you try to place more, you&#x27;ll get a message." style="--c:#e5484d"><summary>How many spawners can I place?</summary><div class="a"><p>Four per chunk. If you try to place more, you'll get a message.</p></div></details>
+<details class="fq" data-g="start" data-t="can i play on bedrock?yes. everything works on bedrock. a few custom items may look slightly different from java." style="--c:#3fa66b"><summary>Can I play on Bedrock?</summary><div class="a"><p>Yes. Everything works on Bedrock. A few custom items may look slightly different from Java.</p></div></details>
+<details class="fq" data-g="prog" data-t="where do i get rings?rings come only from premium crates. see rings in stage 5." style="--c:#d9a400"><summary>Where do I get rings?</summary><div class="a"><p>Rings come only from <strong>premium crates</strong>. See <a href="#5-gear-and-enchants">Stage 5</a>.</p></div></details>
+<details class="fq" data-g="prog" data-t="what do premium ranks give?premium perks are listed in the discord og shop and the softbloom online store. see community for the links." style="--c:#d9a400"><summary>What do premium ranks give?</summary><div class="a"><p>Premium perks are listed in the <strong>Discord OG Shop</strong> and the <strong>SoftBloom online store</strong>. Prices, perks and keys for every rank are on the <a href="#premium-ranks">Premium Ranks</a> page.</p></div></details>
+<details class="fq" data-g="start" data-t="where can i get help?type /discord or join the softbloom discord and ask. staff and players are happy to help." style="--c:#3fa66b"><summary>Where can I get help?</summary><div class="a"><p>Type <code>/discord</code> or join the <a href="https://discord.com/invite/RKbhhCMbZ5" target="_blank" rel="noopener">SoftBloom Discord</a> and ask. Staff and players are happy to help.</p></div></details>
+<div class="pn"><a href="#commands">← Command Cheat Sheet</a><a href="#community">Community →</a></div></section>
+<section class="page" id="kits" data-title="Kits" hidden><h1>Kits</h1>
+<p>Kits are bundles of items you claim from the Kits GUI. Open it with <code>/kit</code>. A kit shows how long you have to wait if it is on cooldown, and it tells you if you don't have permission for it.</p>
+<h2 id="kits-free">Free kits</h2>
+<div class="cg"><div class="cd" style="--c:#3fa66b"><div class="ic" aria-hidden="true">🎁</div><div class="ct">Starter <span class="bdg" style="--c:#3fa66b">Once</span></div><p>Enchanted stone tools, armor, food, torches and a backpack.</p></div>
+<div class="cd" style="--c:#3b82d6"><div class="ic" aria-hidden="true">🗺️</div><div class="ct">Claim <span class="bdg" style="--c:#3b82d6">Every hour</span></div><p>A <strong>Golden Shovel</strong> and the <strong>Claim Guide</strong> book.</p></div>
+<div class="cd" style="--c:#9b6bd6"><div class="ic" aria-hidden="true">📖</div><div class="ct">Guide <span class="bdg" style="--c:#9b6bd6">Every hour</span></div><p>The <strong>Guide Book</strong>, plus a second written book.</p></div>
+</div>
+<h2 id="kit-starter">What's in the Starter kit</h2>
+<p>You can claim it <strong>once</strong>. Armor goes on automatically.</p>
+<h3 class="tg" style="--c:#c2457a">Tools</h3><div class="tg-grid"><div class="tile" style="--c:#c2457a"><div><b>Stone Sword</b><span class="pill">Sharpness V</span><span class="pill">Unbreaking III</span></div></div><div class="tile" style="--c:#c2457a"><div><b>Stone Pickaxe</b><span class="pill">Efficiency III</span><span class="pill">Unbreaking III</span></div></div><div class="tile" style="--c:#c2457a"><div><b>Stone Axe</b><span class="pill">Efficiency III</span><span class="pill">Unbreaking III</span></div></div><div class="tile" style="--c:#c2457a"><div><b>Stone Shovel</b><span class="pill">Efficiency III</span><span class="pill">Unbreaking III</span></div></div><div class="tile" style="--c:#c2457a"><div><b>Stone Hoe</b><span class="pill">Efficiency III</span><span class="pill">Unbreaking III</span></div></div></div>
+<h3 class="tg" style="--c:#3b82d6">Armor</h3><div class="tg-grid"><div class="tile" style="--c:#3b82d6"><div><b>Golden Helmet</b><span class="pill">Mending</span><span class="pill">Unbreaking X</span></div></div><div class="tile" style="--c:#3b82d6"><div><b>Amethyst Chestplate</b><span class="pill">Unbreaking V</span></div></div><div class="tile" style="--c:#3b82d6"><div><b>Emerald Leggings</b><span class="pill">Unbreaking V</span></div></div><div class="tile" style="--c:#3b82d6"><div><b>Iron Boots</b><span class="pill">Unbreaking III</span></div></div><div class="tile" style="--c:#3b82d6"><div><b>Shield</b><span class="pill">Unbreaking III</span></div></div></div>
+<h3 class="tg" style="--c:#3fa66b">Food and supplies</h3><div class="tg-grid"><div class="tile" style="--c:#3fa66b"><div><b>16 Bread</b></div></div><div class="tile" style="--c:#3fa66b"><div><b>16 Cooked Beef</b></div></div><div class="tile" style="--c:#3fa66b"><div><b>16 Apples</b></div></div><div class="tile" style="--c:#3fa66b"><div><b>16 Coal</b></div></div><div class="tile" style="--c:#3fa66b"><div><b>32 Torches</b></div></div><div class="tile" style="--c:#3fa66b"><div><b>Basic Backpack</b><span class="pill">Extra inventory space</span></div></div></div>
+<h2 id="kits-premium">Premium kits</h2>
+<p>Premium ranks unlock a kit they can claim <strong>every 30 days</strong>. Each one comes with keys, and most include a shulker box of goodies. Every perk is on the <a href="#premium-ranks">Premium Ranks</a> page.</p>
+<div class="cg"><div class="cd" style="--c:#9aa5b1;--on:#fff"><div class="ct">Donator <span class="bdg" style="--c:#9aa5b1">30 days</span></div><p>A Discord Nitro Bag, a 1-Day Fly Voucher and a 1,000 Claim Blocks Voucher</p></div><div class="cd" style="--c:#e6b800;--on:#2a2230"><div class="ct">VIP <span class="bdg" style="--c:#e6b800">30 days</span></div><p>A VIP kit shulker box</p></div><div class="cd" style="--c:#e6b800;--on:#2a2230"><div class="ct">VIP+ <span class="bdg" style="--c:#e6b800">30 days</span></div><p>A VIP+ kit shulker box</p></div><div class="cd" style="--c:#3b82d6;--on:#fff"><div class="ct">Elite <span class="bdg" style="--c:#3b82d6">30 days</span></div><p>1 Verdant Key and an Elite kit shulker box</p></div><div class="cd" style="--c:#3b82d6;--on:#fff"><div class="ct">Elite+ <span class="bdg" style="--c:#3b82d6">30 days</span></div><p>2 Verdant Keys and an Elite+ kit shulker box</p></div><div class="cd" style="--c:#9b6bd6;--on:#fff"><div class="ct">MVP <span class="bdg" style="--c:#9b6bd6">30 days</span></div><p>1 Zephyr Key and an MVP kit shulker box</p></div><div class="cd" style="--c:#9b6bd6;--on:#fff"><div class="ct">MVP+ <span class="bdg" style="--c:#9b6bd6">30 days</span></div><p>2 Zephyr Keys and an MVP+ kit shulker box</p></div><div class="cd" style="--c:#9b6bd6;--on:#fff"><div class="ct">MVP++ <span class="bdg" style="--c:#9b6bd6">30 days</span></div><p>3 Zephyr Keys and an MVP++ kit shulker box</p></div><div class="cd" style="--c:#e5484d;--on:#fff"><div class="ct">God <span class="bdg" style="--c:#e5484d">30 days</span></div><p>1 Glacial Key and a God kit shulker box</p></div></div>
+<h2 id="kits-tips">Tips</h2>
+<ul>
+<li>You can only claim the <strong>Starter kit once</strong>, so open it when you are ready to use the gear.</li>
+<li>The Claim kit is on a one-hour cooldown. If you lose your shovel, come back and claim it again.</li>
+<li>Keep your inventory space free. A kit needs room for everything inside it.</li>
+</ul>
+<div class="pn"><a href="#chat-games">← Chat Games</a><a href="#premium-ranks">Premium Ranks →</a></div></section>
+<section class="page" id="premium-ranks" data-title="Premium Ranks" hidden><h1>Premium Ranks</h1>
+<p>Monthly premium ranks support the server and come with perks, keys and a monthly kit. You can get them in the <strong>SoftBloom online store</strong> and the <strong>Discord OG Shop</strong>. See <a href="#community">Community</a> for the links.</p>
+<div class="hero"><div class="stat"><b>8</b><span>premium ranks</span></div><div class="stat"><b>$1.50 to $9</b><span>per month</span></div><div class="stat"><b>5 to 9</b><span>pet slots</span></div><div class="stat"><b>1 to 14</b><span>day fly voucher</span></div></div>
+<h2 id="premium-perks">What each rank gets</h2>
+<p>Every rank also keeps the perks of the ranks below it.</p>
+<div class="cg"><div class="cd" style="--c:#e6b800;--on:#2a2230"><div class="ct">VIP <span class="bdg" style="--c:#e6b800">$1.50 / month</span></div><p class="sx"><strong>Perks</strong></p><div class="rw" style="--c:#e6b800"><span class="pill">6 sethomes</span><span class="pill">2 player vaults</span><span class="pill">5 pet slots</span><span class="pill">1-day fly voucher</span><span class="pill">Monthly kit</span></div><p class="sx"><strong>Keys each month</strong></p><div class="rw" style="--c:#e6b800"><span class="pill">5 Basic</span><span class="pill">3 Advanced</span><span class="pill">1 Regular cosmetic key of your choice</span></div><p class="sx"><strong>Commands</strong></p><div class="rw" style="--c:#e6b800"><span class="pill"><code>/workbench</code></span><span class="pill"><code>/hat</code></span></div></div>
+<div class="cd" style="--c:#e6b800;--on:#2a2230"><div class="ct">VIP+ <span class="bdg" style="--c:#e6b800">$2.17 / month</span></div><p class="sx"><strong>Perks</strong></p><div class="rw" style="--c:#e6b800"><span class="pill">6 sethomes</span><span class="pill">3 player vaults</span><span class="pill">5 pet slots</span><span class="pill">2-day fly voucher</span><span class="pill">Monthly kit</span></div><p class="sx"><strong>Keys each month</strong></p><div class="rw" style="--c:#e6b800"><span class="pill">6 Basic</span><span class="pill">4 Advanced</span><span class="pill">2 Elite</span><span class="pill">1 Regular cosmetic key of your choice</span></div><p class="sx"><strong>New commands</strong></p><div class="rw" style="--c:#e6b800"><span class="pill"><code>/nick</code></span><span class="pill"><code>/enderchest</code></span><span class="pill"><code>/feed</code></span><span class="pill"><code>/disposal</code></span></div></div>
+<div class="cd" style="--c:#3b82d6;--on:#fff"><div class="ct">Elite <span class="bdg" style="--c:#3b82d6">$3.00 / month</span></div><p class="sx"><strong>Perks</strong></p><div class="rw" style="--c:#3b82d6"><span class="pill">6 sethomes</span><span class="pill">4 player vaults</span><span class="pill">6 pet slots</span><span class="pill">3-day fly voucher</span><span class="pill">Monthly kit</span></div><p class="sx"><strong>Keys each month</strong></p><div class="rw" style="--c:#3b82d6"><span class="pill">7 Basic</span><span class="pill">5 Advanced</span><span class="pill">3 Elite</span><span class="pill">1 Dragon</span><span class="pill">1 Regular cosmetic key of your choice</span></div><p class="sx"><strong>New commands</strong></p><div class="rw" style="--c:#3b82d6"><span class="pill"><code>/heal</code></span><span class="pill"><code>/anvil</code></span></div></div>
+<div class="cd" style="--c:#3b82d6;--on:#fff"><div class="ct">Elite+ <span class="bdg" style="--c:#3b82d6">$4.17 / month</span></div><p class="sx"><strong>Perks</strong></p><div class="rw" style="--c:#3b82d6"><span class="pill">7 sethomes</span><span class="pill">5 player vaults</span><span class="pill">6 pet slots</span><span class="pill">5-day fly voucher</span><span class="pill">Monthly kit</span></div><p class="sx"><strong>Keys each month</strong></p><div class="rw" style="--c:#3b82d6"><span class="pill">8 Basic</span><span class="pill">6 Advanced</span><span class="pill">4 Elite</span><span class="pill">2 Dragon</span><span class="pill">2 Regular cosmetic key of your choice</span></div><p class="sx"><strong>New commands</strong></p><div class="rw" style="--c:#3b82d6"><span class="pill"><code>/grindstone</code></span></div></div>
+<div class="cd" style="--c:#9b6bd6;--on:#fff"><div class="ct">MVP <span class="bdg" style="--c:#9b6bd6">$5.33 / month</span></div><p class="sx"><strong>Perks</strong></p><div class="rw" style="--c:#9b6bd6"><span class="pill">7 sethomes</span><span class="pill">6 player vaults</span><span class="pill">7 pet slots</span><span class="pill">7-day fly voucher</span><span class="pill">Monthly kit</span></div><p class="sx"><strong>Keys each month</strong></p><div class="rw" style="--c:#9b6bd6"><span class="pill">9 Basic</span><span class="pill">7 Advanced</span><span class="pill">5 Elite</span><span class="pill">3 Dragon</span><span class="pill">1 Superior cosmetic key of your choice</span></div><p class="sx"><strong>New commands</strong></p><div class="rw" style="--c:#9b6bd6"><span class="pill"><code>/smithingtable</code></span><span class="pill"><code>/repair</code></span></div></div>
+<div class="cd" style="--c:#9b6bd6;--on:#fff"><div class="ct">MVP+ <span class="bdg" style="--c:#9b6bd6">$6.50 / month</span></div><p class="sx"><strong>Perks</strong></p><div class="rw" style="--c:#9b6bd6"><span class="pill">8 sethomes</span><span class="pill">7 player vaults</span><span class="pill">7 pet slots</span><span class="pill">10-day fly voucher</span><span class="pill">Monthly kit</span></div><p class="sx"><strong>Keys each month</strong></p><div class="rw" style="--c:#9b6bd6"><span class="pill">10 Basic</span><span class="pill">8 Advanced</span><span class="pill">6 Elite</span><span class="pill">4 Dragon</span><span class="pill">2 Superior cosmetic key of your choice</span></div><p class="sx"><strong>New commands</strong></p><div class="rw" style="--c:#9b6bd6"><span class="pill"><code>/stonecutter</code></span><span class="pill"><code>/loom</code></span></div></div>
+<div class="cd" style="--c:#f08a24;--on:#2a2230"><div class="ct">MVP++ <span class="bdg" style="--c:#f08a24">$7.50 / month</span></div><p class="sx"><strong>Perks</strong></p><div class="rw" style="--c:#f08a24"><span class="pill">8 sethomes</span><span class="pill">8 player vaults</span><span class="pill">8 pet slots</span><span class="pill">12-day fly voucher</span><span class="pill">Monthly kit</span></div><p class="sx"><strong>Keys each month</strong></p><div class="rw" style="--c:#f08a24"><span class="pill">11 Basic</span><span class="pill">9 Advanced</span><span class="pill">7 Elite</span><span class="pill">5 Dragon</span><span class="pill">3 Superior cosmetic key of your choice</span></div><p class="sx"><strong>New commands</strong></p><div class="rw" style="--c:#f08a24"><span class="pill"><code>/cartographytable</code></span><span class="pill"><code>/near</code></span></div></div>
+<div class="cd" style="--c:#e5484d;--on:#fff"><div class="ct">God <span class="bdg" style="--c:#e5484d">$9.00 / month</span></div><p class="sx"><strong>Perks</strong></p><div class="rw" style="--c:#e5484d"><span class="pill">8 sethomes</span><span class="pill">9 player vaults</span><span class="pill">9 pet slots</span><span class="pill">14-day fly voucher</span><span class="pill">Monthly kit</span><span class="pill">Special custom teleport effect</span><span class="pill">Custom particle trails and effects</span></div><p class="sx"><strong>Keys each month</strong></p><div class="rw" style="--c:#e5484d"><span class="pill">15 Basic</span><span class="pill">10 Advanced</span><span class="pill">8 Elite</span><span class="pill">7 Dragon</span><span class="pill">1 Legendary</span><span class="pill">1 Special cosmetic key of your choice</span></div><p class="sx"><strong>New commands</strong></p><div class="rw" style="--c:#e5484d"><span class="pill"><code>/repair all</code></span></div></div>
+</div>
+<h2 id="premium-compare">Compare the ranks</h2>
+<div class="tw" style="--tc:#9b6bd6"><table class="cards">
+<thead><tr><th>Rank</th><th>Price</th><th>Sethomes</th><th>Vaults</th><th>Pet slots</th><th>Fly voucher</th></tr></thead>
+<tbody>
+<tr class="odd"><td data-label="Rank"><strong>VIP</strong></td><td data-label="Price">$1.50</td><td data-label="Sethomes">6</td><td data-label="Vaults">2</td><td data-label="Pet slots">5</td><td data-label="Fly voucher">1 day</td></tr>
+<tr class="even"><td data-label="Rank"><strong>VIP+</strong></td><td data-label="Price">$2.17</td><td data-label="Sethomes">6</td><td data-label="Vaults">3</td><td data-label="Pet slots">5</td><td data-label="Fly voucher">2 days</td></tr>
+<tr class="odd"><td data-label="Rank"><strong>Elite</strong></td><td data-label="Price">$3.00</td><td data-label="Sethomes">6</td><td data-label="Vaults">4</td><td data-label="Pet slots">6</td><td data-label="Fly voucher">3 days</td></tr>
+<tr class="even"><td data-label="Rank"><strong>Elite+</strong></td><td data-label="Price">$4.17</td><td data-label="Sethomes">7</td><td data-label="Vaults">5</td><td data-label="Pet slots">6</td><td data-label="Fly voucher">5 days</td></tr>
+<tr class="odd"><td data-label="Rank"><strong>MVP</strong></td><td data-label="Price">$5.33</td><td data-label="Sethomes">7</td><td data-label="Vaults">6</td><td data-label="Pet slots">7</td><td data-label="Fly voucher">7 days</td></tr>
+<tr class="even"><td data-label="Rank"><strong>MVP+</strong></td><td data-label="Price">$6.50</td><td data-label="Sethomes">8</td><td data-label="Vaults">7</td><td data-label="Pet slots">7</td><td data-label="Fly voucher">10 days</td></tr>
+<tr class="odd"><td data-label="Rank"><strong>MVP++</strong></td><td data-label="Price">$7.50</td><td data-label="Sethomes">8</td><td data-label="Vaults">8</td><td data-label="Pet slots">8</td><td data-label="Fly voucher">12 days</td></tr>
+<tr class="even"><td data-label="Rank"><strong>God</strong></td><td data-label="Price">$9.00</td><td data-label="Sethomes">8</td><td data-label="Vaults">9</td><td data-label="Pet slots">9</td><td data-label="Fly voucher">14 days</td></tr>
+</tbody></table></div>
+<h3 id="premium-keys">Monthly keys</h3>
+<div class="tw" style="--tc:#e6b800"><table class="cards">
+<thead><tr><th>Rank</th><th>Basic</th><th>Advanced</th><th>Elite</th><th>Dragon</th><th>Legendary</th><th>Cosmetic key</th></tr></thead>
+<tbody>
+<tr class="odd"><td data-label="Rank"><strong>VIP</strong></td><td data-label="Basic">5</td><td data-label="Advanced">3</td><td data-label="Elite">–</td><td data-label="Dragon">–</td><td data-label="Legendary">–</td><td data-label="Cosmetic key">1 Regular</td></tr>
+<tr class="even"><td data-label="Rank"><strong>VIP+</strong></td><td data-label="Basic">6</td><td data-label="Advanced">4</td><td data-label="Elite">2</td><td data-label="Dragon">–</td><td data-label="Legendary">–</td><td data-label="Cosmetic key">1 Regular</td></tr>
+<tr class="odd"><td data-label="Rank"><strong>Elite</strong></td><td data-label="Basic">7</td><td data-label="Advanced">5</td><td data-label="Elite">3</td><td data-label="Dragon">1</td><td data-label="Legendary">–</td><td data-label="Cosmetic key">1 Regular</td></tr>
+<tr class="even"><td data-label="Rank"><strong>Elite+</strong></td><td data-label="Basic">8</td><td data-label="Advanced">6</td><td data-label="Elite">4</td><td data-label="Dragon">2</td><td data-label="Legendary">–</td><td data-label="Cosmetic key">2 Regular</td></tr>
+<tr class="odd"><td data-label="Rank"><strong>MVP</strong></td><td data-label="Basic">9</td><td data-label="Advanced">7</td><td data-label="Elite">5</td><td data-label="Dragon">3</td><td data-label="Legendary">–</td><td data-label="Cosmetic key">1 Superior</td></tr>
+<tr class="even"><td data-label="Rank"><strong>MVP+</strong></td><td data-label="Basic">10</td><td data-label="Advanced">8</td><td data-label="Elite">6</td><td data-label="Dragon">4</td><td data-label="Legendary">–</td><td data-label="Cosmetic key">2 Superior</td></tr>
+<tr class="odd"><td data-label="Rank"><strong>MVP++</strong></td><td data-label="Basic">11</td><td data-label="Advanced">9</td><td data-label="Elite">7</td><td data-label="Dragon">5</td><td data-label="Legendary">–</td><td data-label="Cosmetic key">3 Superior</td></tr>
+<tr class="even"><td data-label="Rank"><strong>God</strong></td><td data-label="Basic">15</td><td data-label="Advanced">10</td><td data-label="Elite">8</td><td data-label="Dragon">7</td><td data-label="Legendary">1</td><td data-label="Cosmetic key">1 Special</td></tr>
+</tbody></table></div>
+<h2 id="premium-commands">Commands you unlock</h2>
+<p>Click a command to copy it.</p>
+<div class="tw" style="--tc:#3fa66b"><table class="cards">
+<thead><tr><th>Command</th><th>What it does</th><th>From rank</th></tr></thead>
+<tbody>
+<tr class="odd"><td data-label="Command"><code>/workbench</code></td><td data-label="What it does">Open a crafting table.</td><td data-label="From rank"><strong>VIP</strong></td></tr>
+<tr class="even"><td data-label="Command"><code>/hat</code></td><td data-label="What it does">Wear the item in your hand as a hat.</td><td data-label="From rank"><strong>VIP</strong></td></tr>
+<tr class="odd"><td data-label="Command"><code>/nick</code></td><td data-label="What it does">Change your nickname.</td><td data-label="From rank"><strong>VIP+</strong></td></tr>
+<tr class="even"><td data-label="Command"><code>/enderchest</code></td><td data-label="What it does">Open your ender chest anywhere.</td><td data-label="From rank"><strong>VIP+</strong></td></tr>
+<tr class="odd"><td data-label="Command"><code>/feed</code></td><td data-label="What it does">Refill your hunger.</td><td data-label="From rank"><strong>VIP+</strong></td></tr>
+<tr class="even"><td data-label="Command"><code>/disposal</code></td><td data-label="What it does">Open a trash can.</td><td data-label="From rank"><strong>VIP+</strong></td></tr>
+<tr class="odd"><td data-label="Command"><code>/heal</code></td><td data-label="What it does">Restore your health.</td><td data-label="From rank"><strong>Elite</strong></td></tr>
+<tr class="even"><td data-label="Command"><code>/anvil</code></td><td data-label="What it does">Open an anvil.</td><td data-label="From rank"><strong>Elite</strong></td></tr>
+<tr class="odd"><td data-label="Command"><code>/grindstone</code></td><td data-label="What it does">Open a grindstone.</td><td data-label="From rank"><strong>Elite+</strong></td></tr>
+<tr class="even"><td data-label="Command"><code>/smithingtable</code></td><td data-label="What it does">Open a smithing table.</td><td data-label="From rank"><strong>MVP</strong></td></tr>
+<tr class="odd"><td data-label="Command"><code>/repair</code></td><td data-label="What it does">Repair the item in your hand.</td><td data-label="From rank"><strong>MVP</strong></td></tr>
+<tr class="even"><td data-label="Command"><code>/stonecutter</code></td><td data-label="What it does">Open a stonecutter.</td><td data-label="From rank"><strong>MVP+</strong></td></tr>
+<tr class="odd"><td data-label="Command"><code>/loom</code></td><td data-label="What it does">Open a loom.</td><td data-label="From rank"><strong>MVP+</strong></td></tr>
+<tr class="even"><td data-label="Command"><code>/cartographytable</code></td><td data-label="What it does">Open a cartography table.</td><td data-label="From rank"><strong>MVP++</strong></td></tr>
+<tr class="odd"><td data-label="Command"><code>/near</code></td><td data-label="What it does">See players nearby.</td><td data-label="From rank"><strong>MVP++</strong></td></tr>
+<tr class="even"><td data-label="Command"><code>/repair all</code></td><td data-label="What it does">Repair everything you carry.</td><td data-label="From rank"><strong>God</strong></td></tr>
+</tbody></table></div>
+<h2 id="premium-tips">Good to know</h2>
+<ul>
+<li>Claim your monthly kit from <code>/kit</code>. It can be claimed once every 30 days. See <a href="#kits">Kits</a>.</li>
+<li>Premium ranks raise your pet slots up to 9. See <a href="#pets">Pets</a>.</li>
+<li>Fly vouchers add fly time. Your rank-ups give fly time too. See <a href="#4-ranks">Ranks</a>.</li>
+<li>Prices and perks can change. The store and the Discord OG Shop always show the latest.</li>
+</ul>
+<div class="pn"><a href="#kits">← Kits</a><a href="#shop-prices">Shop Prices →</a></div></section>
+<section class="page" id="shop-prices" data-title="Shop Prices" hidden><h1>Shop Prices</h1>
+<p>Everything in <code>/warp shop</code>: what you can sell and what you can buy. All prices are <strong>per item</strong>. A dash means that item can't be sold or can't be bought.</p>
+<div class="hero"><div class="stat"><b>669</b><span>items</span></div><div class="stat"><b>10</b><span>categories</span></div><div class="stat"><b>26</b><span>spawners</span></div><div class="stat"><b>$3K to $450K</b><span>spawner prices</span></div></div>
+<p class="fs"><span class="sell">● Sell for</span> is what you receive. <span class="buy">● Buy for</span> is what you pay.</p>
+<div class="tools"><input type="search" id="sp-q" placeholder="Search items, like diamond or spawner" aria-label="Search shop items" autocomplete="off"><label for="sp-s">Sort</label><select id="sp-s"><option value="n">Name</option><option value="sd">Sell price, high to low</option><option value="bd">Buy price, high to low</option><option value="ba">Buy price, low to high</option></select></div>
+<div class="fb" id="sp-f" role="group" aria-label="Filter by category"><button type="button" class="chip" data-v="" aria-pressed="false" style="--c:var(--ac)">All <span class="cn">669</span></button><button type="button" class="chip" data-v="0" aria-pressed="false" style="--c:#3b82d6"><i class="dt" style="--c:#3b82d6"></i>Ores <span class="cn">45</span></button><button type="button" class="chip" data-v="1" aria-pressed="false" style="--c:#8a6d4f"><i class="dt" style="--c:#8a6d4f"></i>Blocks <span class="cn">141</span></button><button type="button" class="chip" data-v="2" aria-pressed="false" style="--c:#ec5fa0"><i class="dt" style="--c:#ec5fa0"></i>Colour <span class="cn">194</span></button><button type="button" class="chip" data-v="3" aria-pressed="false" style="--c:#3fa66b"><i class="dt" style="--c:#3fa66b"></i>Farming <span class="cn">95</span></button><button type="button" class="chip" data-v="4" aria-pressed="false" style="--c:#e5484d"><i class="dt" style="--c:#e5484d"></i>Drops <span class="cn">32</span></button><button type="button" class="chip" data-v="5" aria-pressed="false" style="--c:#1fa6b8"><i class="dt" style="--c:#1fa6b8"></i>Ocean <span class="cn">42</span></button><button type="button" class="chip" data-v="6" aria-pressed="false" style="--c:#9b6bd6"><i class="dt" style="--c:#9b6bd6"></i>Brewing <span class="cn">18</span></button><button type="button" class="chip" data-v="7" aria-pressed="false" style="--c:#c2457a"><i class="dt" style="--c:#c2457a"></i>Redstone <span class="cn">32</span></button><button type="button" class="chip" data-v="8" aria-pressed="false" style="--c:#7a8591"><i class="dt" style="--c:#7a8591"></i>Misc <span class="cn">44</span></button><button type="button" class="chip" data-v="9" aria-pressed="false" style="--c:#f08a24"><i class="dt" style="--c:#f08a24"></i>Spawners <span class="cn">26</span></button></div>
+<p class="fs" id="sp-n" role="status" aria-live="polite"></p>
+<div class="tw"><table class="cards" id="sp-t"><thead><tr><th>Item</th><th>Category</th><th>Sell for</th><th>Buy for</th></tr></thead><tbody></tbody></table></div>
+<h2 id="shop-tips">Tips</h2>
+<ul>
+<li>Compare before you sell. A rarer drop can pay far more than a common block.</li>
+<li>Spawners cost <strong>$3,000 to $450,000</strong>. You can place <strong>4 per chunk</strong>.</li>
+<li>Fishing, quests and chat games pay too. See <a href="#fishing">Fishing</a>, <a href="#quests">Quests</a> and <a href="#chat-games">Chat Games</a>.</li>
+</ul>
+<div class="pn"><a href="#premium-ranks">← Premium Ranks</a><a href="#rank-calculator">Rank Calculator →</a></div></section>
+<section class="page" id="rank-calculator" data-title="Rank Calculator" hidden><h1>Rank Calculator</h1>
+<p>Enter your rank, your total playtime and your <strong>lowest skill level</strong>. The calculator shows which rank you can reach right now and what is left for the next one.</p>
+<div class="calc"><div><label for="rc-r">Your rank</label><select id="rc-r"></select></div><div><label for="rc-h">Hours played</label><input id="rc-h" type="number" min="0" step="0.5" value="0" inputmode="decimal"></div><div><label for="rc-s">Lowest skill level (of all 11 skills)</label><input id="rc-s" type="number" min="0" step="1" value="0" inputmode="numeric"></div></div>
+<div id="calc-out" role="status" aria-live="polite"></div>
+<h2 id="rank-ladder">The rank ladder</h2>
+<p class="fs">Your rank is marked <strong>You</strong>. A rank marked <strong>Ready</strong> is one you can claim now, and <strong>Next</strong> is the one to aim for.</p>
+<div class="lad" id="rc-lad"></div>
+<p class="fs">Your playtime and skill levels come from <code>/rankup</code> and <code>/skill:skill</code>. Rank-ups cost nothing. They pay free money, claim blocks and fly time.</p>
+<div class="pn"><a href="#shop-prices">← Shop Prices</a><a href="#home">Home →</a></div></section>
+</main><aside id="toc"></aside></div>
 <div id="toast" role="status" aria-live="polite"></div>
+<script>
+(function(){
+var toast=document.getElementById("toast"),tt;
+function say(m){if(!toast)return;toast.textContent=m;toast.classList.add("on");clearTimeout(tt);tt=setTimeout(function(){toast.classList.remove("on")},1800)}
+function copy(s){if(navigator.clipboard&&navigator.clipboard.writeText){return navigator.clipboard.writeText(s)}return Promise.reject()}
+Array.prototype.forEach.call(document.querySelectorAll("[data-copy]"),function(e){e.tabIndex=0;e.setAttribute("role","button");
+function go(){var v=e.getAttribute("data-copy");copy(v).then(function(){say("Copied "+v)},function(){say("Select and copy it by hand")})}
+e.addEventListener("click",go);e.addEventListener("keydown",function(ev){if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();go()}})});
+
+function $(s,r){return(r||document).querySelector(s)}
+function $$(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))}
+function chipGroup(id,cb){var box=document.getElementById(id);if(!box)return null;var cs=$$(".chip",box),cur=cs[0].getAttribute("data-v");
+function set(v){cur=v;cs.forEach(function(c){c.setAttribute("aria-pressed",c.getAttribute("data-v")===v?"true":"false")});cb(v)}
+cs.forEach(function(c){c.addEventListener("click",function(){set(c.getAttribute("data-v"))})});
+return{set:set,get:function(){return cur}}}
+function lo(s){return(s||"").toLowerCase()}
+/* pets: filter trees */
+(function(){var pg=$$("#pets .pg");chipGroup("pet-f",function(v){pg.forEach(function(x){x.hidden=!(v===""||x.getAttribute("data-g")===v)})}).set("")})();
+/* fishing: prize tabs */
+(function(){var pg=$$("#fishing .pg");chipGroup("ff",function(v){pg.forEach(function(x){x.hidden=x.getAttribute("data-g")!==v})}).set("LF")})();
+/* generic list filter: chips + search over items with data-g and data-t */
+function listFilter(chipId,qId,nId,sel,label){var items=$$(sel),q=document.getElementById(qId),n=document.getElementById(nId),g;
+function run(){var v=g?g.get():"",t=q?lo(q.value.trim()):"",c=0;
+items.forEach(function(x){var ok=(v===""||x.getAttribute("data-g")===v)&&(t===""||lo(x.getAttribute("data-t")).indexOf(t)>=0);x.hidden=!ok;if(ok)c++});
+if(n)n.textContent=c===0?"Nothing matches.":"Showing "+c+" of "+items.length+" "+label}
+g=chipGroup(chipId,run);if(q)q.addEventListener("input",run);run()}
+listFilter("qf","qq","qn","#qg .cd","categories");
+listFilter("fq-f","fq-q","fq-n","#faq details.fq","questions");
+/* commands: chips + row search */
+(function(){var pg=$$("#commands .pg"),q=document.getElementById("cm-q"),n=document.getElementById("cm-n"),g;
+function run(){var v=g.get(),t=lo(q.value.trim()),c=0;
+pg.forEach(function(p){var any=0;$$("tbody tr",p).forEach(function(r){var ok=t===""||lo(r.textContent).indexOf(t)>=0;r.hidden=!ok;if(ok)any++});
+var show=(v===""||p.getAttribute("data-g")===v)&&any>0;p.hidden=!show;if(show)c+=any});
+n.textContent=c===0?"No commands match.":"Showing "+c+" commands"}
+g=chipGroup("cm-f",run);q.addEventListener("input",run);run()})();
+/* shop */
+var C=["Ores", "Blocks", "Colour", "Farming", "Drops", "Ocean", "Brewing", "Redstone", "Misc", "Spawners"],D=[[1,"Grass Block",5.0,0.15],[1,"Podzol",10.0,0.2],[1,"Mycelium",10.0,0.5],[1,"Dirt",3.0,null],[1,"Coarse Dirt",5.0,null],[1,"Mud",5.5,null],[1,"Packed Mud",5.5,null],[1,"Clay",5.5,null],[1,"Bricks",7.5,null],[1,"Gravel",10.0,0.25],[1,"Glass",5.0,null],[1,"Sand",10.0,0.25],[1,"Sandstone",5.5,null],[1,"Smooth Sandstone",8.5,null],[1,"Red Sand",8.0,0.3],[1,"Ice",4.5,null],[1,"Packed Ice",4.0,null],[1,"Blue Ice",5.0,null],[1,"Snow Block",7.5,null],[1,"Moss Block",5.5,null],[1,"Stone",7.5,0.2],[1,"Cobblestone",10.0,null],[1,"Stone Bricks",20.0,null],[1,"Mossy Stone Bricks",15.0,null],[1,"Cracked Stone Bricks",10.0,null],[1,"Deepslate",10.5,0.25],[1,"Cobbled Deepslate",5.0,null],[1,"Granite",9.0,0.3],[1,"Diorite",9.0,0.3],[1,"Andesite",7.5,0.3],[1,"Amethyst Block",10.0,0.2],[1,"Calcite",7.5,0.4],[1,"Tuff",5.0,0.3],[1,"Dripstone Block",5.0,null],[1,"Magma Block",10.0,null],[1,"Obsidian",25.0,null],[1,"Crying Obsidian",null,1.0],[1,"Netherrack",10.5,0.05],[1,"Crimson Nylium",10.5,0.2],[1,"Warped Nylium",10.5,0.2],[1,"Nether Bricks",5.0,null],[1,"Red Nether Bricks",5.0,null],[1,"Glowstone",3.0,null],[1,"Quartz Block",5.0,null],[1,"Quartz Bricks",4.5,null],[1,"Quartz Pillar",6.0,null],[1,"Soul Sand",12.0,0.2],[1,"Soul Soil",15.0,0.4],[1,"Blackstone",15.0,0.2],[1,"Polished Blackstone",5.0,null],[1,"Chiseled Polished Blackstone",8.0,null],[1,"Basalt",10.0,0.2],[1,"End Stone",10.0,0.3],[1,"Purpur Block",5.0,null],[1,"Oak Log",null,0.25],[1,"Birch Log",null,0.25],[1,"Spruce Log",null,0.2],[1,"Acacia Log",null,0.25],[1,"Jungle Log",null,0.25],[1,"Dark Oak Log",null,0.25],[1,"Mangrove Log",null,1.0],[1,"Crimson Stem",null,0.5],[1,"Warped Stem",null,0.5],[1,"Cherry Log",null,0.5],[1,"Pale Oak Log",null,0.5],[1,"Bamboo Block",null,0.95],[1,"Oak Leaves",2.5,null],[1,"Birch Leaves",2.5,null],[1,"Spruce Leaves",2.5,null],[1,"Jungle Leaves",2.5,null],[1,"Acacia Leaves",2.5,null],[1,"Dark Oak Leaves",2.5,null],[1,"Mangrove Leaves",2.5,null],[1,"Cherry Leaves",2.5,null],[1,"Mangrove Roots",2.5,null],[1,"Ochre Froglight",75.0,null],[1,"Verdant Froglight",75.0,null],[1,"Pearlescent Froglight",75.0,null],[1,"Rooted Dirt",6.0,null],[1,"Muddy Mangrove Roots",6.0,null],[1,"Mud Bricks",7.0,null],[1,"Smooth Stone",9.0,null],[1,"Mossy Cobblestone",12.5,null],[1,"Chiseled Stone Bricks",22.0,null],[1,"Polished Andesite",9.0,null],[1,"Polished Diorite",11.0,null],[1,"Polished Granite",11.0,null],[1,"Polished Deepslate",8.0,null],[1,"Deepslate Bricks",9.0,null],[1,"Cracked Deepslate Bricks",7.5,null],[1,"Deepslate Tiles",9.5,null],[1,"Cracked Deepslate Tiles",8.0,null],[1,"Chiseled Deepslate",10.0,null],[1,"Polished Tuff",6.0,null],[1,"Tuff Bricks",6.5,null],[1,"Chiseled Tuff",7.0,null],[1,"Chiseled Tuff Bricks",7.5,null],[1,"Smooth Basalt",12.0,null],[1,"Polished Basalt",12.0,null],[1,"Pointed Dripstone",4.0,null],[1,"Cut Sandstone",6.5,null],[1,"Chiseled Sandstone",7.0,null],[1,"Red Sandstone",6.0,null],[1,"Smooth Red Sandstone",9.0,null],[1,"Cut Red Sandstone",7.0,null],[1,"Chiseled Red Sandstone",7.5,null],[1,"Tinted Glass",15.0,null],[1,"Glass Pane",2.0,null],[1,"Cracked Nether Bricks",6.0,null],[1,"Chiseled Nether Bricks",6.5,null],[1,"Nether Wart Block",8.0,null],[1,"Warped Wart Block",8.0,null],[1,"Shroomlight",25.0,null],[1,"Bone Block",8.0,null],[1,"Polished Blackstone Bricks",6.0,null],[1,"Cracked Polished Blackstone Bricks",5.5,null],[1,"Smooth Quartz",6.0,null],[1,"Chiseled Quartz Block",6.0,null],[1,"End Stone Bricks",11.0,null],[1,"Purpur Pillar",6.0,null],[1,"End Rod",15.0,null],[1,"Cut Copper",12.0,null],[1,"Chiseled Copper",14.0,null],[1,"Copper Grate",14.0,null],[1,"Pale Moss Block",6.0,null],[1,"Oak Planks",4.0,null],[1,"Spruce Planks",4.0,null],[1,"Birch Planks",4.0,null],[1,"Jungle Planks",4.0,null],[1,"Acacia Planks",4.0,null],[1,"Dark Oak Planks",4.0,null],[1,"Mangrove Planks",4.0,null],[1,"Cherry Planks",4.0,null],[1,"Bamboo Planks",4.0,null],[1,"Crimson Planks",4.0,null],[1,"Warped Planks",4.0,null],[1,"Pale Oak Planks",4.0,null],[1,"Bamboo Mosaic",5.0,null],[1,"Pale Oak Leaves",2.5,null],[1,"Azalea Leaves",2.5,null],[1,"Flowering Azalea Leaves",2.5,null],[6,"Brewing Stand",10.0,null],[6,"Cauldron",25.0,null],[6,"Glass Bottle",5.0,null],[6,"Spider Eye",15.0,0.3],[6,"Rabbit Foot",12.0,1.0],[6,"Pufferfish",15.0,0.4],[6,"Phantom Membrane",3.0,1.0],[6,"Ghast Tear",20.0,2.0],[6,"Blaze Powder",4.0,0.1],[6,"Sugar",1.5,0.05],[6,"Gunpowder",10.0,0.2],[6,"Glowstone Dust",6.0,0.15],[6,"Nether Wart",25.0,0.3],[6,"Magma Cream",4.0,0.2],[6,"Glistering Melon Slice",7.5,null],[6,"Golden Carrot",10.0,null],[6,"Fermented Spider Eye",20.0,null],[6,"Honey Bottle",8.0,0.4],[2,"White Wool",2.5,null],[2,"Light Gray Wool",2.5,null],[2,"Gray Wool",2.5,null],[2,"Black Wool",2.5,null],[2,"Brown Wool",2.5,null],[2,"Red Wool",2.5,null],[2,"Orange Wool",2.5,null],[2,"Yellow Wool",2.5,null],[2,"Lime Wool",2.5,null],[2,"Green Wool",2.5,null],[2,"Cyan Wool",2.5,null],[2,"Light Blue Wool",2.5,null],[2,"Blue Wool",2.5,null],[2,"Purple Wool",2.5,null],[2,"Magenta Wool",2.5,null],[2,"Pink Wool",2.5,null],[2,"White Terracotta",2.5,null],[2,"Light Gray Terracotta",2.5,null],[2,"Gray Terracotta",2.5,null],[2,"Black Terracotta",2.5,null],[2,"Brown Terracotta",2.5,null],[2,"Red Terracotta",2.5,null],[2,"Orange Terracotta",2.5,null],[2,"Yellow Terracotta",2.5,null],[2,"Lime Terracotta",2.5,null],[2,"Green Terracotta",2.5,null],[2,"Cyan Terracotta",2.5,null],[2,"Light Blue Terracotta",2.5,null],[2,"Blue Terracotta",2.5,null],[2,"Purple Terracotta",2.5,null],[2,"Magenta Terracotta",2.5,null],[2,"Pink Terracotta",2.5,null],[2,"White Concrete",2.5,null],[2,"Light Gray Concrete",2.5,null],[2,"Gray Concrete",2.5,null],[2,"Black Concrete",2.5,null],[2,"Brown Concrete",2.5,null],[2,"Red Concrete",2.5,null],[2,"Orange Concrete",2.5,null],[2,"Yellow Concrete",2.5,null],[2,"Lime Concrete",2.5,null],[2,"Green Concrete",2.5,null],[2,"Cyan Concrete",2.5,null],[2,"Light Blue Concrete",2.5,null],[2,"Blue Concrete",2.5,null],[2,"Purple Concrete",2.5,null],[2,"Magenta Concrete",2.5,null],[2,"Pink Concrete",2.5,null],[2,"White Stained Glass",2.5,null],[2,"Light Gray Stained Glass",2.5,null],[2,"Gray Stained Glass",2.5,null],[2,"Black Stained Glass",2.5,null],[2,"Brown Stained Glass",2.5,null],[2,"Red Stained Glass",2.5,null],[2,"Orange Stained Glass",2.5,null],[2,"Yellow Stained Glass",2.5,null],[2,"Lime Stained Glass",2.5,null],[2,"Green Stained Glass",2.5,null],[2,"Cyan Stained Glass",2.5,null],[2,"Light Blue Stained Glass",2.5,null],[2,"Blue Stained Glass",2.5,null],[2,"Purple Stained Glass",2.5,null],[2,"Magenta Stained Glass",2.5,null],[2,"Pink Stained Glass",2.5,null],[2,"White Dye",5.0,null],[2,"Light Gray Dye",5.0,null],[2,"Gray Dye",5.0,null],[2,"Black Dye",5.0,null],[2,"Brown Dye",5.0,null],[2,"Red Dye",5.0,null],[2,"Orange Dye",5.0,null],[2,"Yellow Dye",5.0,null],[2,"Lime Dye",5.0,null],[2,"Green Dye",5.0,null],[2,"Cyan Dye",5.0,null],[2,"Light Blue Dye",5.0,null],[2,"Blue Dye",5.0,null],[2,"Purple Dye",5.0,null],[2,"Magenta Dye",5.0,null],[2,"Pink Dye",5.0,null],[2,"Terracotta",2.5,null],[2,"White Glazed Terracotta",3.5,null],[2,"Light Gray Glazed Terracotta",3.5,null],[2,"Gray Glazed Terracotta",3.5,null],[2,"Black Glazed Terracotta",3.5,null],[2,"Brown Glazed Terracotta",3.5,null],[2,"Red Glazed Terracotta",3.5,null],[2,"Orange Glazed Terracotta",3.5,null],[2,"Yellow Glazed Terracotta",3.5,null],[2,"Lime Glazed Terracotta",3.5,null],[2,"Green Glazed Terracotta",3.5,null],[2,"Cyan Glazed Terracotta",3.5,null],[2,"Light Blue Glazed Terracotta",3.5,null],[2,"Blue Glazed Terracotta",3.5,null],[2,"Purple Glazed Terracotta",3.5,null],[2,"Magenta Glazed Terracotta",3.5,null],[2,"Pink Glazed Terracotta",3.5,null],[2,"White Concrete Powder",2.5,null],[2,"Light Gray Concrete Powder",2.5,null],[2,"Gray Concrete Powder",2.5,null],[2,"Black Concrete Powder",2.5,null],[2,"Brown Concrete Powder",2.5,null],[2,"Red Concrete Powder",2.5,null],[2,"Orange Concrete Powder",2.5,null],[2,"Yellow Concrete Powder",2.5,null],[2,"Lime Concrete Powder",2.5,null],[2,"Green Concrete Powder",2.5,null],[2,"Cyan Concrete Powder",2.5,null],[2,"Light Blue Concrete Powder",2.5,null],[2,"Blue Concrete Powder",2.5,null],[2,"Purple Concrete Powder",2.5,null],[2,"Magenta Concrete Powder",2.5,null],[2,"Pink Concrete Powder",2.5,null],[2,"White Carpet",1.5,null],[2,"Light Gray Carpet",1.5,null],[2,"Gray Carpet",1.5,null],[2,"Black Carpet",1.5,null],[2,"Brown Carpet",1.5,null],[2,"Red Carpet",1.5,null],[2,"Orange Carpet",1.5,null],[2,"Yellow Carpet",1.5,null],[2,"Lime Carpet",1.5,null],[2,"Green Carpet",1.5,null],[2,"Cyan Carpet",1.5,null],[2,"Light Blue Carpet",1.5,null],[2,"Blue Carpet",1.5,null],[2,"Purple Carpet",1.5,null],[2,"Magenta Carpet",1.5,null],[2,"Pink Carpet",1.5,null],[2,"White Stained Glass Pane",1.0,null],[2,"Light Gray Stained Glass Pane",1.0,null],[2,"Gray Stained Glass Pane",1.0,null],[2,"Black Stained Glass Pane",1.0,null],[2,"Brown Stained Glass Pane",1.0,null],[2,"Red Stained Glass Pane",1.0,null],[2,"Orange Stained Glass Pane",1.0,null],[2,"Yellow Stained Glass Pane",1.0,null],[2,"Lime Stained Glass Pane",1.0,null],[2,"Green Stained Glass Pane",1.0,null],[2,"Cyan Stained Glass Pane",1.0,null],[2,"Light Blue Stained Glass Pane",1.0,null],[2,"Blue Stained Glass Pane",1.0,null],[2,"Purple Stained Glass Pane",1.0,null],[2,"Magenta Stained Glass Pane",1.0,null],[2,"Pink Stained Glass Pane",1.0,null],[2,"Candle",5.0,null],[2,"White Candle",7.5,null],[2,"Light Gray Candle",7.5,null],[2,"Gray Candle",7.5,null],[2,"Black Candle",7.5,null],[2,"Brown Candle",7.5,null],[2,"Red Candle",7.5,null],[2,"Orange Candle",7.5,null],[2,"Yellow Candle",7.5,null],[2,"Lime Candle",7.5,null],[2,"Green Candle",7.5,null],[2,"Cyan Candle",7.5,null],[2,"Light Blue Candle",7.5,null],[2,"Blue Candle",7.5,null],[2,"Purple Candle",7.5,null],[2,"Magenta Candle",7.5,null],[2,"Pink Candle",7.5,null],[2,"White Bed",12.0,null],[2,"Light Gray Bed",12.0,null],[2,"Gray Bed",12.0,null],[2,"Black Bed",12.0,null],[2,"Brown Bed",12.0,null],[2,"Red Bed",12.0,null],[2,"Orange Bed",12.0,null],[2,"Yellow Bed",12.0,null],[2,"Lime Bed",12.0,null],[2,"Green Bed",12.0,null],[2,"Cyan Bed",12.0,null],[2,"Light Blue Bed",12.0,null],[2,"Blue Bed",12.0,null],[2,"Purple Bed",12.0,null],[2,"Magenta Bed",12.0,null],[2,"Pink Bed",12.0,null],[2,"White Banner",8.0,null],[2,"Light Gray Banner",8.0,null],[2,"Gray Banner",8.0,null],[2,"Black Banner",8.0,null],[2,"Brown Banner",8.0,null],[2,"Red Banner",8.0,null],[2,"Orange Banner",8.0,null],[2,"Yellow Banner",8.0,null],[2,"Lime Banner",8.0,null],[2,"Green Banner",8.0,null],[2,"Cyan Banner",8.0,null],[2,"Light Blue Banner",8.0,null],[2,"Blue Banner",8.0,null],[2,"Purple Banner",8.0,null],[2,"Magenta Banner",8.0,null],[2,"Pink Banner",8.0,null],[4,"Bone",null,0.05],[4,"Arrow",null,0.15],[4,"Rotten Flesh",null,0.15],[4,"String",null,0.2],[4,"Feather",null,0.15],[4,"Leather",null,0.3],[4,"Slime Ball",null,0.3],[4,"Ender Pearl",null,0.25],[4,"Blaze Rod",null,0.25],[4,"Gold Nugget",null,0.05],[4,"Iron Nugget",null,0.05],[4,"Flint",null,0.1],[4,"Clay Ball",null,0.1],[4,"Cobweb",null,0.2],[4,"Resin Clump",null,0.4],[4,"Rabbit Hide",null,0.5],[4,"Ink Sac",null,0.3],[4,"Prismarine Shard",null,0.75],[4,"Prismarine Crystals",null,0.5],[4,"Nautilus Shell",null,1.0],[4,"Turtle Scute",null,1.0],[4,"Armadillo Scute",null,0.3],[4,"Shulker Shell",null,1.0],[4,"Wither Skeleton Skull",null,3.5],[4,"Skeleton Skull",null,5.0],[4,"Creeper Head",null,5.0],[4,"Zombie Head",null,5.0],[4,"Piglin Head",null,5.0],[4,"Turtle Egg",null,1.0],[4,"Wither Rose",null,0.25],[4,"Nether Star",null,7.0],[4,"Dragon Breath",null,1.0],[3,"Oak Sapling",null,0.1],[3,"Spruce Sapling",null,0.1],[3,"Birch Sapling",null,0.1],[3,"Dark Oak Sapling",null,0.1],[3,"Acacia Sapling",null,0.1],[3,"Jungle Sapling",null,0.1],[3,"Mangrove Propagule",null,0.2],[3,"Cherry Sapling",null,0.15],[3,"Pale Oak Sapling",null,0.15],[3,"Wheat",null,0.2],[3,"Wheat Seeds",null,0.02],[3,"Carrot",null,0.2],[3,"Potato",null,0.2],[3,"Beetroot",null,0.2],[3,"Beetroot Seeds",null,0.02],[3,"Sugar Cane",null,0.25],[3,"Bamboo",null,0.1],[3,"Cactus",null,0.12],[3,"Cocoa Beans",null,0.15],[3,"Pumpkin Seeds",null,0.02],[3,"Melon Seeds",null,0.02],[3,"Pumpkin",null,0.4],[3,"Melon Slice",null,0.1],[3,"Melon",null,0.4],[3,"Sweet Berries",null,0.1],[3,"Glow Berries",null,0.14],[3,"Torchflower Seeds",null,0.5],[3,"Pitcher Pod",null,0.25],[3,"Brown Mushroom",null,0.15],[3,"Red Mushroom",null,0.15],[3,"Dandelion",null,0.05],[3,"Poppy",null,0.05],[3,"Blue Orchid",null,0.05],[3,"Allium",null,0.05],[3,"Azure Bluet",null,0.05],[3,"Red Tulip",null,0.05],[3,"Orange Tulip",null,0.05],[3,"White Tulip",null,0.05],[3,"Pink Tulip",null,0.05],[3,"Oxeye Daisy",null,0.05],[3,"Cornflower",null,0.05],[3,"Lily Of The Valley",null,0.05],[3,"Sunflower",null,0.1],[3,"Lilac",null,0.1],[3,"Rose Bush",null,0.1],[3,"Peony",null,0.1],[3,"Torchflower",null,0.15],[3,"Mutton",null,0.5],[3,"Beef",null,0.75],[3,"Porkchop",null,0.75],[3,"Chicken",null,0.4],[3,"Rabbit",null,0.55],[3,"Cooked Mutton",null,0.9],[3,"Cooked Beef",null,1.1],[3,"Cooked Porkchop",null,1.1],[3,"Cooked Chicken",null,0.9],[3,"Cooked Rabbit",null,1.0],[3,"Cod",null,0.5],[3,"Salmon",null,0.65],[3,"Tropical Fish",null,0.4],[3,"Cooked Cod",null,0.75],[3,"Cooked Salmon",null,0.8],[3,"Egg",null,0.25],[3,"Milk Bucket",null,2.0],[3,"Apple",null,0.55],[3,"Bread",null,0.5],[3,"Baked Potato",null,0.3],[3,"Pumpkin Pie",null,0.75],[3,"Cookie",null,0.15],[3,"Beetroot Soup",null,0.75],[3,"Mushroom Stew",null,0.75],[3,"Rabbit Stew",null,2.0],[3,"Honeycomb",null,0.3],[3,"Hay Block",null,1.6],[3,"Poisonous Potato",null,0.05],[3,"Chorus Fruit",null,0.15],[3,"Popped Chorus Fruit",null,0.3],[3,"Azalea",null,0.2],[3,"Flowering Azalea",null,0.2],[3,"Spore Blossom",null,0.3],[3,"Pink Petals",null,0.05],[3,"Open Eyeblossom",null,0.15],[3,"Wildflowers",null,0.05],[3,"Cactus Flower",null,0.1],[3,"Firefly Bush",null,0.1],[3,"Big Dripleaf",null,0.1],[3,"Small Dripleaf",null,0.05],[3,"Vine",null,0.05],[3,"Crimson Fungus",null,0.15],[3,"Warped Fungus",null,0.15],[3,"Crimson Roots",null,0.05],[3,"Warped Roots",null,0.05],[3,"Nether Sprouts",null,0.05],[3,"Weeping Vines",null,0.1],[3,"Twisting Vines",null,0.1],[8,"Chest",10.0,null],[8,"Trapped Chest",12.5,null],[8,"Barrel",5.0,null],[8,"Slime Block",15.0,null],[8,"Honey Block",20.0,null],[8,"Enchanting Table",250.0,null],[8,"Bucket",50.0,null],[8,"Water Bucket",100.0,null],[8,"Lava Bucket",150.0,null],[8,"Note Block",20.0,null],[8,"Campfire",15.0,null],[8,"Beacon",null,15.0],[8,"Bell",90.0,null],[8,"Lectern",10.0,null],[8,"Loom",15.0,null],[8,"Blast Furnace",25.0,null],[8,"Smithing Table",30.0,null],[8,"Cartography Table",25.0,null],[8,"Fletching Table",25.0,null],[8,"Flower Pot",10.0,null],[8,"Bookshelf",15.0,null],[8,"Chiseled Bookshelf",20.0,null],[8,"Decorated Pot",40.0,null],[8,"Glow Ink Sac",10.0,0.5],[8,"Amethyst Shard",null,0.02],[8,"Crafting Table",5.0,null],[8,"Furnace",10.0,null],[8,"Smoker",20.0,null],[8,"Stonecutter",25.0,null],[8,"Grindstone",25.0,null],[8,"Composter",10.0,null],[8,"Torch",1.0,null],[8,"Soul Torch",1.5,null],[8,"Lantern",8.0,null],[8,"Soul Lantern",9.0,null],[8,"Ladder",3.0,null],[8,"Scaffolding",5.0,null],[8,"Item Frame",5.0,null],[8,"Glow Item Frame",12.0,null],[8,"Painting",6.0,null],[8,"Armor Stand",15.0,null],[8,"Iron Bars",3.0,null],[8,"Honeycomb Block",12.0,null],[8,"Soul Campfire",17.5,null],[5,"Kelp",1.0,0.25],[5,"Dried Kelp",2.0,0.3],[5,"Dried Kelp Block",15.0,2.5],[5,"Seagrass",2.0,0.05],[5,"Sea Pickle",8.0,0.25],[5,"Sponge",50.0,2.0],[5,"Wet Sponge",60.0,null],[5,"Prismarine",10.0,null],[5,"Prismarine Bricks",15.0,null],[5,"Dark Prismarine",20.0,null],[5,"Sea Lantern",75.0,null],[5,"Tube Coral Block",12.0,null],[5,"Brain Coral Block",12.0,null],[5,"Bubble Coral Block",12.0,null],[5,"Fire Coral Block",12.0,null],[5,"Horn Coral Block",12.0,null],[5,"Dead Tube Coral Block",8.0,null],[5,"Dead Brain Coral Block",8.0,null],[5,"Dead Bubble Coral Block",8.0,null],[5,"Dead Fire Coral Block",8.0,null],[5,"Dead Horn Coral Block",8.0,null],[5,"Tube Coral",5.0,null],[5,"Brain Coral",5.0,null],[5,"Bubble Coral",5.0,null],[5,"Fire Coral",5.0,null],[5,"Horn Coral",5.0,null],[5,"Tube Coral Fan",6.0,null],[5,"Brain Coral Fan",6.0,null],[5,"Bubble Coral Fan",6.0,null],[5,"Fire Coral Fan",6.0,null],[5,"Horn Coral Fan",6.0,null],[5,"Dead Tube Coral",4.0,null],[5,"Dead Brain Coral",4.0,null],[5,"Dead Bubble Coral",4.0,null],[5,"Dead Fire Coral",4.0,null],[5,"Dead Horn Coral",4.0,null],[5,"Dead Tube Coral Fan",5.0,null],[5,"Dead Brain Coral Fan",5.0,null],[5,"Dead Bubble Coral Fan",5.0,null],[5,"Dead Fire Coral Fan",5.0,null],[5,"Dead Horn Coral Fan",5.0,null],[5,"Lily Pad",2.0,0.05],[0,"Coal",null,0.25],[0,"Iron Ingot",null,0.4],[0,"Gold Ingot",null,0.7],[0,"Lapis Lazuli",null,0.3],[0,"Diamond",null,2.5],[0,"Emerald",null,0.25],[0,"Netherite Ingot",null,7.0],[0,"Copper Ingot",null,0.4],[0,"Coal Ore",null,1.0],[0,"Iron Ore",null,1.2],[0,"Gold Ore",null,1.3],[0,"Redstone Ore",null,2.0],[0,"Lapis Ore",null,2.0],[0,"Diamond Ore",null,4.0],[0,"Emerald Ore",null,10.0],[0,"Ancient Debris",null,4.5],[0,"Copper Ore",null,0.6],[0,"Coal Block",null,1.9],[0,"Iron Block",null,3.7],[0,"Gold Block",null,7.0],[0,"Redstone Block",null,2.4],[0,"Lapis Block",null,2.4],[0,"Diamond Block",null,10.0],[0,"Emerald Block",null,3.0],[0,"Netherite Block",null,60.0],[0,"Copper Block",null,5.0],[0,"Raw Iron",null,0.5],[0,"Raw Gold",null,0.6],[0,"Raw Copper",null,0.3],[0,"Quartz",null,0.3],[0,"Netherite Scrap",null,2.0],[0,"Charcoal",null,0.2],[0,"Raw Iron Block",null,4.5],[0,"Raw Gold Block",null,5.4],[0,"Raw Copper Block",null,2.7],[0,"Deepslate Coal Ore",null,1.0],[0,"Deepslate Iron Ore",null,1.2],[0,"Deepslate Gold Ore",null,1.3],[0,"Deepslate Redstone Ore",null,2.0],[0,"Deepslate Lapis Ore",null,2.0],[0,"Deepslate Diamond Ore",null,4.0],[0,"Deepslate Emerald Ore",null,10.0],[0,"Deepslate Copper Ore",null,0.6],[0,"Nether Gold Ore",null,0.5],[0,"Nether Quartz Ore",null,0.6],[7,"Hopper",100.0,null],[7,"Dropper",15.0,null],[7,"Dispenser",20.0,null],[7,"Observer",10.0,null],[7,"Piston",10.0,null],[7,"Sticky Piston",7.5,null],[7,"Redstone Torch",2.5,null],[7,"Redstone Lamp",25.0,null],[7,"Repeater",25.0,null],[7,"Comparator",25.0,null],[7,"Redstone",15.0,0.3],[7,"Lever",2.5,null],[7,"Stone Button",2.0,null],[7,"Stone Pressure Plate",3.0,null],[7,"Oak Button",2.0,null],[7,"Oak Pressure Plate",3.0,null],[7,"Tripwire Hook",4.0,null],[7,"Target",15.0,null],[7,"Light Weighted Pressure Plate",10.0,null],[7,"Heavy Weighted Pressure Plate",10.0,null],[7,"Daylight Detector",30.0,null],[7,"Lightning Rod",12.0,null],[7,"Copper Bulb",30.0,null],[7,"Crafter",40.0,null],[7,"Rail",2.0,null],[7,"Powered Rail",6.0,null],[7,"Detector Rail",5.0,null],[7,"Activator Rail",5.0,null],[7,"Minecart",15.0,null],[7,"Chest Minecart",25.0,null],[7,"Iron Door",12.0,null],[7,"Iron Trapdoor",12.0,null],[9,"Chicken Spawner",3000,null],[9,"Pig Spawner",4500,null],[9,"Sheep Spawner",3000,null],[9,"Cow Spawner",6000,null],[9,"Spider Spawner",35000,null],[9,"Zombie Spawner",44000,null],[9,"Skeleton Spawner",44000,null],[9,"Creeper Spawner",52500,null],[9,"Blaze Spawner",140000,null],[9,"Iron Golem Spawner",250000,null],[9,"Slime Spawner",90000,null],[9,"Enderman Spawner",120000,null],[9,"Witch Spawner",215000,null],[9,"Cave Spider Spawner",52500,null],[9,"Magma Cube Spawner",180000,null],[9,"Piglin Spawner",190000,null],[9,"Guardian Spawner",300000,null],[9,"Shulker Spawner",450000,null],[9,"Squid Spawner",3500,null],[9,"Rabbit Spawner",4000,null],[9,"Mooshroom Spawner",8000,null],[9,"Husk Spawner",44000,null],[9,"Stray Spawner",44000,null],[9,"Zombified Piglin Spawner",75000,null],[9,"Hoglin Spawner",110000,null],[9,"Ghast Spawner",260000,null]];
+var CC=["#3b82d6", "#8a6d4f", "#ec5fa0", "#3fa66b", "#e5484d", "#1fa6b8", "#9b6bd6", "#c2457a", "#7a8591", "#f08a24"];
+var q=document.getElementById("sp-q"),ss=document.getElementById("sp-s"),tb=document.querySelector("#sp-t tbody"),cnt=document.getElementById("sp-n"),sg;
+function money(v){return v==null?"":"$"+v.toLocaleString("en-US",{maximumFractionDigits:2})}
+function draw(){
+var v=lo(q.value.trim()),c=sg?sg.get():"",s=ss.value;
+var r=D.filter(function(x){return(c===""||String(x[0])===c)&&(v===""||lo(x[1]).indexOf(v)>=0||lo(C[x[0]]).indexOf(v)>=0)});
+r.sort(function(a,b){
+if(s==="sd")return(b[3]||-1)-(a[3]||-1)||a[1].localeCompare(b[1]);
+if(s==="bd")return(b[2]||-1)-(a[2]||-1)||a[1].localeCompare(b[1]);
+if(s==="ba")return((a[2]==null)-(b[2]==null))||(a[2]-b[2])||a[1].localeCompare(b[1]);
+return a[1].localeCompare(b[1])});
+var f=document.createDocumentFragment();
+r.forEach(function(x){var tr=document.createElement("tr");
+var t1=document.createElement("td");t1.setAttribute("data-label","Item");t1.textContent=x[1];tr.appendChild(t1);
+var t2=document.createElement("td");t2.setAttribute("data-label","Category");var dot=document.createElement("i");dot.className="dt";dot.style.setProperty("--c",CC[x[0]]);t2.appendChild(dot);t2.appendChild(document.createTextNode(" "+C[x[0]]));tr.appendChild(t2);
+[[x[3],"Sell for","sell"],[x[2],"Buy for","buy"]].forEach(function(p){var td=document.createElement("td");td.setAttribute("data-label",p[1]);td.className="pr";var sp=document.createElement("span");sp.className=p[0]==null?"none":p[2];sp.textContent=p[0]==null?"–":money(p[0]);td.appendChild(sp);tr.appendChild(td)});
+f.appendChild(tr)});
+tb.innerHTML="";tb.appendChild(f);
+cnt.textContent=r.length===0?"No items match.":"Showing "+r.length+" of "+D.length+" items"}
+sg=chipGroup("sp-f",draw);[q,ss].forEach(function(e){e.addEventListener("input",draw)});draw();
+/* rank calculator */
+var R=[["Member",0,0,0,0,0],["Settler",2,5,2500,800,20],["Explorer",8,10,5000,1200,40],["Adventurer",16,16,8500,1800,60],["Pathfinder",48,24,13000,2500,90],["Veteran",120,33,20000,3500,120],["Elder",240,43,32500,5000,150],["Pioneer",480,54,50000,7000,210],["Ancient",1080,64,75000,10000,360],["Eternal",2160,75,100000,22000,900]];
+var rr=document.getElementById("rc-r"),rh=document.getElementById("rc-h"),rs=document.getElementById("rc-s"),out=document.getElementById("calc-out"),lad=document.getElementById("rc-lad");
+R.forEach(function(x,i){var o=document.createElement("option");o.value=i;o.textContent=x[0];rr.appendChild(o)});
+function fly(m){var h=Math.floor(m/60),mm=m%60;return(h?h+"h":"")+(h&&mm?" ":"")+(mm?mm+"m":"")}
+function n(x){return x.toLocaleString("en-US")}
+function el(tag,cls,html){var e=document.createElement(tag);if(cls)e.className=cls;if(html)e.innerHTML=html;return e}
+function calc(){
+var cur=parseInt(rr.value,10)||0,h=Math.max(0,parseFloat(rh.value)||0),sk=Math.max(0,parseInt(rs.value,10)||0);
+var top=cur;while(top<R.length-1&&h>=R[top+1][1]&&sk>=R[top+1][2])top++;
+out.innerHTML="";
+lad.innerHTML="";
+R.forEach(function(x,i){var cls=i<cur?"nd dn":i===cur?"nd me":i<=top?"nd ok":i===top+1?"nd nx":"nd";
+lad.appendChild(el("div",cls,"<b>"+x[0]+"</b><span>"+(i?x[1]+"h · skill "+x[2]:"Start")+"</span>"))});
+if(cur>=R.length-1){out.appendChild(el("div","rs ok","<b>You are Eternal.</b><br>You have reached the top rank."));return}
+if(top>cur){
+var m=0,cb=0,fl=0;for(var i=cur+1;i<=top;i++){m+=R[i][3];cb+=R[i][4];fl+=R[i][5]}
+out.appendChild(el("div","rs ok","<b>You can rank up to "+R[top][0]+" right now.</b><br>Type <code>/rankup</code> and accept"+(top-cur>1?", then repeat for each rank":"")+".<br>You will receive $"+n(m)+", "+n(cb)+" claim blocks and "+fly(fl)+" of fly time"+(top>=1&&top<=7?"; dungeon warps up to Dungeon "+top+" are yours":"")+"."))}
+var nx=top+1;
+if(nx<R.length){
+var nh=Math.max(0,R[nx][1]-h),ns=Math.max(0,R[nx][2]-sk);
+var pH=Math.min(100,Math.round(h/R[nx][1]*100)),pS=Math.min(100,Math.round(sk/R[nx][2]*100));
+var html="<b>Next: "+R[nx][0]+"</b><br>Needs "+R[nx][1]+" hours and level "+R[nx][2]+" in every skill.";
+html+="<br>Playtime: "+(nh>0?"<strong>"+(Math.round(nh*10)/10)+" more hours</strong>":"done")+"<div class=\"bar\"><i style=\"width:"+pH+"%\"></i></div>";
+html+="Skills: "+(ns>0?"<strong>"+ns+" more levels</strong> in your lowest skill":"done")+"<div class=\"bar\"><i style=\"width:"+pS+"%\"></i></div>";
+html+="Reward: $"+n(R[nx][3])+", "+n(R[nx][4])+" claim blocks, "+fly(R[nx][5])+" fly time.";
+out.appendChild(el("div","rs no",html))}}
+[rr,rh,rs].forEach(function(e){e.addEventListener("input",calc)});calc();
+})();
+</script>
+
 <script>
 (function(){
 var $=function(s){return document.querySelector(s)},$$=function(s){return Array.prototype.slice.call(document.querySelectorAll(s))};
