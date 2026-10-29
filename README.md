@@ -2,7 +2,7 @@
 
 The official wiki for **SoftBloom SMP**: a new player guide, ranks, dungeons, custom enchants, events and a command cheat sheet, all in one fast, searchable page.
 
-**[→Open the wiki←](https://glaive-mc.github.io/SoftBloom-Minecraft-Wiki/)**
+**[Open the wiki →] https://glaive-mc.github.io/SoftBloom-Minecraft-Wiki/**
 
 [![Discord](https://img.shields.io/badge/Discord-Join%20us-5865F2?logo=discord&logoColor=white)](https://discord.com/invite/RKbhhCMbZ5)
 
@@ -52,35 +52,6 @@ Plus dedicated pages for:
 - **Light and dark mode**, following your system theme with a manual toggle.
 - **Mobile friendly**, with a slide-out menu and tables that turn into cards on small screens.
 - **Print friendly**, so you can print a clean copy of any page.
-
----
-
-## Run it locally
-
-No setup needed. Clone the repo and open the file in your browser:
-
-```bash
-git clone https://github.com/Glaive-mc/SoftBloom-Minecraft-Wiki.git
-cd SoftBloom-Minecraft-Wiki
-```
-
-Then open `index.html` in any modern browser. To serve it locally instead:
-
-```bash
-python -m http.server 8000
-```
-
-and visit `http://localhost:8000`.
-
----
-
-## Hosting on GitHub Pages
-
-1. Go to **Settings → Pages** in this repository.
-2. Under **Build and deployment**, choose **Deploy from a branch**.
-3. Select the `main` branch and the `/ (root)` folder, then save.
-
-Your wiki will be live at `https://glaive-mc.github.io/SoftBloom-Minecraft-Wiki/` after a minute or two.
 
 ---
 
