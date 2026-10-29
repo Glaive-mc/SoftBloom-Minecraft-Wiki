@@ -2,7 +2,7 @@
 
 The official wiki for **SoftBloom SMP**: a new player guide, ranks, dungeons, custom enchants, events and a command cheat sheet, all in one fast, searchable page.
 
-**[Open the wiki →](https://glaive-mc.github.io/SoftBloom-Minecraft-Wiki/)**
+**[Open the wiki →] https://glaive-mc.github.io/SoftBloom-Minecraft-Wiki/**
 
 [![Discord](https://img.shields.io/badge/Discord-Join%20us-5865F2?logo=discord&logoColor=white)](https://discord.com/invite/RKbhhCMbZ5)
 
