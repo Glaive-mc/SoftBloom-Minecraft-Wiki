@@ -13,7 +13,7 @@ The official wiki for **SoftBloom SMP**: a new player guide, ranks, dungeons, cu
 | Edition | Version | Address |
 | --- | --- | --- |
 | Java | 1.21.11 | `sftblmorg.usga.me:12006` |
-| Bedrock | 1.21.11 up to latest | `sftblmorg.usga.me` · Port `12009` |
+| Bedrock | 1.21.11 up to latest | `216.163.186.36` · Port `12009` |
 
 New here? Run `/register <password> <password>`, open `/kit` and claim the **Starter kit** and **Claim kit**, then set a home with `/sethome`.
 
