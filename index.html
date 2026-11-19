@@ -49,8 +49,8 @@ th{background:var(--cd)}
 #tier-unique::before{content:"";display:inline-block;width:.7em;height:.7em;border-radius:50%;background:#3fa66b;border:2px solid #3fa66b;margin-right:.5em;vertical-align:.05em}#tier-unique+.tw th{border-top:4px solid #3fa66b}
 #tier-elite::before{content:"";display:inline-block;width:.7em;height:.7em;border-radius:50%;background:#3b82d6;border:2px solid #3b82d6;margin-right:.5em;vertical-align:.05em}#tier-elite+.tw th{border-top:4px solid #3b82d6}
 #tier-ultimate::before{content:"";display:inline-block;width:.7em;height:.7em;border-radius:50%;background:#e6b800;border:2px solid #e6b800;margin-right:.5em;vertical-align:.05em}#tier-ultimate+.tw th{border-top:4px solid #e6b800}
-#tier-fabled::before{content:"";display:inline-block;width:.7em;height:.7em;border-radius:50%;background:#f08a24;border:2px solid #f08a24;margin-right:.5em;vertical-align:.05em}#tier-fabled+.tw th{border-top:4px solid #f08a24}
-#tier-legendary::before{content:"";display:inline-block;width:.7em;height:.7em;border-radius:50%;background:#ec5fa0;border:2px solid #ec5fa0;margin-right:.5em;vertical-align:.05em}#tier-legendary+.tw th{border-top:4px solid #ec5fa0}
+#tier-fabled::before{content:"";display:inline-block;width:.7em;height:.7em;border-radius:50%;background:#ec5fa0;border:2px solid #ec5fa0;margin-right:.5em;vertical-align:.05em}#tier-fabled+.tw th{border-top:4px solid #ec5fa0}
+#tier-legendary::before{content:"";display:inline-block;width:.7em;height:.7em;border-radius:50%;background:#f08a24;border:2px solid #f08a24;margin-right:.5em;vertical-align:.05em}#tier-legendary+.tw th{border-top:4px solid #f08a24}
 .pn{display:flex;justify-content:space-between;gap:12px;margin-top:3rem;padding-top:16px;border-top:1px solid var(--bd)}
 .pn a{text-decoration:none;font-weight:600}
 @media(max-width:1100px){.wrap{grid-template-columns:250px minmax(0,1fr)}#toc{display:none}}
@@ -113,7 +113,7 @@ td.dg{border-left:6px solid var(--c);font-weight:600}
 @keyframes hit{0%,55%{background:rgba(236,95,160,.35)}100%{background:transparent}}
 tr.hit td{animation:hit 2.4s ease-out}
 @media(prefers-reduced-motion:reduce){tr.hit td{animation:none;background:rgba(236,95,160,.35)}}
-#tier-simple+.tw{--tc:#b5a9bd}#tier-unique+.tw{--tc:#3fa66b}#tier-elite+.tw{--tc:#3b82d6}#tier-ultimate+.tw{--tc:#e6b800}#tier-fabled+.tw{--tc:#f08a24}#tier-legendary+.tw{--tc:#ec5fa0}
+#tier-simple+.tw{--tc:#b5a9bd}#tier-unique+.tw{--tc:#3fa66b}#tier-elite+.tw{--tc:#3b82d6}#tier-ultimate+.tw{--tc:#e6b800}#tier-fabled+.tw{--tc:#ec5fa0}#tier-legendary+.tw{--tc:#f08a24}
 @media screen and (max-width:640px){
 table.cards,table.cards tbody,table.cards tr{display:block}
 table.cards{min-width:0;border:0}
@@ -482,7 +482,7 @@ the <strong>SoftBloom online store</strong>. See the <a href="#premium-ranks">Pr
 <div class="pn"><a href="#3-making-money">← 3. Making Money</a><a href="#5-gear-and-enchants">5. Gear and Enchants →</a></div></section><section class="page" id="5-gear-and-enchants" data-title="Stage 5: Gear and Enchants" hidden><h1>Stage 5: Gear and Enchants</h1><h2 id="custom-enchants">Custom enchants</h2>
 <ul>
 <li>There are <strong>173 custom enchants</strong> in six tiers: Simple,
-Unique, Elite, Ultimate, Fabled and Legendary.</li>
+Unique, Elite, Ultimate, Legendary and Fabled.</li>
 <li>Open <code>/enchanter</code> to buy <strong>enchantment
 books</strong>. Right-click a tier’s book to get a random enchant from
 that tier.</li>
@@ -578,7 +578,7 @@ own.</li>
 </ul>
 <div class="pn"><a href="#4-ranks">← 4. Ranks</a><a href="#custom-enchants-list">All Custom Enchants →</a></div></section><section class="page" id="custom-enchants-list" data-title="All Custom Enchants" hidden><h1>All Custom Enchants</h1>
 <p>All <strong>173 custom enchants</strong>, grouped by tier. Buy a tier’s books at <code>/enchanter</code>. Right-click a book to get a random enchant from that tier. Each book shows its success and destroy rate.</p>
-<p>Tier colors: <strong>Simple</strong> is white, <strong>Unique</strong> green, <strong>Elite</strong> blue, <strong>Ultimate</strong> yellow, <strong>Fabled</strong> orange and <strong>Legendary</strong> pink.</p>
+<p>Tier colors: <strong>Simple</strong> is white, <strong>Unique</strong> green, <strong>Elite</strong> blue, <strong>Ultimate</strong> yellow, <strong>Legendary</strong> orange and <strong>Fabled</strong> pink.</p>
 <p><input id="ef" type="search" placeholder="Filter by name, item or effect" autocomplete="off" style="width:100%;max-width:420px;padding:8px 12px;border:1px solid var(--bd);border-radius:8px;background:var(--bg);color:var(--tx);font:inherit"></p>
 <h2 id="tier-simple">Simple (12)</h2>
 <div class="tw"><table>
@@ -735,6 +735,41 @@ own.</li>
 </tbody>
 </table></div>
 <p class="bt"><a href="#custom-enchants-list" onclick="event.preventDefault();window.scrollTo({top:0,behavior:'smooth'})">↑ Back to top</a></p>
+<h2 id="tier-legendary">Legendary (26)</h2>
+<div class="tw"><table>
+<thead>
+<tr><th>Enchant</th><th>Max level</th><th>Applies to</th><th>What it does</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Aqua</strong></td><td>4</td><td>Boots</td><td>Deal double damage while in water.</td></tr>
+<tr><td><strong>Armored</strong></td><td>4</td><td>All armor</td><td>Decreases damage from enemy swords by 2% per level.</td></tr>
+<tr><td><strong>Bait</strong></td><td>3</td><td>Fishing rods</td><td>Chance to receive double fishing drops.</td></tr>
+<tr><td><strong>Barbarian</strong></td><td>4</td><td>Axes</td><td>Chance to inflicts more axe damage.</td></tr>
+<tr><td><strong>Beastslayer</strong></td><td>4</td><td>Swords, Axes</td><td>Increases damage dealt to Hostile Mobs.</td></tr>
+<tr><td><strong>Blacksmith</strong></td><td>5</td><td>Axes</td><td>Repair your weapon in exchange for dealing less damage.</td></tr>
+<tr><td><strong>Chaos</strong></td><td>5</td><td>Tridents</td><td>Deal weakness and wither effects.</td></tr>
+<tr><td><strong>Deadshot</strong></td><td>5</td><td>Tridents</td><td>Headshots with tridents deal double damage.</td></tr>
+<tr><td><strong>Deranged</strong></td><td>3</td><td>Swords</td><td>Strike lightning at nearby players.</td></tr>
+<tr><td><strong>Divert</strong></td><td>5</td><td>All armor</td><td>Chance of poisoning opponent and gaining regeneration.</td></tr>
+<tr><td><strong>Fumble</strong></td><td>3</td><td>Chestplates</td><td>Chance to explode enemy when hit by their arrows.</td></tr>
+<tr><td><strong>Gears</strong></td><td>3</td><td>Boots</td><td>Added speed when equipped.</td></tr>
+<tr><td><strong>Hardened</strong></td><td>3</td><td>All armor</td><td>Chance to recover durability when damaged by players.</td></tr>
+<tr><td><strong>Inflame</strong></td><td>3</td><td>Axes</td><td>Set all players in radius on fire.</td></tr>
+<tr><td><strong>Inquisitive</strong></td><td>4</td><td>Swords</td><td>Chance to increase EXP drops from mobs.</td></tr>
+<tr><td><strong>Launch</strong></td><td>3</td><td>Swords</td><td>Launch yourself by right-clicking.</td></tr>
+<tr><td><strong>Lavawalker</strong></td><td>1</td><td>Boots</td><td>Walk on Lava.</td></tr>
+<tr><td><strong>Lucid</strong></td><td>3</td><td>All armor</td><td>Chance to cure blindness and gain night vision when hit.</td></tr>
+<tr><td><strong>Patch</strong></td><td>3</td><td>All armor</td><td>Chance to recover durability when damaged by mobs.</td></tr>
+<tr><td><strong>Rebound</strong></td><td>3</td><td>Swords, Axes</td><td>Gain some health back after kills.</td></tr>
+<tr><td><strong>Slingshot</strong></td><td>3</td><td>Elytra</td><td>Boost yourself into flight by right-clicking.</td></tr>
+<tr><td><strong>Strife</strong></td><td>3</td><td>Tridents</td><td>Increases Trident melee damage.</td></tr>
+<tr><td><strong>Thunderlord</strong></td><td>3</td><td>Swords, Axes</td><td>Strike monsters with lightning every 3 consecutive hits.</td></tr>
+<tr><td><strong>Turmoil</strong></td><td>3</td><td>All armor</td><td>Chance to prevent opponents guards from spawning.</td></tr>
+<tr><td><strong>Twinge</strong></td><td>4</td><td>Tridents</td><td>Make your enemy bleed, if hit using melee attack.</td></tr>
+<tr><td><strong>Unholy</strong></td><td>5</td><td>All armor</td><td>Defend with weakness and wither effects.</td></tr>
+</tbody>
+</table></div>
+<p class="bt"><a href="#custom-enchants-list" onclick="event.preventDefault();window.scrollTo({top:0,behavior:'smooth'})">↑ Back to top</a></p>
 <h2 id="tier-fabled">Fabled (28)</h2>
 <div class="tw"><table>
 <thead>
@@ -769,41 +804,6 @@ own.</li>
 <tr><td><strong>Trench</strong></td><td>9</td><td>Pickaxes, Shovels</td><td>Chance to break in 3x3 area.</td></tr>
 <tr><td><strong>Undeadruse</strong></td><td>10</td><td>Boots</td><td>When hit you have a chance to spawn zombie hordes to distract and disorient your opponents.</td></tr>
 <tr><td><strong>Waterwalker</strong></td><td>1</td><td>Boots</td><td>Walk on Water.</td></tr>
-</tbody>
-</table></div>
-<p class="bt"><a href="#custom-enchants-list" onclick="event.preventDefault();window.scrollTo({top:0,behavior:'smooth'})">↑ Back to top</a></p>
-<h2 id="tier-legendary">Legendary (26)</h2>
-<div class="tw"><table>
-<thead>
-<tr><th>Enchant</th><th>Max level</th><th>Applies to</th><th>What it does</th></tr>
-</thead>
-<tbody>
-<tr><td><strong>Aqua</strong></td><td>4</td><td>Boots</td><td>Deal double damage while in water.</td></tr>
-<tr><td><strong>Armored</strong></td><td>4</td><td>All armor</td><td>Decreases damage from enemy swords by 2% per level.</td></tr>
-<tr><td><strong>Bait</strong></td><td>3</td><td>Fishing rods</td><td>Chance to receive double fishing drops.</td></tr>
-<tr><td><strong>Barbarian</strong></td><td>4</td><td>Axes</td><td>Chance to inflicts more axe damage.</td></tr>
-<tr><td><strong>Beastslayer</strong></td><td>4</td><td>Swords, Axes</td><td>Increases damage dealt to Hostile Mobs.</td></tr>
-<tr><td><strong>Blacksmith</strong></td><td>5</td><td>Axes</td><td>Repair your weapon in exchange for dealing less damage.</td></tr>
-<tr><td><strong>Chaos</strong></td><td>5</td><td>Tridents</td><td>Deal weakness and wither effects.</td></tr>
-<tr><td><strong>Deadshot</strong></td><td>5</td><td>Tridents</td><td>Headshots with tridents deal double damage.</td></tr>
-<tr><td><strong>Deranged</strong></td><td>3</td><td>Swords</td><td>Strike lightning at nearby players.</td></tr>
-<tr><td><strong>Divert</strong></td><td>5</td><td>All armor</td><td>Chance of poisoning opponent and gaining regeneration.</td></tr>
-<tr><td><strong>Fumble</strong></td><td>3</td><td>Chestplates</td><td>Chance to explode enemy when hit by their arrows.</td></tr>
-<tr><td><strong>Gears</strong></td><td>3</td><td>Boots</td><td>Added speed when equipped.</td></tr>
-<tr><td><strong>Hardened</strong></td><td>3</td><td>All armor</td><td>Chance to recover durability when damaged by players.</td></tr>
-<tr><td><strong>Inflame</strong></td><td>3</td><td>Axes</td><td>Set all players in radius on fire.</td></tr>
-<tr><td><strong>Inquisitive</strong></td><td>4</td><td>Swords</td><td>Chance to increase EXP drops from mobs.</td></tr>
-<tr><td><strong>Launch</strong></td><td>3</td><td>Swords</td><td>Launch yourself by right-clicking.</td></tr>
-<tr><td><strong>Lavawalker</strong></td><td>1</td><td>Boots</td><td>Walk on Lava.</td></tr>
-<tr><td><strong>Lucid</strong></td><td>3</td><td>All armor</td><td>Chance to cure blindness and gain night vision when hit.</td></tr>
-<tr><td><strong>Patch</strong></td><td>3</td><td>All armor</td><td>Chance to recover durability when damaged by mobs.</td></tr>
-<tr><td><strong>Rebound</strong></td><td>3</td><td>Swords, Axes</td><td>Gain some health back after kills.</td></tr>
-<tr><td><strong>Slingshot</strong></td><td>3</td><td>Elytra</td><td>Boost yourself into flight by right-clicking.</td></tr>
-<tr><td><strong>Strife</strong></td><td>3</td><td>Tridents</td><td>Increases Trident melee damage.</td></tr>
-<tr><td><strong>Thunderlord</strong></td><td>3</td><td>Swords, Axes</td><td>Strike monsters with lightning every 3 consecutive hits.</td></tr>
-<tr><td><strong>Turmoil</strong></td><td>3</td><td>All armor</td><td>Chance to prevent opponents guards from spawning.</td></tr>
-<tr><td><strong>Twinge</strong></td><td>4</td><td>Tridents</td><td>Make your enemy bleed, if hit using melee attack.</td></tr>
-<tr><td><strong>Unholy</strong></td><td>5</td><td>All armor</td><td>Defend with weakness and wither effects.</td></tr>
 </tbody>
 </table></div>
 <p class="bt"><a href="#custom-enchants-list" onclick="event.preventDefault();window.scrollTo({top:0,behavior:'smooth'})">↑ Back to top</a></p>
@@ -1558,7 +1558,7 @@ a stack, so you may see a number instead of a crowd.</li>
 <tbody>
 <tr class="odd"><td data-label="Enchant"><strong>Hook</strong></td><td data-label="Tier"><i class="dt" style="--c:#3b82d6;--d:#3b82d6"></i> Elite</td><td data-label="What it does">More XP from fishing.</td></tr>
 <tr class="even"><td data-label="Enchant"><strong>Lucky</strong></td><td data-label="Tier"><i class="dt" style="--c:#e6b800;--d:#e6b800"></i> Ultimate</td><td data-label="What it does">Chance to increase luck while fishing.</td></tr>
-<tr class="odd"><td data-label="Enchant"><strong>Bait</strong></td><td data-label="Tier"><i class="dt" style="--c:#ec5fa0;--d:#ec5fa0"></i> Legendary</td><td data-label="What it does">Chance to receive double fishing drops.</td></tr>
+<tr class="odd"><td data-label="Enchant"><strong>Bait</strong></td><td data-label="Tier"><i class="dt" style="--c:#f08a24;--d:#f08a24"></i> Legendary</td><td data-label="What it does">Chance to receive double fishing drops.</td></tr>
 <tr class="even"><td data-label="Enchant"><strong>Firehook</strong></td><td data-label="Tier"><i class="dt" style="--c:#3b82d6;--d:#3b82d6"></i> Elite</td><td data-label="What it does">The hook is on fire.</td></tr>
 <tr class="odd"><td data-label="Enchant"><strong>Poisonedhook</strong></td><td data-label="Tier"><i class="dt" style="--c:#3b82d6;--d:#3b82d6"></i> Elite</td><td data-label="What it does">Poisons the hook.</td></tr>
 <tr class="even"><td data-label="Enchant"><strong>Snap</strong></td><td data-label="Tier"><i class="dt" style="--c:#3b82d6;--d:#3b82d6"></i> Elite</td><td data-label="What it does">Pulls the hit entity towards you.</td></tr>
@@ -1855,7 +1855,7 @@ a.onclick=function(){res.hidden=true;q.value=''};res.appendChild(a)})});
 (function(){
 var f=document.getElementById("ef"),page=document.getElementById("custom-enchants-list");
 if(!f||!page)return;
-var T=[["simple","Simple","#b5a9bd","#ffffff"],["unique","Unique","#3fa66b"],["elite","Elite","#3b82d6"],["ultimate","Ultimate","#e6b800"],["fabled","Fabled","#f08a24"],["legendary","Legendary","#ec5fa0"]];
+var T=[["simple","Simple","#b5a9bd","#ffffff"],["unique","Unique","#3fa66b"],["elite","Elite","#3b82d6"],["ultimate","Ultimate","#e6b800"],["legendary","Legendary","#f08a24"],["fabled","Fabled","#ec5fa0"]];
 var ARMOR=["Helmets","Chestplates","Leggings","Boots"],WEAP=["Swords","Axes","Bows","Crossbows","Tridents"],TOOL=["Pickaxes","Axes","Shovels","Hoes"];
 var ORDER=["Swords","Axes","Pickaxes","Shovels","Hoes","Bows","Crossbows","Tridents","Fishing rods","Elytra","Goat horns","Helmets","Chestplates","Leggings","Boots"];
 var META={"all armor":ARMOR,"all weapons":WEAP,"all tools":TOOL,"weapons and tools":WEAP.concat(TOOL)};
@@ -1946,7 +1946,7 @@ Array.prototype.forEach.call(t.querySelectorAll("tbody td"),function(e){e.setAtt
 <script>
 (function(){
 var P=["custom-enchants-list","datapack-enchantments"];
-var TC={simple:["Simple","#b5a9bd","#ffffff"],unique:["Unique","#3fa66b"],elite:["Elite","#3b82d6"],ultimate:["Ultimate","#e6b800"],fabled:["Fabled","#f08a24"],legendary:["Legendary","#ec5fa0"]};
+var TC={simple:["Simple","#b5a9bd","#ffffff"],unique:["Unique","#3fa66b"],elite:["Elite","#3b82d6"],ultimate:["Ultimate","#e6b800"],legendary:["Legendary","#f08a24"],fabled:["Fabled","#ec5fa0"]};
 var list=[];
 P.forEach(function(id){
 var pg=document.getElementById(id);if(!pg)return;
