@@ -274,11 +274,33 @@ h2:hover .hl,h3:hover .hl,.hl:focus-visible{opacity:1}
 .hl:hover{color:var(--ac)}
 @media(hover:none){.hl{opacity:.45}}
 @media print{.hl,.hero2 .acts,.hero2 .hint{display:none!important}}
-</style></head><body>
-<header><button id="menu" aria-label="Menu">☰</button><b>🌸 SoftBloom Wiki</b>
-<div class="sb"><input id="q" type="search" placeholder="Search the wiki" autocomplete="off"><div id="res" hidden></div></div>
+
+/* design v4: search + accessibility */
+#q{padding-right:34px}
+.sk{position:absolute;right:10px;top:50%;transform:translateY(-50%);min-width:20px;padding:0 6px;border:1px solid var(--bd);border-bottom-width:2px;border-radius:6px;background:var(--bg);color:var(--mu);font:600 .75rem/1.5 system-ui,sans-serif;text-align:center;pointer-events:none}
+.sb:focus-within .sk{display:none}
+@media(hover:none),(max-width:700px){.sk{display:none}}
+#res .rg{padding:8px 10px 4px;font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mu)}
+#res a[aria-selected="true"]{background:var(--cd);box-shadow:inset 3px 0 var(--ac)}
+#res mark{background:color-mix(in srgb,var(--ac) 28%,transparent);color:inherit;border-radius:3px;padding:0 1px}
+#res b{display:block}
+#res .sgs{display:flex;flex-wrap:wrap;gap:8px;padding:2px 8px 10px}
+#res .sg{font:inherit;font-size:.88rem;padding:5px 12px;border:1px solid var(--bd);border-radius:999px;background:var(--bg);color:var(--tx);cursor:pointer}
+#res .sg:hover{border-color:var(--ac);color:var(--ac)}
+#res .kh{padding:6px 10px 2px;font-size:.78rem;color:var(--mu);border-top:1px solid var(--bd);margin-top:4px}
+@media(hover:none){#res .kh{display:none}}
+#res .ne{margin:8px 10px}
+@media(max-width:700px){#res{position:fixed;left:12px;right:12px;top:calc(var(--hd) + env(safe-area-inset-top,0px) + 6px);margin-top:0;max-height:calc(100vh - var(--hd) - 36px)}}
+.sr{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;padding:0}
+.skip{position:fixed;left:12px;top:-80px;z-index:30;padding:10px 16px;border-radius:10px;background:var(--ac);color:#fff;font-weight:700;text-decoration:none}
+.skip:focus{top:calc(8px + env(safe-area-inset-top,0px))}
+main:focus{outline:none}
+@media print{.skip,.sk{display:none!important}}
+</style></head><body><a class="skip" href="#main-content">Skip to content</a>
+<header><button id="menu" aria-label="Menu" aria-controls="nav" aria-expanded="false">☰</button><b>🌸 SoftBloom Wiki</b>
+<div class="sb"><input id="q" type="search" placeholder="Search the wiki" autocomplete="off" aria-keyshortcuts="/"><kbd class="sk" aria-hidden="true">/</kbd><div id="res" hidden></div></div>
 <a class="dc" href="https://discord.com/invite/RKbhhCMbZ5" target="_blank" rel="noopener">Discord</a><button id="theme" aria-label="Toggle theme">◐</button></header>
-<div class="wrap"><nav id="nav"><h3>Start here</h3><a href="#home">Home</a><a href="#commands">Command Cheat Sheet</a><a href="#faq">FAQ</a><a href="#community">Community</a><h3>Progression guide</h3><a href="#1-settle-in">1. Settle In</a><a href="#2-skills">2. Skills</a><a href="#3-making-money">3. Making Money</a><a href="#4-ranks">4. Ranks</a><a href="#5-gear-and-enchants">5. Gear and Enchants</a><a href="#custom-enchants-list">All Custom Enchants</a><a href="#datapack-enchantments">Datapack Enchants</a><a href="#6-the-9-dungeons">6. The 9 Dungeons</a><h3>Systems</h3><a href="#pets">Pets</a><a href="#quests">Quests</a><a href="#fishing">Fishing</a><a href="#chat-games">Chat Games</a><a href="#kits">Kits</a><a href="#premium-ranks">Premium Ranks</a><a href="#shop-prices">Shop Prices</a><a href="#rank-calculator">Rank Calculator</a><h3>Explore</h3><a href="#events">Events</a><a href="#exploring-the-world">Exploring the World</a><a href="#the-overworld">The Overworld</a><a href="#katter-s-bosses-and-enchants">Katter’s bosses and enchants</a><a href="#the-deep-blue">The Deep Blue</a><a href="#the-nether">The Nether</a><a href="#the-deeper-dark">The Deeper Dark</a><a href="#the-end">The End</a><a href="#heaven-limbo-and-the-sift">Heaven, Limbo and The Sift</a><a href="#fighting-other-players">Fighting other players</a><h3>Tips</h3><a href="#suggested-path">Suggested Path</a><a href="#good-to-know">Good to Know</a></nav><main><section class="page" id="home" data-title="SoftBloom Wiki" hidden><div class="hero2"><p class="eyebrow">🌸 SoftBloom SMP · Java and Bedrock</p><h1>SoftBloom Wiki</h1><p class="lede">SoftBloom is built around steady progress: learn the basics, grow
+<div class="wrap"><nav id="nav" aria-label="Wiki pages"><h3>Start here</h3><a href="#home">Home</a><a href="#commands">Command Cheat Sheet</a><a href="#faq">FAQ</a><a href="#community">Community</a><h3>Progression guide</h3><a href="#1-settle-in">1. Settle In</a><a href="#2-skills">2. Skills</a><a href="#3-making-money">3. Making Money</a><a href="#4-ranks">4. Ranks</a><a href="#5-gear-and-enchants">5. Gear and Enchants</a><a href="#custom-enchants-list">All Custom Enchants</a><a href="#datapack-enchantments">Datapack Enchants</a><a href="#6-the-9-dungeons">6. The 9 Dungeons</a><h3>Systems</h3><a href="#pets">Pets</a><a href="#quests">Quests</a><a href="#fishing">Fishing</a><a href="#chat-games">Chat Games</a><a href="#kits">Kits</a><a href="#premium-ranks">Premium Ranks</a><a href="#shop-prices">Shop Prices</a><a href="#rank-calculator">Rank Calculator</a><h3>Explore</h3><a href="#events">Events</a><a href="#exploring-the-world">Exploring the World</a><a href="#the-overworld">The Overworld</a><a href="#katter-s-bosses-and-enchants">Katter’s bosses and enchants</a><a href="#the-deep-blue">The Deep Blue</a><a href="#the-nether">The Nether</a><a href="#the-deeper-dark">The Deeper Dark</a><a href="#the-end">The End</a><a href="#heaven-limbo-and-the-sift">Heaven, Limbo and The Sift</a><a href="#fighting-other-players">Fighting other players</a><h3>Tips</h3><a href="#suggested-path">Suggested Path</a><a href="#good-to-know">Good to Know</a></nav><main id="main-content" tabindex="-1"><section class="page" id="home" data-title="SoftBloom Wiki" hidden><div class="hero2"><p class="eyebrow">🌸 SoftBloom SMP · Java and Bedrock</p><h1>SoftBloom Wiki</h1><p class="lede">SoftBloom is built around steady progress: learn the basics, grow
 your skills, earn money, climb ranks, then take on the dungeons and
 bosses. Go at your own pace. This guide gives you a path, and you can
 always wander off and explore.</p><div class="si" role="region" aria-label="Join SoftBloom"><b>Join SoftBloom SMP</b><span class="hint">Click an address to copy it</span><div class="g"><div><span class="l">Java Edition · 1.21.11</span><code data-copy="sftblmorg.usga.me:12006" title="Click to copy">sftblmorg.usga.me:12006</code></div><div><span class="l">Bedrock Edition · 1.21.11 up to Latest</span><code data-copy="sftblmorg.usga.me" title="Click to copy">sftblmorg.usga.me</code> <span class="pt">Port <code data-copy="12009" title="Click to copy">12009</code></span></div></div></div><div class="acts"><a class="btn" href="#1-settle-in">Start the guide →</a><a class="btn ghost" href="#community">Community</a></div></div>
@@ -1776,8 +1798,9 @@ a stack, so you may see a number instead of a crowd.</li>
 <div class="lad" id="rc-lad"></div>
 <p class="fs">Your playtime and skill levels come from <code>/rankup</code> and <code>/skill:skill</code>. Rank-ups cost nothing. They pay free money and fly time.</p>
 <div class="pn"><a href="#shop-prices">← Shop Prices</a><a href="#home">Home →</a></div></section>
-</main><aside id="toc"></aside></div>
+</main><aside id="toc" aria-label="On this page"></aside></div>
 <div id="toast" role="status" aria-live="polite"></div>
+<div id="sstat" class="sr" role="status" aria-live="polite"></div><div id="pstat" class="sr" role="status" aria-live="polite"></div>
 <script>
 (function(){
 var toast=document.getElementById("toast"),tt;
@@ -1869,7 +1892,7 @@ out.appendChild(el("div","rs no",html))}}
 <script>
 (function(){
 var $=function(s){return document.querySelector(s)},$$=function(s){return Array.prototype.slice.call(document.querySelectorAll(s))};
-function tx(el){var d=document.createElement('div');d.innerHTML=el.innerHTML.replace(/<\/(td|th|tr|li|p|h[1-6]|div)>/gi,'$& ');return d.textContent}
+function tx(el){var d=document.createElement('div');d.innerHTML=el.innerHTML.replace(/<\/(td|th|tr|li|p|h[1-6]|div|span|b|strong)>/gi,'$& ');return d.textContent}
 var idx=$$('.page').map(function(p){return{el:p,slug:p.id,title:p.dataset.title,text:tx(p).toLowerCase().replace(/\s+/g,' ')}});
 var links=$$('#nav a'),toc=$('#toc'),nav=$('#nav');
 function show(){
@@ -1885,16 +1908,83 @@ window.scrollTo(0,0);nav.classList.remove('open');if(tgt){setTimeout(function(){
 window.addEventListener('hashchange',show);show();
 $('#menu').onclick=function(){nav.classList.toggle('open')};
 $('#theme').onclick=function(){var r=document.documentElement,d=r.dataset.theme?r.dataset.theme==='dark':matchMedia('(prefers-color-scheme: dark)').matches;r.dataset.theme=d?'light':'dark'};
-var q=$('#q'),res=$('#res');
-q.addEventListener('input',function(){
-var v=q.value.trim().toLowerCase();res.innerHTML='';res.hidden=v.length<2;if(v.length<2)return;
-var hits=idx.map(function(i){return{i:i,p:i.text.indexOf(v),t:i.title.toLowerCase().indexOf(v)>=0}}).filter(function(h){return h.p>=0||h.t}).sort(function(a,b){return(b.t-a.t)||(a.p-b.p)}).slice(0,8);
-var eh=window.sbEnchants?window.sbEnchants(v):[];
-if(!hits.length&&!eh.length){res.innerHTML='<p>No matches.</p>';return}
-eh.forEach(function(a){res.appendChild(a)});
-hits.forEach(function(h){var a=document.createElement('a');a.href='#'+h.i.slug;var b=document.createElement('b');b.textContent=h.i.title;a.appendChild(b);
-if(h.p>=0){var sp=document.createElement('span');sp.textContent='…'+h.i.text.slice(Math.max(0,h.p-40),h.p+80)+'…';a.appendChild(sp)}
-a.onclick=function(){res.hidden=true;q.value=''};res.appendChild(a)})});
+var q=$('#q'),res=$('#res'),sb=$('.sb'),sstat=$('#sstat'),act=-1,opts=[];
+q.setAttribute('role','combobox');q.setAttribute('aria-expanded','false');q.setAttribute('aria-controls','res');q.setAttribute('aria-autocomplete','list');q.setAttribute('aria-label','Search the wiki');
+var POP=['rank up','lands','fly','kits','pets','shop prices','enchants','discord'];
+function srEsc(x){return x.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')}
+function srWords(v){return v.toLowerCase().split(/\s+/).filter(Boolean)}
+function srMarkText(el,text,ws){
+var re=new RegExp('('+ws.slice().sort(function(a,b){return b.length-a.length}).map(srEsc).join('|')+')','ig'),last=0,m;
+while((m=re.exec(text))){if(!m[0].length){re.lastIndex++;continue}
+if(m.index>last)el.appendChild(document.createTextNode(text.slice(last,m.index)));
+var k=document.createElement('mark');k.textContent=m[0];el.appendChild(k);last=m.index+m[0].length}
+if(last<text.length)el.appendChild(document.createTextNode(text.slice(last)))}
+function srMarkIn(el,ws){Array.prototype.slice.call(el.childNodes).forEach(function(n){
+if(n.nodeType===3){var f=document.createElement('span');f.style.display='inline';srMarkText(f,n.textContent,ws);var frag=document.createDocumentFragment();while(f.firstChild)frag.appendChild(f.firstChild);el.replaceChild(frag,n)}})}
+function srSnip(i,p){
+var raw=i.raw||(i.raw=tx(i.el).replace(/\s+/g,' ')),src=raw.length===i.text.length?raw:i.text;
+var st=Math.max(0,p-45),en=Math.min(src.length,p+100);
+if(st>0){var sp=src.indexOf(' ',st);if(sp>=0&&sp<p)st=sp+1}
+var t=src.slice(st,en);if(en<src.length){var ls=t.lastIndexOf(' ');if(ls>50)t=t.slice(0,ls)}
+return(st>0?'…':'')+t+(en<src.length?'…':'')}
+function srPageHits(ws){
+return idx.map(function(i){
+var tl=i.title.toLowerCase(),inT=ws.every(function(w){return tl.indexOf(w)>=0}),
+ps=ws.map(function(w){return i.text.indexOf(w)}),inX=ps.every(function(p){return p>=0});
+if(!inT&&!inX)return null;
+return{i:i,t:inT,p:inX?Math.min.apply(null,ps):-1}}).filter(Boolean).sort(function(a,b){return(b.t-a.t)||(a.p-b.p)})}
+function srHide(){res.hidden=true;q.setAttribute('aria-expanded','false');q.removeAttribute('aria-activedescendant');act=-1}
+function srCloseAll(){srHide();q.value=''}
+function srReg(a){a.setAttribute('role','option');a.id='so'+opts.length;a.tabIndex=-1;a.setAttribute('aria-selected','false');opts.push(a);return a}
+function srSetAct(n){
+if(!opts.length)return;if(n<0)n=opts.length-1;if(n>=opts.length)n=0;
+if(opts[act])opts[act].setAttribute('aria-selected','false');
+act=n;opts[n].setAttribute('aria-selected','true');q.setAttribute('aria-activedescendant',opts[n].id);
+opts[n].scrollIntoView({block:'nearest'})}
+function srHeading(t){var d=document.createElement('div');d.className='rg';d.setAttribute('role','presentation');d.textContent=t;res.appendChild(d)}
+function srShow(label){res.hidden=false;q.setAttribute('aria-expanded','true');res.setAttribute('aria-label',label)}
+function srPopular(){
+res.innerHTML='';opts=[];act=-1;res.setAttribute('role','region');
+srHeading('Popular searches');
+var w=document.createElement('div');w.className='sgs';
+POP.forEach(function(t){var b=document.createElement('button');b.type='button';b.className='sg';b.textContent=t;b.addEventListener('click',function(){q.value=t;q.focus();srRender()});w.appendChild(b)});
+res.appendChild(w);srShow('Search suggestions');sstat.textContent=''}
+function srKeyhint(){var k=document.createElement('div');k.className='kh';k.textContent='↑ ↓ to move · Enter to open · Esc to close';res.appendChild(k)}
+function srPageLink(h,ws){
+var a=document.createElement('a');a.href='#'+h.i.slug;
+var b=document.createElement('b');srMarkText(b,h.i.title,ws);a.appendChild(b);
+if(h.p>=0){var sp=document.createElement('span');srMarkText(sp,srSnip(h.i,h.p),ws);a.appendChild(sp)}
+a.addEventListener('click',function(){var same=location.hash==='#'+h.i.slug;srCloseAll();if(same)window.scrollTo(0,0)});
+return srReg(a)}
+function srRender(){
+var v=q.value.trim();
+if(v.length<2){srPopular();return}
+var ws=srWords(v),pages=srPageHits(ws).slice(0,6),eh=window.sbEnchants?window.sbEnchants(v.toLowerCase()):[];
+res.innerHTML='';opts=[];act=-1;res.setAttribute('role','listbox');
+if(!pages.length&&!eh.length){
+var p=document.createElement('p');p.className='ne';p.textContent='No results for “'+v+'”. Try another word, or open:';res.appendChild(p);
+[['#commands','Command Cheat Sheet'],['#faq','FAQ'],['#community','Community and Discord']].forEach(function(l){
+var a=document.createElement('a');a.href=l[0];var b=document.createElement('b');b.textContent=l[1];a.appendChild(b);a.addEventListener('click',srCloseAll);res.appendChild(srReg(a))});
+srShow('No results');sstat.textContent='No results for '+v;srSetAct(0);return}
+function secPages(){if(pages.length){srHeading('Pages');pages.forEach(function(h){res.appendChild(srPageLink(h,ws))})}}
+function secEnch(){if(eh.length){srHeading('Enchants');eh.forEach(function(a){srMarkIn(a.querySelector('b'),ws);var sp=a.querySelector('span');if(sp)srMarkIn(sp,ws);res.appendChild(srReg(a))})}}
+var enFirst=eh.length&&eh[0].querySelector('b').textContent.trim().toLowerCase().indexOf(v.toLowerCase())===0&&!(pages.length&&pages[0].t);
+if(enFirst){secEnch();secPages()}else{secPages();secEnch()}
+srKeyhint();srShow('Search results');srSetAct(0);
+sstat.textContent=(pages.length+eh.length)+' results. Use the arrow keys to browse.'}
+q.addEventListener('input',srRender);
+q.addEventListener('focus',srRender);
+q.addEventListener('keydown',function(e){
+if(e.key==='ArrowDown'||e.key==='ArrowUp'){if(res.hidden){srRender();}if(!opts.length)return;e.preventDefault();srSetAct(act+(e.key==='ArrowDown'?1:-1))}
+else if(e.key==='Enter'){if(res.hidden||!opts.length)return;e.preventDefault();opts[act>=0?act:0].click();q.blur()}
+else if(e.key==='Escape'){e.preventDefault();if(!res.hidden){srHide()}else{q.value='';q.blur()}}});
+res.addEventListener('mousedown',function(e){e.preventDefault()});
+document.addEventListener('mousedown',function(e){if(!sb.contains(e.target))srHide()});
+sb.addEventListener('focusout',function(e){if(e.relatedTarget&&!sb.contains(e.relatedTarget))srHide()});
+document.addEventListener('keydown',function(e){
+if(e.key!=='/'||e.ctrlKey||e.metaKey||e.altKey)return;
+var t=e.target,tag=t&&t.tagName;if(tag==='INPUT'||tag==='TEXTAREA'||tag==='SELECT'||(t&&t.isContentEditable))return;
+e.preventDefault();q.focus();q.select()});
 })();
 </script>
 <script>
@@ -2058,6 +2148,21 @@ window.addEventListener("scroll",req,{passive:true});window.addEventListener("re
 window.addEventListener("hashchange",function(){setTimeout(build,0)});
 document.addEventListener("click",function(e){if(e.target.closest&&e.target.closest("#toc,.chip,.fb,.tools"))setTimeout(function(){build()},60)});
 build();
+})();
+</script>
+<script>
+(function(){
+var nav=document.getElementById("nav"),menu=document.getElementById("menu"),theme=document.getElementById("theme"),main=document.getElementById("main-content"),pstat=document.getElementById("pstat"),skip=document.querySelector(".skip");
+function sync(){
+Array.prototype.forEach.call(nav.querySelectorAll("a"),function(a){if(a.classList.contains("on"))a.setAttribute("aria-current","page");else a.removeAttribute("aria-current")});
+menu.setAttribute("aria-expanded",nav.classList.contains("open")?"true":"false");
+var r=document.documentElement,d=r.dataset.theme?r.dataset.theme==="dark":matchMedia("(prefers-color-scheme: dark)").matches;
+theme.setAttribute("aria-pressed",d?"true":"false")}
+skip.addEventListener("click",function(e){e.preventDefault();main.focus();main.scrollIntoView()});
+menu.addEventListener("click",function(){setTimeout(sync,0)});
+theme.addEventListener("click",function(){setTimeout(sync,0)});
+window.addEventListener("hashchange",function(){setTimeout(function(){sync();pstat.textContent="";setTimeout(function(){pstat.textContent="Page: "+document.title},30)},0)});
+sync();
 })();
 </script>
 </body></html>
