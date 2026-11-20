@@ -1,4 +1,9 @@
 <!DOCTYPE html>
+<!--
+  HOW TO CHANGE THE SERVER ADDRESS OR PORTS
+  Search this file for:  SERVER SETTINGS
+  Edit the host and port numbers there. The Home join box, the FAQ and the live status all read from it.
+-->
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>SoftBloom Wiki</title>
@@ -296,6 +301,149 @@ h2:hover .hl,h3:hover .hl,.hl:focus-visible{opacity:1}
 .skip:focus{top:calc(8px + env(safe-area-inset-top,0px))}
 main:focus{outline:none}
 @media print{.skip,.sk{display:none!important}}
+
+/* design v5: mobile touches, resume card, crumbs, progress, motion */
+#prog{position:fixed;left:0;right:0;top:calc(var(--hd) + env(safe-area-inset-top,0px) - 1px);height:3px;z-index:8;background:var(--ac);transform:scaleX(0);transform-origin:0 50%;opacity:0;pointer-events:none}
+.crumbs{margin:0 0 .6rem;font-size:.85rem;color:var(--mu)}
+.crumbs ol{display:flex;flex-wrap:wrap;gap:2px 0;margin:0;padding:0;list-style:none}
+.crumbs li+li::before{content:"›";margin:0 .55em;opacity:.7}
+.crumbs a{color:var(--mu);text-decoration:none}.crumbs a:hover{color:var(--ac);text-decoration:underline}
+.crumbs li[aria-current]{color:var(--tx)}
+.cont{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;margin:0 0 1.8rem;padding:12px 16px;border:1px dashed color-mix(in srgb,var(--ac) 55%,var(--bd));border-radius:14px;background:color-mix(in srgb,var(--ac) 7%,var(--sf));color:var(--tx);text-decoration:none}
+.cont[hidden]{display:none}
+.cont .ji{display:grid;place-items:center;width:40px;height:40px;border-radius:12px;font-size:1.2rem;background:color-mix(in srgb,var(--ac) 16%,transparent);color:var(--ac)}
+.cont .ct2 b{display:block;line-height:1.3}
+.cont .ct2 span{color:var(--mu);font-size:.9rem}
+.cont .go{color:var(--ac);font-size:1.3rem;font-weight:700}
+.cont:hover,.cont:focus-visible{border-style:solid;border-color:var(--ac)}
+.fab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:20;display:none;align-items:center;gap:8px;padding:10px 16px;border:0;border-radius:999px;background:var(--ac);color:#fff;font:inherit;font-weight:700;box-shadow:0 6px 20px rgba(0,0,0,.28);cursor:pointer}
+@media(max-width:1100px){.fab.on{display:inline-flex}}
+:root[data-theme="dark"] .fab{color:#2a2230}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .fab{color:#2a2230}}
+#sheet-bg{position:fixed;inset:0;z-index:39;background:rgba(10,6,14,.5)}
+#sheet{position:fixed;left:0;right:0;bottom:0;z-index:40;max-height:72vh;display:flex;flex-direction:column;background:var(--sf);border:1px solid var(--bd);border-bottom:0;border-radius:18px 18px 0 0;box-shadow:0 -10px 30px rgba(0,0,0,.3);padding-bottom:env(safe-area-inset-bottom,0px)}
+#sheet[hidden],#sheet-bg[hidden]{display:none}
+#sheet .sh-h{display:flex;justify-content:space-between;align-items:center;padding:14px 16px 8px}
+#sheet .sh-h button{width:40px;height:40px;border:1px solid var(--bd);border-radius:12px;background:var(--bg);color:var(--tx);font:inherit;cursor:pointer}
+#sh-l{overflow:auto;padding:0 8px 12px}
+#sh-l button{display:block;width:100%;text-align:left;padding:12px 12px;border:0;border-radius:10px;background:transparent;color:var(--tx);font:inherit;cursor:pointer}
+#sh-l button.h3{padding-left:28px;color:var(--mu)}
+#sh-l button.on{background:var(--cd);box-shadow:inset 3px 0 var(--ac);color:var(--ac)}
+#sh-l button:hover{background:var(--cd)}
+.stk{display:block}
+@media(max-width:800px){
+.stk{position:sticky;top:calc(var(--hd) + env(safe-area-inset-top,0px));z-index:6;margin:0 -16px 8px;padding:2px 16px 6px;background:var(--bg);border-bottom:1px solid var(--bd)}
+.stk .tools{margin:8px 0 6px}.stk .fb{margin:6px 0}.stk .fs{margin:2px 0 0}
+.fb.many{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding-bottom:4px;margin-right:-16px;padding-right:16px}
+.fb.many::-webkit-scrollbar{display:none}
+.fb.many .chip{flex:none}
+}
+@media(pointer:coarse){
+.chip{min-height:42px;padding:6px 16px}
+.tools input[type=search],.tools input[type=number],.tools select{min-height:44px}
+#menu,#theme{min-width:44px;min-height:44px}
+#nav a{padding-top:11px;padding-bottom:11px}
+.chip:active,.btn:active,.jc:active,.fab:active{transform:scale(.97)}
+}
+@media(max-width:800px){
+.stk .tools{flex-wrap:nowrap;gap:8px}
+.stk .tools input[type=search]{min-width:0;flex:1}
+.stk .tools label{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.stk .tools select{max-width:130px;min-width:0}
+}
+@media screen and (max-width:640px){
+table.cards td:has(> .dt){grid-template-columns:6.5em .75em minmax(0,1fr);align-items:center}
+}
+@keyframes pgin{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:no-preference){
+.page.enter{animation:pgin .24s ease-out}
+.cg .cd,.pod .cd,.tg-grid .tile{transition:transform .16s,box-shadow .16s,border-color .16s}
+#prog{transition:transform .08s linear,opacity .2s}
+}
+@media(hover:hover) and (prefers-reduced-motion:no-preference){
+.cg .cd:hover,.pod .cd:hover{transform:translateY(-2px);box-shadow:0 8px 20px color-mix(in srgb,var(--c,var(--ac)) 18%,transparent);border-color:color-mix(in srgb,var(--c,var(--ac)) 55%,var(--bd))}
+.tg-grid .tile:hover{transform:translateY(-1px)}
+}
+@media print{#prog,.fab,#sheet,#sheet-bg,.crumbs,.cont{display:none!important}.stk{position:static!important}}
+
+/* ---- batch 4: join box, status, rank ladder, enchant tiers ---- */
+.hero2 .si .jh{display:flex;justify-content:space-between;align-items:center;gap:8px 12px;flex-wrap:wrap;margin:0 0 10px}
+.hero2 .si .jh b{display:block;margin:0}
+.stt{display:inline-flex;align-items:center;gap:8px;padding:3px 12px;border:1px solid var(--bd);border-radius:999px;background:var(--bg);font-size:.86rem;color:var(--tx);white-space:nowrap}
+.stt[hidden]{display:none}
+.stt i{width:.66em;height:.66em;border-radius:50%;background:var(--mu)}
+.stt.on i{background:#2fa866;box-shadow:0 0 0 3px color-mix(in srgb,#2fa866 28%,transparent)}
+.stt.off i{background:#d64b4b;box-shadow:0 0 0 3px color-mix(in srgb,#d64b4b 25%,transparent)}
+.jt{display:inline-flex;gap:4px;padding:3px;border:1px solid var(--bd);border-radius:12px;background:var(--bg);margin:0 0 10px}
+.jt button{border:0;background:transparent;color:var(--mu);font:inherit;font-weight:600;padding:7px 18px;min-height:38px;border-radius:9px;cursor:pointer}
+.jt button:hover{color:var(--tx)}
+.jt button[aria-selected="true"]{background:var(--ac);color:var(--bg)}
+:root[data-theme="light"] .jt button[aria-selected="true"]{color:#fff}
+@media(prefers-color-scheme:light){:root:not([data-theme="dark"]) .jt button[aria-selected="true"]{color:#fff}}
+.jt button:focus-visible,.si .cp:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+.si .ver{margin:0 0 6px;color:var(--mu);font-size:.88rem}
+.si .ads{display:grid;grid-template-columns:minmax(0,1fr);gap:10px 16px}
+@media(min-width:620px){.si .ads.two{grid-template-columns:minmax(0,2fr) minmax(0,1fr)}}
+.si .ad{display:flex;gap:8px;align-items:stretch}
+.si .ad code{flex:1 1 auto;min-width:0;display:flex;align-items:center;margin:0;padding:10px 14px;font-size:1.12rem;border:1px solid var(--bd);border-radius:10px;background:var(--bg);overflow-wrap:anywhere;cursor:text}
+.si .cp{flex:0 0 auto;min-width:78px;min-height:44px;padding:0 16px;border:1px solid var(--ac);border-radius:10px;background:var(--ac);color:var(--bg);font:inherit;font-weight:700;cursor:pointer;white-space:nowrap}
+:root[data-theme="light"] .si .cp{color:#fff}
+@media(prefers-color-scheme:light){:root:not([data-theme="dark"]) .si .cp{color:#fff}}
+.si .cp:hover{filter:brightness(1.08)}
+.si .cp.ok{background:transparent;color:var(--ac)}
+.si .jst{margin:10px 0 0;padding-left:1.35em;color:var(--mu);font-size:.92rem;line-height:1.5}
+.si .jst li{margin:2px 0}
+.si .jst code{font-size:.88em;background:var(--sf);cursor:text}
+/* rank ladder */
+.rkl{margin:1.2rem 0 1rem;padding:clamp(12px,3vw,18px);border:1px solid var(--bd);border-radius:16px;background:var(--cd)}
+.rkl .rkl-h{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin-bottom:12px}
+.rkl .rkl-h label{font-weight:600}
+.rkl select{padding:7px 10px;border:1px solid var(--bd);border-radius:8px;background:var(--bg);color:var(--tx);font:inherit;min-height:38px}
+.rkl .rkl-n{flex:1 1 100%;margin:0;color:var(--mu);font-size:.92rem}
+.rkl .rkl-n:empty{display:none}
+.rkl ol{list-style:none;margin:0;padding:0}
+.rkl-i{--p:calc(18% + var(--i)*8%);--k:color-mix(in srgb,var(--ac) var(--p),var(--mu));position:relative;display:grid;grid-template-columns:2.3rem minmax(0,1fr);gap:0 12px;padding-bottom:10px}
+.rkl-i:last-child{padding-bottom:0}
+.rkl-i::before{content:"";position:absolute;left:1.1rem;top:2.3rem;bottom:-.1rem;width:2px;background:var(--bd)}
+.rkl-i:last-child::before{display:none}
+.rkl-i.done::before{background:var(--ac)}
+.rkl-d{width:2.3rem;height:2.3rem;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:.9rem;background:var(--sf);color:var(--k);border:2px solid var(--k);z-index:1}
+.rkl-i.done .rkl-d{background:var(--ac);border-color:var(--ac);color:var(--bg)}
+:root[data-theme="light"] .rkl-i.done .rkl-d{color:#fff}
+@media(prefers-color-scheme:light){:root:not([data-theme="dark"]) .rkl-i.done .rkl-d{color:#fff}}
+.rkl-i.now .rkl-d{background:var(--ac);border-color:var(--ac);color:var(--bg);box-shadow:0 0 0 4px color-mix(in srgb,var(--ac) 30%,transparent)}
+:root[data-theme="light"] .rkl-i.now .rkl-d{color:#fff}
+@media(prefers-color-scheme:light){:root:not([data-theme="dark"]) .rkl-i.now .rkl-d{color:#fff}}
+.rkl-c{padding:9px 14px;border:1px solid var(--bd);border-left:4px solid var(--k);border-radius:12px;background:var(--sf);min-width:0}
+.rkl-i.now .rkl-c{border-color:var(--ac);box-shadow:0 2px 12px color-mix(in srgb,var(--ac) 18%,transparent)}
+.rkl-i.nx .rkl-c{border-style:dashed;border-color:var(--ac)}
+.rkl-i.done .rkl-c{opacity:.78}
+.rkl-t{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 10px}
+.rkl-t b{font-size:1.05rem}
+.rkl-badge{padding:1px 9px;border-radius:999px;background:var(--ac);color:var(--bg);font-size:.74rem;font-weight:700;letter-spacing:.02em}
+:root[data-theme="light"] .rkl-badge{color:#fff}
+@media(prefers-color-scheme:light){:root:not([data-theme="dark"]) .rkl-badge{color:#fff}}
+.rkl-badge:empty{display:none}
+.rkl-u{margin-left:auto;color:var(--mu);font-size:.88rem}
+.rkl-u a{color:inherit;text-decoration-color:color-mix(in srgb,var(--mu) 50%,transparent)}
+.rkl-m{display:flex;flex-wrap:wrap;gap:4px 8px;margin-top:6px}
+.rkl-m span{padding:2px 10px;border:1px solid var(--bd);border-radius:999px;background:var(--cd);font-size:.86rem}
+.rkl-m small{color:var(--mu);font-size:.86em;margin-right:4px}
+.rkl-m .rw{border-color:color-mix(in srgb,var(--ac) 50%,var(--bd))}
+.rkl-s{margin:6px 0 0;color:var(--mu);font-size:.9rem}
+@media(max-width:520px){.rkl-u{margin-left:0;flex:1 1 100%}.rkl-i{grid-template-columns:2rem minmax(0,1fr);gap:0 9px}.rkl-d{width:2rem;height:2rem;font-size:.82rem}.rkl-i::before{left:.95rem;top:2rem}}
+.rkl-tbl{margin:.8rem 0}
+.rkl-tbl>summary{cursor:pointer;color:var(--ac);font-weight:600;padding:6px 0}
+/* enchant tiers */
+.chip .n{margin-left:2px;padding:0 7px;border-radius:999px;background:var(--cd);color:var(--mu);font-size:.8rem}
+.tgl{display:inline-flex;align-items:center;justify-content:center;width:1.7em;height:1.7em;margin-left:.55em;padding:0;vertical-align:.1em;border:1px solid var(--bd);border-radius:8px;background:var(--cd);color:var(--mu);font:inherit;font-size:.7em;cursor:pointer}
+.tgl::before{content:"";width:.45em;height:.45em;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg) translate(-10%,-10%);transition:transform .15s}
+.tgl[aria-expanded="false"]::before{transform:rotate(-45deg)}
+.tgl:hover,.tgl:focus-visible{color:var(--ac);border-color:var(--ac)}
+@media(pointer:coarse){.tgl{width:2.5em;height:2.5em}}
+#custom-enchants-list .tcol{display:none}
+@media(prefers-reduced-motion:reduce){.tgl::before{transition:none}}
+@media print{.jt,.si .cp,.tgl,.rkl-h{display:none!important}.rkl-tbl>*{display:block}}
 </style></head><body><a class="skip" href="#main-content">Skip to content</a>
 <header><button id="menu" aria-label="Menu" aria-controls="nav" aria-expanded="false">☰</button><b>🌸 SoftBloom Wiki</b>
 <div class="sb"><input id="q" type="search" placeholder="Search the wiki" autocomplete="off" aria-keyshortcuts="/"><kbd class="sk" aria-hidden="true">/</kbd><div id="res" hidden></div></div>
@@ -303,8 +451,9 @@ main:focus{outline:none}
 <div class="wrap"><nav id="nav" aria-label="Wiki pages"><h3>Start here</h3><a href="#home">Home</a><a href="#commands">Command Cheat Sheet</a><a href="#faq">FAQ</a><a href="#community">Community</a><h3>Progression guide</h3><a href="#1-settle-in">1. Settle In</a><a href="#2-skills">2. Skills</a><a href="#3-making-money">3. Making Money</a><a href="#4-ranks">4. Ranks</a><a href="#5-gear-and-enchants">5. Gear and Enchants</a><a href="#custom-enchants-list">All Custom Enchants</a><a href="#datapack-enchantments">Datapack Enchants</a><a href="#6-the-9-dungeons">6. The 9 Dungeons</a><h3>Systems</h3><a href="#pets">Pets</a><a href="#quests">Quests</a><a href="#fishing">Fishing</a><a href="#chat-games">Chat Games</a><a href="#kits">Kits</a><a href="#premium-ranks">Premium Ranks</a><a href="#shop-prices">Shop Prices</a><a href="#rank-calculator">Rank Calculator</a><h3>Explore</h3><a href="#events">Events</a><a href="#exploring-the-world">Exploring the World</a><a href="#the-overworld">The Overworld</a><a href="#katter-s-bosses-and-enchants">Katter’s bosses and enchants</a><a href="#the-deep-blue">The Deep Blue</a><a href="#the-nether">The Nether</a><a href="#the-deeper-dark">The Deeper Dark</a><a href="#the-end">The End</a><a href="#heaven-limbo-and-the-sift">Heaven, Limbo and The Sift</a><a href="#fighting-other-players">Fighting other players</a><h3>Tips</h3><a href="#suggested-path">Suggested Path</a><a href="#good-to-know">Good to Know</a></nav><main id="main-content" tabindex="-1"><section class="page" id="home" data-title="SoftBloom Wiki" hidden><div class="hero2"><p class="eyebrow">🌸 SoftBloom SMP · Java and Bedrock</p><h1>SoftBloom Wiki</h1><p class="lede">SoftBloom is built around steady progress: learn the basics, grow
 your skills, earn money, climb ranks, then take on the dungeons and
 bosses. Go at your own pace. This guide gives you a path, and you can
-always wander off and explore.</p><div class="si" role="region" aria-label="Join SoftBloom"><b>Join SoftBloom SMP</b><span class="hint">Click an address to copy it</span><div class="g"><div><span class="l">Java Edition · 1.21.11</span><code data-copy="sftblmorg.usga.me:12006" title="Click to copy">sftblmorg.usga.me:12006</code></div><div><span class="l">Bedrock Edition · 1.21.11 up to Latest</span><code data-copy="sftblmorg.usga.me" title="Click to copy">sftblmorg.usga.me</code> <span class="pt">Port <code data-copy="12009" title="Click to copy">12009</code></span></div></div></div><div class="acts"><a class="btn" href="#1-settle-in">Start the guide →</a><a class="btn ghost" href="#community">Community</a></div></div>
+always wander off and explore.</p><div class="si" id="join" role="region" aria-label="Join SoftBloom"><b>Join SoftBloom SMP</b><span class="hint">Click an address to copy it</span><div class="g"><div><span class="l">Java Edition · 1.21.11</span><code data-copy="sftblmorg.usga.me:12006" title="Click to copy">sftblmorg.usga.me:12006</code></div><div><span class="l">Bedrock Edition · 1.21.11 up to Latest</span><code data-copy="216.163.186.36" title="Click to copy">216.163.186.36</code> <span class="pt">Port <code data-copy="12009" title="Click to copy">12009</code></span></div></div></div><div class="acts"><a class="btn" href="#1-settle-in">Start the guide →</a><a class="btn ghost" href="#community">Community</a></div></div>
 <nav class="jump" aria-label="Quick links"><a class="jc" style="--c:#3fa66b" href="#1-settle-in"><span class="ji" aria-hidden="true">🌱</span><b>New here?</b><span>Your first hour, step by step</span></a><a class="jc" style="--c:#d9a400" href="#4-ranks"><span class="ji" aria-hidden="true">🏆</span><b>Ranks</b><span>What each rank gives and unlocks</span></a><a class="jc" style="--c:#e5484d" href="#6-the-9-dungeons"><span class="ji" aria-hidden="true">🏰</span><b>Dungeons</b><span>Bosses, keys and traders</span></a><a class="jc" style="--c:#3b82d6" href="#shop-prices"><span class="ji" aria-hidden="true">🛒</span><b>Shop prices</b><span>Search what sells and what costs</span></a><a class="jc" style="--c:#9b6bd6" href="#commands"><span class="ji" aria-hidden="true">⌨️</span><b>Commands</b><span>Every command, one click to copy</span></a><a class="jc" style="--c:#5865f2" href="https://discord.com/invite/RKbhhCMbZ5" target="_blank" rel="noopener"><span class="ji" aria-hidden="true">💬</span><b>Discord</b><span>Chat, get help, meet players</span></a></nav>
+<a class="cont" id="cont" href="#home" hidden><span class="ji" aria-hidden="true">↩</span><span class="ct2"><b>Continue reading</b><span id="cont-t"></span></span><span class="go" aria-hidden="true">→</span></a>
 <aside class="qs" aria-labelledby="qs-t"><b id="qs-t">Quick start</b>
 <ol>
 <li>Register with <code>/register &lt;password&gt; &lt;password&gt;</code>.</li>
@@ -1664,7 +1813,7 @@ a stack, so you may see a number instead of a crowd.</li>
 <div class="tools"><input type="search" id="fq-q" placeholder="Search questions, like rank or flight" aria-label="Search questions" autocomplete="off"></div>
 <div class="fb" id="fq-f" role="group" aria-label="Filter by topic"><button type="button" class="chip" data-v="" aria-pressed="false" style="--c:var(--ac)">All <span class="cn">19</span></button><button type="button" class="chip" data-v="start" aria-pressed="false" style="--c:#3fa66b"><i class="dt" style="--c:#3fa66b"></i>Getting started <span class="cn">4</span></button><button type="button" class="chip" data-v="prog" aria-pressed="false" style="--c:#d9a400"><i class="dt" style="--c:#d9a400"></i>Ranks and rewards <span class="cn">8</span></button><button type="button" class="chip" data-v="safe" aria-pressed="false" style="--c:#e5484d"><i class="dt" style="--c:#e5484d"></i>Safety and rules <span class="cn">4</span></button><button type="button" class="chip" data-v="world" aria-pressed="false" style="--c:#3b82d6"><i class="dt" style="--c:#3b82d6"></i>Travel and world <span class="cn">3</span></button></div>
 <p class="fs" id="fq-n" role="status" aria-live="polite"></p>
-<details class="fq" data-g="start" data-t="how do i join the server?java players connect to sftblmorg.usga.me:12006 on 1.21.11. bedrock players use sftblmorg.usga.me with port 12009, on 1.21.11 or newer. the details are on the home page." style="--c:#3fa66b"><summary>How do I join the server?</summary><div class="a"><p>Java players connect to <code>sftblmorg.usga.me:12006</code> on 1.21.11. Bedrock players use <code>sftblmorg.usga.me</code> with port <code>12009</code>, on 1.21.11 or newer. The details are on the <a href="#home">home page</a>.</p></div></details>
+<details class="fq" data-g="start" data-t="how do i join the server?java players connect to sftblmorg.usga.me:12006 on 1.21.11. bedrock players use 216.163.186.36 with port 12009, on 1.21.11 or newer. the details are on the home page." style="--c:#3fa66b"><summary>How do I join the server?</summary><div class="a"><p>Java players connect to <code data-sb="java">sftblmorg.usga.me:12006</code> on 1.21.11. Bedrock players use <code data-sb="host">216.163.186.36</code> with port <code data-sb="bport">12009</code>, on 1.21.11 or newer. The details are on the <a href="#home">home page</a>.</p></div></details>
 <details class="fq" data-g="start" data-t="i just joined. what do i do first?type /register &amp;lt;password&amp;gt; &amp;lt;password&amp;gt;. next time you join, use /login &amp;lt;password&amp;gt; if the password window doesn&#x27;t appear. then open /kit and claim your starter kit and guide kit. see stage 1." style="--c:#3fa66b"><summary>I just joined. What do I do first?</summary><div class="a"><p>Type <code>/register &lt;password&gt; &lt;password&gt;</code>. Next time you join, use <code>/login &lt;password&gt;</code> if the password window doesn't appear. Then open <code>/kit</code> and claim your Starter kit and Guide kit. See <a href="#1-settle-in">Stage 1</a>.</p></div></details>
 <details class="fq" data-g="safe" data-t="how do i protect my base?stand where you want your base and use /lands create, then /lands claim to claim the chunk you are standing in. no golden shovel needed. you can claim 2 separate lands. claiming more chunks costs money, and lands pay upkeep, so keep money in your land bank." style="--c:#e5484d"><summary>How do I protect my base?</summary><div class="a"><p>Stand where you want your base and use <code>/lands create &lt;name&gt;</code>, then <code>/lands claim</code> to claim the chunk you are standing in. No Golden Shovel needed. You can claim 2 separate lands. Claiming more chunks costs money, and lands pay upkeep, so keep money in your land bank.</p></div></details>
 <details class="fq" data-g="prog" data-t="how do i rank up?you need enough playtime and a minimum level in every skill. type /rankup to see what is missing. rank-ups are free and pay money and fly time. use the rank calculator to see how close you are." style="--c:#d9a400"><summary>How do I rank up?</summary><div class="a"><p>You need enough <strong>playtime</strong> and a minimum level in <strong>every skill</strong>. Type <code>/rankup</code> to see what is missing. Rank-ups are free and pay money and fly time. Use the <a href="#rank-calculator">Rank Calculator</a> to see how close you are.</p></div></details>
@@ -1800,7 +1949,86 @@ a stack, so you may see a number instead of a crowd.</li>
 <div class="pn"><a href="#shop-prices">← Shop Prices</a><a href="#home">Home →</a></div></section>
 </main><aside id="toc" aria-label="On this page"></aside></div>
 <div id="toast" role="status" aria-live="polite"></div>
+<div id="prog" aria-hidden="true"></div>
+<button type="button" id="jmp" class="fab" aria-haspopup="dialog" aria-expanded="false" hidden><span aria-hidden="true">☰</span> Sections</button>
+<div id="sheet-bg" hidden></div>
+<div id="sheet" role="dialog" aria-modal="true" aria-label="Jump to section" hidden><div class="sh-h"><b>Jump to section</b><button type="button" id="sh-x" aria-label="Close">✕</button></div><div id="sh-l"></div></div>
 <div id="sstat" class="sr" role="status" aria-live="polite"></div><div id="pstat" class="sr" role="status" aria-live="polite"></div>
+<script>
+/* ===== SERVER SETTINGS: edit here, nowhere else ===== */
+window.SB={
+  host:"216.163.186.36",      /* server address */
+  javaPort:12006,                /* Java port (25565 is hidden automatically) */
+  bedrockPort:12009,             /* Bedrock port */
+  javaVersion:"1.21.11",
+  bedrockVersion:"1.21.11 up to Latest",
+  showStatus:true,               /* false hides the Online/Offline badge */
+  statusSeconds:60               /* how often the badge refreshes */
+};
+/* ===== end of server settings ===== */
+</script>
+<script>
+(function(){
+var C=window.SB||{},host=C.host||"",jp=C.javaPort||25565,bp=C.bedrockPort||19132;
+var javaAddr=host+(jp!==25565?":"+jp:"");
+function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
+/* fill every spot that quotes the address (FAQ etc.) */
+var map={java:javaAddr,host:host,bport:String(bp),jport:String(jp)};
+Array.prototype.forEach.call(document.querySelectorAll("[data-sb]"),function(n){var v=map[n.getAttribute("data-sb")];if(v!=null)n.textContent=v});
+Array.prototype.forEach.call(document.querySelectorAll(".fq"),function(q){
+if(!q.querySelector("[data-sb]"))return;var s=q.querySelector("summary"),a=q.querySelector(".a");
+if(s&&a)q.setAttribute("data-t",(s.textContent+a.textContent).replace(/\s+/g," ").trim().toLowerCase())});
+var box=document.getElementById("join");if(!box||!host)return;
+var saved="";try{saved=localStorage.getItem("sbw-ed")||""}catch(e){}
+var pick=saved==="be"||saved==="java"?saved:(/Android|iPhone|iPad|iPod|Xbox|PlayStation|Nintendo/i.test(navigator.userAgent)?"be":"java");
+box.textContent="";
+var head=el("div","jh"),title=el("b",null,"Join SoftBloom SMP"),pill=el("span","stt");pill.id="stt";pill.hidden=true;pill.setAttribute("role","status");pill.appendChild(el("i"));pill.appendChild(el("span",null,""));
+head.appendChild(title);head.appendChild(pill);box.appendChild(head);
+var tabs=el("div","jt");tabs.setAttribute("role","tablist");tabs.setAttribute("aria-label","Minecraft edition");
+var defs=[["java","Java"],["be","Bedrock"]],tb={},pn={};
+function copyRow(label,val,aria){
+var r=el("div","ad"),c=el("code",null,val),b=el("button","cp","Copy");b.type="button";b.setAttribute("data-copy",val);b.setAttribute("aria-label","Copy "+aria);
+b.addEventListener("click",function(){b.textContent="Copied ✓";b.classList.add("ok");clearTimeout(b._t);b._t=setTimeout(function(){b.textContent="Copy";b.classList.remove("ok")},1600)});
+r.appendChild(c);r.appendChild(b);var w=el("div");w.appendChild(el("span","l",label));w.appendChild(r);return w}
+function steps(a){var o=el("ol","jst");a.forEach(function(x){var li=el("li");if(typeof x==="string")li.textContent=x;else x.forEach(function(p){li.appendChild(p.c?el("code",null,p.c):document.createTextNode(p.t))});o.appendChild(li)});return o}
+var login=[{t:"Join, then follow the login window. If it does not show, type "},{c:"/register <password> <password>"},{t:"."}];
+defs.forEach(function(d){
+var t=el("button",null,d[1]);t.type="button";t.id="jt-"+d[0];t.setAttribute("role","tab");t.setAttribute("aria-controls","jp-"+d[0]);tb[d[0]]=t;tabs.appendChild(t);
+var p=el("div");p.id="jp-"+d[0];p.setAttribute("role","tabpanel");p.setAttribute("aria-labelledby","jt-"+d[0]);pn[d[0]]=p;
+if(d[0]==="java"){
+p.appendChild(el("p","ver","Java Edition · "+(C.javaVersion||"")));
+var g=el("div","ads");g.appendChild(copyRow("Server address",javaAddr,"Java address"));p.appendChild(g);
+p.appendChild(steps(["Open Minecraft Java Edition "+(C.javaVersion||"")+" and choose Multiplayer.","Choose Add Server and paste the address above.",login]))}
+else{
+p.appendChild(el("p","ver","Bedrock Edition · "+(C.bedrockVersion||"")));
+var g2=el("div","ads two");g2.appendChild(copyRow("Server address",host,"Bedrock address"));g2.appendChild(copyRow("Port",String(bp),"Bedrock port"));p.appendChild(g2);
+p.appendChild(steps(["Open Minecraft Bedrock Edition, then choose Play and open the Servers tab.","Scroll down, choose Add Server, and enter the address and the port above.",login]))}
+});
+box.appendChild(tabs);box.appendChild(pn.java);box.appendChild(pn.be);
+function sel(k,focus,store){pick=k;defs.forEach(function(d){var on=d[0]===k;tb[d[0]].setAttribute("aria-selected",on?"true":"false");tb[d[0]].tabIndex=on?0:-1;pn[d[0]].hidden=!on});
+if(focus)tb[k].focus();if(store){try{localStorage.setItem("sbw-ed",k)}catch(e){}}}
+defs.forEach(function(d,i){tb[d[0]].addEventListener("click",function(){sel(d[0],false,true)});
+tb[d[0]].addEventListener("keydown",function(e){var n=-1;if(e.key==="ArrowRight"||e.key==="ArrowLeft")n=1-i;else if(e.key==="Home")n=0;else if(e.key==="End")n=defs.length-1;if(n<0)return;e.preventDefault();sel(defs[n][0],true,true)})});
+sel(pick,false,false);
+/* ---- live status: mcstatus.io, then mcsrvstat.us as a backup ---- */
+if(C.showStatus===false)return;
+var addr=host+":"+jp,ptxt=pill.lastChild;
+function paint(d){if(!d)return;pill.hidden=false;pill.classList.toggle("on",!!d.on);pill.classList.toggle("off",!d.on);
+ptxt.textContent=d.on?(typeof d.n==="number"?"Online · "+d.n+(typeof d.m==="number"?" of "+d.m:"")+" player"+(d.n===1&&typeof d.m!=="number"?"":"s"):"Online"):"Offline right now"}
+function get(u){if(!window.fetch)return Promise.reject();var ac=window.AbortController?new AbortController():null,to=setTimeout(function(){if(ac)ac.abort()},8000);
+return fetch(u,{signal:ac?ac.signal:undefined,headers:{Accept:"application/json"}}).then(function(r){clearTimeout(to);if(!r.ok)throw 0;return r.json()},function(e){clearTimeout(to);throw e})}
+function norm(j){if(!j||typeof j.online!=="boolean")throw 0;var p=j.players||{};return{on:j.online,n:typeof p.online==="number"?p.online:null,m:typeof p.max==="number"?p.max:null}}
+function fetchStatus(){
+var key="sbw-stt",now=Date.now(),c=null;
+try{c=JSON.parse(sessionStorage.getItem(key)||"null")}catch(e){}
+if(c&&c.t&&now-c.t<(C.statusSeconds||60)*1000-1000){paint(c.d);return}
+get("https://api.mcstatus.io/v2/status/java/"+encodeURIComponent(addr)).then(norm).catch(function(){return get("https://api.mcsrvstat.us/3/"+encodeURIComponent(addr)).then(norm)}).then(function(d){paint(d);try{sessionStorage.setItem(key,JSON.stringify({t:Date.now(),d:d}))}catch(e){}},function(){})}
+fetchStatus();
+var home=document.getElementById("home");
+setInterval(function(){if(!document.hidden&&home&&!home.hidden)fetchStatus()},(C.statusSeconds||60)*1000);
+window.addEventListener("hashchange",function(){if(home&&!home.hidden)setTimeout(fetchStatus,50)});
+})();
+</script>
 <script>
 (function(){
 var toast=document.getElementById("toast"),tt;
@@ -2030,11 +2258,23 @@ var clr=mk("button","chip","Clear filters");clr.type="button";clr.id="fclr";
 var st=mk("span","fs");st.id="fc";st.setAttribute("role","status");st.setAttribute("aria-live","polite");
 [lab,sel,clr,st].forEach(function(e){row.appendChild(e)});
 anchor.parentNode.insertBefore(box,anchor.nextSibling);box.parentNode.insertBefore(row,box.nextSibling);
+function setC(s,c){s.c=c;[s.tw,s.bt].forEach(function(e){if(e)e.classList.toggle("tcol",c)});s.b.setAttribute("aria-expanded",c?"false":"true");s.b.setAttribute("aria-label",(c?"Expand ":"Collapse ")+s.t[1]+" enchants")}
+secs.forEach(function(s,i){
+var n=s.rows.length,sp=mk("span","n",String(n));sp.setAttribute("aria-hidden","true");chips[i].appendChild(sp);chips[i].setAttribute("aria-label",s.t[1]+", "+n+" enchants");
+var b=mk("button","tgl");b.type="button";b.setAttribute("aria-controls",s.tw.id||(s.tw.id="tw-"+s.id));s.b=b;
+b.addEventListener("click",function(){setC(s,!s.c)});s.h.appendChild(b);setC(s,false)});
+var ca=mk("button","chip","Collapse all"),ea=mk("button","chip","Expand all");ca.type=ea.type="button";
+ca.addEventListener("click",function(){secs.forEach(function(s){setC(s,true)})});
+ea.addEventListener("click",function(){secs.forEach(function(s){setC(s,false)})});
+var row2=mk("div","fb");row2.appendChild(ca);row2.appendChild(ea);row2.appendChild(st);row.parentNode.insertBefore(row2,row.nextSibling);
+function openHash(){var id=decodeURIComponent(location.hash.slice(1));secs.forEach(function(s){if(s.h.id===id&&s.c)setC(s,false)})}
+window.addEventListener("hashchange",openHash);openHash();
 function syncToc(){var t=document.getElementById("toc");if(!t)return;
 Array.prototype.forEach.call(t.querySelectorAll("a"),function(a){
 var m=secs.filter(function(s){return s.h.textContent===a.textContent})[0];a.hidden=!!(m&&m.h.hidden)})}
 function apply(){
 var act=Object.keys(on).length>0,fl=act||txt!==""||item!=="",shown=0;
+if(fl)secs.forEach(function(s){if(s.c)setC(s,false)});
 page.classList.toggle("filtering",fl);
 secs.forEach(function(s){
 var vis=0,tierOk=!act||!!on[s.id];
@@ -2163,6 +2403,119 @@ menu.addEventListener("click",function(){setTimeout(sync,0)});
 theme.addEventListener("click",function(){setTimeout(sync,0)});
 window.addEventListener("hashchange",function(){setTimeout(function(){sync();pstat.textContent="";setTimeout(function(){pstat.textContent="Page: "+document.title},30)},0)});
 sync();
+})();
+</script>
+<script>
+(function(){
+var $=function(x,r){return(r||document).querySelector(x)},$$=function(x,r){return Array.prototype.slice.call((r||document).querySelectorAll(x))};
+var nav=$("#nav"),prog=$("#prog"),fab=$("#jmp"),sheet=$("#sheet"),bg=$("#sheet-bg"),sl=$("#sh-l"),toc=$("#toc"),cont=$("#cont"),contT=$("#cont-t");
+var KEY="sbw-last";
+function lsGet(k){try{return localStorage.getItem(k)}catch(e){return null}}
+function lsSet(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+/* nav map: slug -> group and label */
+var map={},grp="";
+Array.prototype.forEach.call(nav.children,function(n){
+if(n.tagName==="H3")grp=n.textContent.trim();
+else if(n.tagName==="A"){var sl2=n.getAttribute("href").slice(1);map[sl2]={g:grp,t:n.textContent.trim()}}});
+/* breadcrumbs */
+$$(".page").forEach(function(p){
+if(p.id==="home"||!map[p.id])return;var m=map[p.id],h1=p.querySelector("h1");if(!h1)return;
+var n=document.createElement("nav");n.className="crumbs";n.setAttribute("aria-label","Breadcrumb");
+var ol=document.createElement("ol");
+function li(t,href,cur){var l=document.createElement("li");if(href){var a=document.createElement("a");a.href=href;a.textContent=t;l.appendChild(a)}else l.textContent=t;if(cur)l.setAttribute("aria-current","page");ol.appendChild(l)}
+li("Home","#home");if(m.g&&m.g!=="Start here")li(m.g);li(m.t,null,true);
+n.appendChild(ol);p.insertBefore(n,h1)});
+/* sticky filter bars and chip strips */
+["shop-prices","commands","faq","quests"].forEach(function(id){
+var pg=document.getElementById(id);if(!pg)return;var t=$(".tools",pg);if(!t)return;
+var w=document.createElement("div");w.className="stk";t.parentNode.insertBefore(w,t);w.appendChild(t);
+var n=w.nextElementSibling;
+while(n&&(n.classList.contains("fb")||(n.classList.contains("fs")&&n.getAttribute("role")==="status"))){var nx=n.nextElementSibling;w.appendChild(n);n=nx}});
+$$(".fb").forEach(function(f){if(f.id!=="ff"&&$$(".chip",f).length>=6)f.classList.add("many")});
+document.addEventListener("click",function(e){var c=e.target.closest&&e.target.closest(".fb.many .chip");if(c){var f=c.parentNode;setTimeout(function(){f.scrollTo({left:Math.max(0,c.offsetLeft-f.clientWidth/2+c.offsetWidth/2),behavior:"smooth"})},0)}});
+/* current page, resume card, page fade */
+function curPage(){var p=$(".page:not([hidden])");return p?p.id:"home"}
+function onPage(first){
+var id=curPage();
+if(id!=="home"&&map[id])lsSet(KEY,id);
+var last=lsGet(KEY);
+if(cont){var ok=id==="home"&&last&&last!=="home"&&map[last];cont.hidden=!ok;if(ok){cont.href="#"+last;contT.textContent=(map[last].g&&map[last].g!=="Start here"?map[last].g+" · ":"")+map[last].t}}
+var p=document.getElementById(id);if(p&&!first){p.classList.remove("enter");void p.offsetWidth;p.classList.add("enter")}
+updateFab();updateProg()}
+window.addEventListener("hashchange",function(){setTimeout(onPage,0)});
+/* reading progress */
+var raf=0;
+function updateProg(){raf=0;var d=document.documentElement,max=d.scrollHeight-window.innerHeight;
+if(max<window.innerHeight*0.6){prog.style.opacity="0";prog.style.transform="scaleX(0)";return}
+prog.style.opacity="1";prog.style.transform="scaleX("+Math.min(1,Math.max(0,window.scrollY/max))+")"}
+/* jump to section (phones and tablets, where the right-hand list is hidden) */
+function tocLinks(){return toc?$$("a",toc).filter(function(a){return !a.hidden}):[]}
+function updateFab(){var n=tocLinks().length;var on=n>=3&&window.scrollY>240&&sheet.hidden;fab.hidden=false;fab.classList.toggle("on",on)}
+function req(){if(!raf)raf=requestAnimationFrame(function(){updateProg();updateFab()})}
+window.addEventListener("scroll",req,{passive:true});window.addEventListener("resize",req);
+var lastFocus=null;
+function openSheet(){
+var ls=tocLinks();sl.innerHTML="";
+var top=document.createElement("button");top.type="button";top.textContent="↑ Back to top";top.addEventListener("click",function(){closeSheet();window.scrollTo({top:0,behavior:"smooth"})});sl.appendChild(top);
+ls.forEach(function(a){var b=document.createElement("button");b.type="button";b.textContent=a.textContent;b.className=a.className+(a.classList.contains("on")?" on":"");
+b.addEventListener("click",function(){closeSheet();a.click()});sl.appendChild(b)});
+lastFocus=document.activeElement;bg.hidden=false;sheet.hidden=false;fab.classList.remove("on");fab.setAttribute("aria-expanded","true");
+var f=$("button.on",sl)||$("button",sl);if(f){f.focus();f.scrollIntoView({block:"center"})}}
+function closeSheet(){sheet.hidden=true;bg.hidden=true;fab.setAttribute("aria-expanded","false");if(lastFocus&&lastFocus.focus)lastFocus.focus();updateFab()}
+fab.addEventListener("click",openSheet);bg.addEventListener("click",closeSheet);$("#sh-x").addEventListener("click",closeSheet);
+document.addEventListener("keydown",function(e){
+if(sheet.hidden)return;
+if(e.key==="Escape"){e.preventDefault();closeSheet()}
+else if(e.key==="Tab"){var bs=$$("button",sheet);if(!bs.length)return;var f=bs[0],l=bs[bs.length-1];
+if(e.shiftKey&&document.activeElement===f){e.preventDefault();l.focus()}else if(!e.shiftKey&&document.activeElement===l){e.preventDefault();f.focus()}}});
+onPage(true);
+})();
+</script>
+<script>
+(function(){
+var pg=document.getElementById("4-ranks");if(!pg)return;
+var tw=pg.querySelector(".tw"),tb=tw&&tw.querySelector("table");if(!tb)return;
+function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
+var R=[{n:"Member",start:true}];
+Array.prototype.forEach.call(tb.querySelectorAll("tbody tr"),function(tr){var c=tr.children,s=c[0]&&c[0].querySelector("strong");if(!s||c.length<4)return;
+R.push({n:s.textContent.trim(),pt:c[1].textContent.trim(),sk:c[2].textContent.trim(),rw:c[3].textContent.trim()})});
+if(R.length<3)return;
+var D={},dg=document.getElementById("6-the-9-dungeons");
+if(dg)Array.prototype.forEach.call(dg.querySelectorAll("table tbody tr"),function(tr){var c=tr.children;if(c.length>=3)D[c[2].textContent.trim()]={n:c[1].textContent.trim(),t:c[0].textContent.trim()}});
+var box=el("div","rkl"),h=el("div","rkl-h"),lb=el("label",null,"Where are you right now?"),sl=el("select");sl.id="rkl-sel";lb.htmlFor="rkl-sel";
+var o0=el("option",null,"Show the whole path");o0.value="-1";sl.appendChild(o0);
+R.forEach(function(r,i){var o=el("option",null,r.n);o.value=String(i);sl.appendChild(o)});
+var note=el("p","rkl-n");note.setAttribute("role","status");note.setAttribute("aria-live","polite");
+h.appendChild(lb);h.appendChild(sl);h.appendChild(note);box.appendChild(h);
+var ol=el("ol");ol.setAttribute("role","list");ol.setAttribute("aria-label","Rank ladder, Member to "+R[R.length-1].n);
+var li=R.map(function(r,i){
+var x=el("li","rkl-i");x.style.setProperty("--i",String(i));
+var d=el("span","rkl-d",String(i+1));d.setAttribute("aria-hidden","true");
+var c=el("div","rkl-c"),t=el("div","rkl-t");t.appendChild(el("b",null,r.n));var bd=el("span","rkl-badge");t.appendChild(bd);
+var dn=D[r.n];
+if(dn){var u=el("span","rkl-u","Unlocks ");var a=el("a",null,dn.n);a.href="#6-the-9-dungeons";u.appendChild(a);t.appendChild(u)}
+c.appendChild(t);
+if(r.start){c.appendChild(el("p","rkl-s","Where everyone begins. You can’t equip an elytra until Settler."))}
+else{var m=el("div","rkl-m");
+[["Playtime",r.pt,""],["All skills",r.sk,""],["Reward",r.rw,"rw"]].forEach(function(p){var s=el("span",p[2]);s.appendChild(el("small",null,p[0]));s.appendChild(document.createTextNode(p[1]));m.appendChild(s)});
+c.appendChild(m)}
+x.appendChild(d);x.appendChild(c);ol.appendChild(x);x._b=bd;return x});
+box.appendChild(ol);tw.parentNode.insertBefore(box,tw);
+var det=el("details","rkl-tbl"),sm=el("summary",null,"See the same numbers as a table");det.appendChild(sm);tw.parentNode.insertBefore(det,tw);det.appendChild(tw);
+window.addEventListener("beforeprint",function(){det.open=true});
+function paint(k){
+li.forEach(function(x,i){x.classList.toggle("done",i<k);x.classList.toggle("now",i===k);x.classList.toggle("nx",k>=0&&i===k+1);
+x._b.textContent=i===k?"You are here":(k>=0&&i===k+1?"Next up":"");
+var d=x.firstChild;d.textContent=i<k?"✓":String(i+1);
+if(i===k)x.setAttribute("aria-current","step");else x.removeAttribute("aria-current")});
+note.textContent="";
+if(k<0)return;
+if(k>=R.length-1){note.textContent="You’ve reached the top. "+R[k].n+" is the last rank on the ladder.";return}
+var n=R[k+1];note.textContent="Next: "+n.n+". You need "+n.pt+" of playtime and level "+n.sk+" in every skill. Reward: "+n.rw+". ";
+var a=el("a",null,"Check your numbers in the Rank Calculator");a.href="#rank-calculator";note.appendChild(a);note.appendChild(document.createTextNode("."))}
+var k0=-1;try{var sv=parseInt(localStorage.getItem("sbw-rank"),10);if(sv>=0&&sv<R.length)k0=sv}catch(e){}
+sl.value=String(k0);paint(k0);
+sl.addEventListener("change",function(){var k=parseInt(sl.value,10);paint(k);try{if(k<0)localStorage.removeItem("sbw-rank");else localStorage.setItem("sbw-rank",String(k))}catch(e){}});
 })();
 </script>
 </body></html>
