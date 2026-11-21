@@ -444,6 +444,16 @@ table.cards td:has(> .dt){grid-template-columns:6.5em .75em minmax(0,1fr);align-
 #custom-enchants-list .tcol{display:none}
 @media(prefers-reduced-motion:reduce){.tgl::before{transition:none}}
 @media print{.jt,.si .cp,.tgl,.rkl-h{display:none!important}.rkl-tbl>*{display:block}}
+
+/* chat games v2 */
+.cd .gl{list-style:none;margin:.7rem 0 .2rem;padding:0}
+.cd .gl li{padding:.45rem 0;border-top:1px solid var(--bd);font-size:.93rem;line-height:1.45}
+.cd .gl li:first-child{border-top:0;padding-top:.1rem}
+.cd .gl li{color:var(--mu)}
+.cd .gl li b{color:var(--tx)}
+.cd .gl .gt{margin-left:4px;padding:0 7px;border:1px solid var(--bd);border-radius:999px;font-size:.76rem;color:var(--mu)}
+.cd .gl .gt:empty{display:none}
+.cd .gl:empty{display:none}
 </style></head><body><a class="skip" href="#main-content">Skip to content</a>
 <header><button id="menu" aria-label="Menu" aria-controls="nav" aria-expanded="false">☰</button><b>🌸 SoftBloom Wiki</b>
 <div class="sb"><input id="q" type="search" placeholder="Search the wiki" autocomplete="off" aria-keyshortcuts="/"><kbd class="sk" aria-hidden="true">/</kbd><div id="res" hidden></div></div>
@@ -1182,9 +1192,8 @@ Everyone who takes part gets a diamond.</li>
 <li><strong>KOTH</strong> starts every 4 to 6 hours on <strong>Saturday
 and Sunday</strong> when <strong>4 or more players</strong> are online.
 Find it at <code>/warp piratekoth</code>.</li>
-<li><strong>Chat games</strong> appear in chat all the time: math, quiz,
-trivia, reaction and word scramble. See the <a href="#chat-games">Chat Games page</a>. First correct answer wins diamonds, emeralds,
-gold, XP, and sometimes fly time or a Basic key. Trivia pays best.</li>
+<li><strong>Chat games</strong> start in chat about every 25 minutes. 14 different games: type the word, solve the sum, answer the trivia. First correct answer wins diamonds, emeralds, gold, XP, and sometimes fly time or a Basic key. See the <a href="#chat-games">Chat Games page</a>.</li>
+<li><strong>Weekend Cup</strong> is a 5 game chat event every <strong>Saturday at 8 PM</strong> (Philippine time) when 3 or more players are online. Top players win diamonds and keys. Details on the <a href="#chat-games-weekend-cup">Chat Games page</a>.</li>
 <li><strong>Piñata party:</strong> votes fill a bar, then a piñata
 spawns for everyone.</li>
 </ul>
@@ -1520,7 +1529,7 @@ a stack, so you may see a number instead of a crowd.</li>
 <div class="pn"><a href="#suggested-path">← Suggested Path</a><a href="#commands">Command Cheat Sheet →</a></div></section><section class="page" id="commands" data-title="Command Cheat Sheet" hidden><h1>Command Cheat Sheet</h1>
 <p>Every command from this guide in one place. Click a command to copy it.</p>
 <div class="tools"><input type="search" id="cm-q" placeholder="Search commands, like home or pvp" aria-label="Search commands" autocomplete="off"></div>
-<div class="fb" id="cm-f" role="group" aria-label="Filter by group"><button type="button" class="chip" data-v="" aria-pressed="false" style="--c:var(--ac)">All <span class="cn">32</span></button><button type="button" class="chip" data-v="cmd-getting-started" aria-pressed="false" style="--c:#3fa66b"><i class="dt" style="--c:#3fa66b"></i>Getting started <span class="cn">5</span></button><button type="button" class="chip" data-v="cmd-travel-and-homes" aria-pressed="false" style="--c:#3b82d6"><i class="dt" style="--c:#3b82d6"></i>Travel and homes <span class="cn">11</span></button><button type="button" class="chip" data-v="cmd-progress-and-rewards" aria-pressed="false" style="--c:#d9a400"><i class="dt" style="--c:#d9a400"></i>Progress and rewards <span class="cn">7</span></button><button type="button" class="chip" data-v="cmd-money-and-gear" aria-pressed="false" style="--c:#9b6bd6"><i class="dt" style="--c:#9b6bd6"></i>Money and gear <span class="cn">7</span></button><button type="button" class="chip" data-v="cmd-events" aria-pressed="false" style="--c:#e5484d"><i class="dt" style="--c:#e5484d"></i>Events and PvP <span class="cn">2</span></button></div>
+<div class="fb" id="cm-f" role="group" aria-label="Filter by group"><button type="button" class="chip" data-v="" aria-pressed="false" style="--c:var(--ac)">All <span class="cn">36</span></button><button type="button" class="chip" data-v="cmd-getting-started" aria-pressed="false" style="--c:#3fa66b"><i class="dt" style="--c:#3fa66b"></i>Getting started <span class="cn">5</span></button><button type="button" class="chip" data-v="cmd-travel-and-homes" aria-pressed="false" style="--c:#3b82d6"><i class="dt" style="--c:#3b82d6"></i>Travel and homes <span class="cn">11</span></button><button type="button" class="chip" data-v="cmd-progress-and-rewards" aria-pressed="false" style="--c:#d9a400"><i class="dt" style="--c:#d9a400"></i>Progress and rewards <span class="cn">11</span></button><button type="button" class="chip" data-v="cmd-money-and-gear" aria-pressed="false" style="--c:#9b6bd6"><i class="dt" style="--c:#9b6bd6"></i>Money and gear <span class="cn">7</span></button><button type="button" class="chip" data-v="cmd-events" aria-pressed="false" style="--c:#e5484d"><i class="dt" style="--c:#e5484d"></i>Events and PvP <span class="cn">2</span></button></div>
 <p class="fs" id="cm-n" role="status" aria-live="polite"></p>
 <div class="pg" data-g="cmd-getting-started"><h2 id="cmd-getting-started" style="--c:#3fa66b">Getting started</h2>
 <div class="tw" style="--tc:#3fa66b"><table class="cards">
@@ -1559,6 +1568,10 @@ a stack, so you may see a number instead of a crowd.</li>
 <tr class="odd"><td data-label="Command"><code>/calendar</code></td><td data-label="What it does">Claim your daily calendar reward after 60 active minutes.</td></tr>
 <tr class="even"><td data-label="Command"><code>/vote</code></td><td data-label="What it does">Show the voting links.</td></tr>
 <tr class="odd"><td data-label="Command"><code>/voteall</code></td><td data-label="What it does">Show every voting site.</td></tr>
+<tr class="even"><td data-label="Command"><code>/chatgames menu</code></td><td data-label="What it does">Open the chat games menu: your profile, challenges, streaks and leaderboards.</td></tr>
+<tr class="odd"><td data-label="Command"><code>/chatgames challenges</code></td><td data-label="What it does">See your daily and weekly chat game challenges.</td></tr>
+<tr class="even"><td data-label="Command"><code>/chatgames claim</code></td><td data-label="What it does">Claim finished chat game challenges and streak rewards.</td></tr>
+<tr class="odd"><td data-label="Command"><code>/chatgames top</code></td><td data-label="What it does">Top 10 chat game players by points.</td></tr>
 </tbody></table></div></div>
 <div class="pg" data-g="cmd-money-and-gear"><h2 id="cmd-money-and-gear" style="--c:#9b6bd6">Money and gear</h2>
 <div class="tw" style="--tc:#9b6bd6"><table class="cards">
@@ -1789,22 +1802,123 @@ a stack, so you may see a number instead of a crowd.</li>
 </ul>
 <div class="pn"><a href="#quests">← Quests</a><a href="#chat-games">Chat Games →</a></div></section>
 <section class="page" id="chat-games" data-title="Chat Games" hidden><h1>Chat Games</h1>
-<p>Chat games pop up in chat all the time. The <strong>first player to answer correctly</strong> wins. They're quick, free and a nice little bonus while you play.</p>
-<div class="hero"><div class="stat"><b>5</b><span>different games</span></div><div class="stat"><b>30 to 60s</b><span>to answer</span></div><div class="stat"><b>1st</b><span>correct answer wins</span></div></div>
+<p>A chat game starts in chat about <strong>every 25 minutes</strong>. The <strong>first player to answer correctly</strong> wins. They're quick, free and a nice little bonus while you play. There is also a bigger side to them: team games, a weekly event, daily challenges and win streaks.</p>
+<div class="hero"><div class="stat"><b>14</b><span>chat games</span></div><div class="stat"><b>~25 min</b><span>between games</span></div><div class="stat"><b>1st</b><span>correct answer wins</span></div></div>
 <h2 id="chat-games-list">The games</h2>
-<div class="cg"><div class="cd" style="--c:#e5484d;--on:#fff"><div class="ic" aria-hidden="true">🧮</div><div class="ct">Math Wizard <span class="bdg" style="--c:#e5484d">⏱ 60s</span></div><p>Solve the equation in chat: derivatives, integrals, logs and trig. Type the number.</p><div class="rw" style="--c:#e5484d"><span class="pill">1 to 2 diamonds</span><span class="pill">20 to 100 XP</span></div></div>
-<div class="cd" style="--c:#3b82d6;--on:#fff"><div class="ic" aria-hidden="true">❓</div><div class="ct">Quiz Challenge <span class="bdg" style="--c:#3b82d6">⏱ 45s</span></div><p>Multiple choice. Type the correct letter (A, B, C or D).</p><div class="rw" style="--c:#3b82d6"><span class="pill">1 to 2 diamonds</span><span class="pill">20 to 40 XP</span></div></div>
-<div class="cd" style="--c:#e6b800;--on:#2a2230"><div class="ic" aria-hidden="true">🎓</div><div class="ct">College Trivia <span class="bdg" style="--c:#e6b800">⏱ 30s</span> <span class="bdg" style="--c:#c2457a;--on:#fff">Best rewards</span></div><p>Answer a college-level question. Type the answer.</p><div class="rw" style="--c:#e6b800"><span class="pill">1 to 2 diamonds</span><span class="pill">1 to 50 XP</span><span class="pill">1 to 10 min fly time</span><span class="pill">1 to 2 Basic keys</span></div></div>
-<div class="cd" style="--c:#3fa66b;--on:#fff"><div class="ic" aria-hidden="true">⚡</div><div class="ct">Reaction Rush <span class="bdg" style="--c:#3fa66b">⏱ 30s</span></div><p>Be the fastest. Type the word shown, or click the button or star.</p><div class="rw" style="--c:#3fa66b"><span class="pill">1 to 9 emeralds</span><span class="pill">20 XP</span></div></div>
-<div class="cd" style="--c:#9b6bd6;--on:#fff"><div class="ic" aria-hidden="true">🔤</div><div class="ct">Word Scramble <span class="bdg" style="--c:#9b6bd6">⏱ 60s</span></div><p>Unscramble the word and type it.</p><div class="rw" style="--c:#9b6bd6"><span class="pill">1 to 5 gold ingots</span><span class="pill">1 to 2 diamonds</span><span class="pill">20 XP</span></div></div>
+<p>Every game has a short timer. Wins pay by type, so the reward is on each card. Each win also gives you <strong>1 point</strong> for <code>/chatgames top</code>.</p>
+<div class="cg">
+<div class="cd" style="--c:#3fa66b;--on:#fff"><div class="ic" aria-hidden="true">⚡</div><div class="ct">Reflex games <span class="bdg" style="--c:#3fa66b;--on:#fff">⏱ 20s</span></div><p>Quick and short. Be the fastest.</p><ul class="gl"><li><b>Reaction</b> <span class="gt"></span><br>Type the word shown in chat.</li><li><b>Random</b> <span class="gt"></span><br>Type the random mix of letters and numbers.</li><li><b>Guess the Number</b> <span class="gt"></span><br>Guess a number from 1 to 20.</li><li><b>Clickable</b> <span class="gt"></span><br>Click the text in chat.</li><li><b>Hoverable</b> <span class="gt"></span><br>Hover over the text to see a word, then type it.</li></ul><div class="rw" style="--c:#3fa66b"><span class="pill">1 to 9 emeralds</span><span class="pill">20 XP</span></div></div>
+<div class="cd" style="--c:#9b6bd6;--on:#fff"><div class="ic" aria-hidden="true">🔤</div><div class="ct">Word games <span class="bdg" style="--c:#9b6bd6;--on:#fff">⏱ 20 to 60s</span></div><p>Play with words and letters.</p><ul class="gl"><li><b>Unscramble</b> <span class="gt">60s</span><br>Put the letters in order and type the word.</li><li><b>Unreverse</b> <span class="gt">20s</span><br>The word is written backwards. Type it the right way round.</li><li><b>Fill Out</b> <span class="gt">20s</span><br>Some letters are hidden. Type the whole word.</li><li><b>Memorize</b> <span class="gt">6s + 20s</span><br>A list of 5 things shows for 6 seconds. Type them back in the same order.</li></ul><div class="rw" style="--c:#9b6bd6"><span class="pill">1 to 5 gold ingots</span><span class="pill">1 to 2 diamonds</span><span class="pill">20 XP</span></div></div>
+<div class="cd" style="--c:#e5484d;--on:#fff"><div class="ic" aria-hidden="true">🧮</div><div class="ct">Brain games <span class="bdg" style="--c:#e5484d;--on:#fff">⏱ 20 to 30s</span></div><p>Numbers and puzzles.</p><ul class="gl"><li><b>Math</b> <span class="gt">30s</span><br>Solve a short sum, or find the hidden number. Uses + - x and /.</li><li><b>Variable</b> <span class="gt">20s</span><br>Symbols stand for numbers. Work out each one, then find the value of ✗.</li><li><b>Sequence</b> <span class="gt">25s</span><br>Type the next number in the pattern, like 3, 6, 12, 24, ?</li></ul><div class="rw" style="--c:#e5484d"><span class="pill">1 to 2 diamonds</span><span class="pill">20 to 100 XP</span></div></div>
+<div class="cd" style="--c:#e6b800;--on:#2a2230"><div class="ic" aria-hidden="true">🎓</div><div class="ct">Trivia <span class="bdg" style="--c:#e6b800;--on:#2a2230">⏱ 30s</span> <span class="bdg" style="--c:#c2457a;--on:#fff">Best rewards</span></div><p>Minecraft and general knowledge: science, computers, history and more. Type the answer.</p><ul class="gl"></ul><div class="rw" style="--c:#e6b800"><span class="pill">1 to 2 diamonds</span><span class="pill">1 to 50 XP</span><span class="pill">1 to 10 min fly time</span><span class="pill">1 to 2 Basic keys</span></div></div>
+<div class="cd" style="--c:#3b82d6;--on:#fff"><div class="ic" aria-hidden="true">🔗</div><div class="ct">Word Association <span class="bdg" style="--c:#3b82d6;--on:#fff">⏱ 30s</span></div><p>Three clues point to one thing. Type what links them. For example: Obsidian, Flint and Steel, Purple.</p><ul class="gl"></ul><div class="rw" style="--c:#3b82d6"><span class="pill">1 to 2 diamonds</span><span class="pill">20 to 40 XP</span></div></div>
 </div>
+<h2 id="chat-games-team">Team games</h2>
+<p>Sometimes, right after a game ends, the whole server plays <strong>together as one team</strong>. It happens about <strong>1 time in 10</strong> and needs 2 or more players online. A boss bar shows the team's progress. Nobody has to be the fastest. If the team reaches the goal in time, <strong>everyone who helped is rewarded</strong>. If time runs out, nobody is.</p>
+<div class="tw" style="--tc:#3b82d6"><table>
+<thead><tr><th>Team game</th><th>Goal</th><th>Time</th></tr></thead>
+<tbody>
+<tr class="odd"><td data-label="Team game"><strong>Reaction</strong></td><td data-label="Goal">10 answers</td><td data-label="Time">2 min</td></tr>
+<tr class="even"><td data-label="Team game"><strong>Unscramble</strong></td><td data-label="Goal">10 answers</td><td data-label="Time">3 min</td></tr>
+<tr class="odd"><td data-label="Team game"><strong>Fill Out</strong></td><td data-label="Goal">10 answers</td><td data-label="Time">3 min</td></tr>
+<tr class="even"><td data-label="Team game"><strong>Math</strong></td><td data-label="Goal">15 answers</td><td data-label="Time">4 min</td></tr>
+<tr class="odd"><td data-label="Team game"><strong>Sequence</strong></td><td data-label="Goal">8 answers</td><td data-label="Time">2 min 30s</td></tr>
+<tr class="even"><td data-label="Team game"><strong>Trivia</strong></td><td data-label="Goal">8 answers</td><td data-label="Time">3 min</td></tr>
+<tr class="odd"><td data-label="Team game"><strong>Word Association</strong></td><td data-label="Goal">8 answers</td><td data-label="Time">2 min 30s</td></tr>
+<tr class="even"><td data-label="Team game"><strong>Count</strong></td><td data-label="Goal">Count together to the end</td><td data-label="Time">2 min</td></tr>
+<tr class="odd"><td data-label="Team game"><strong>Mine</strong></td><td data-label="Goal">200 blocks together</td><td data-label="Time">4 min</td></tr>
+<tr class="even"><td data-label="Team game"><strong>Hunt</strong></td><td data-label="Goal">40 mobs together</td><td data-label="Time">4 min</td></tr>
+</tbody></table></div>
+<ul>
+<li><strong>Everyone who helped</strong> gets 3 iron ingots.</li>
+<li><strong>The top 3 helpers</strong> also get extra: 1st gets 1 diamond, 2nd gets 3 gold ingots, 3rd gets 1 gold ingot.</li>
+<li><strong>Chat questions</strong> can be answered once per player, and each question closes after a few answers. Don't wait for others to answer first.</li>
+<li><strong>Count:</strong> count up, down, by twos or by fives, one number per message. Nobody counts twice in a row. A mistake starts the count again, and 5 mistakes end the game.</li>
+<li><strong>Mine and Hunt</strong> count what everyone mines or kills. Chat tells you what to collect.</li>
+</ul>
+<h2 id="chat-games-weekend-cup">Weekend Cup</h2>
+<p>An event that runs <strong>every Saturday at 8 PM</strong> (Philippine time) when <strong>3 or more players</strong> are online. It is 5 games back to back. While it runs, the normal chat games wait.</p>
+<ol>
+<li><strong>Unscramble:</strong> top 3 score.</li>
+<li><strong>Math:</strong> top 3 score, 25 seconds.</li>
+<li><strong>Word Association:</strong> a team game on hard clues.</li>
+<li><strong>Trivia:</strong> top 3 score.</li>
+<li><strong>Mine:</strong> the team mines 100 Stone together in 2 minutes.</li>
+</ol>
+<p>In each game, 1st place earns <strong>5 event points</strong>, 2nd earns 3 and 3rd earns 1. Everyone else who takes part earns 1. The most points at the end wins.</p>
+<div class="tw" style="--tc:#e6b800"><table class="cards">
+<thead><tr><th>Final place</th><th>Reward</th></tr></thead>
+<tbody>
+<tr class="odd"><td data-label="Final place"><strong>1st</strong></td><td data-label="Reward">5 diamonds and 1 Advanced key</td></tr>
+<tr class="even"><td data-label="Final place"><strong>2nd</strong></td><td data-label="Reward">3 diamonds and 1 Basic key</td></tr>
+<tr class="odd"><td data-label="Final place"><strong>3rd</strong></td><td data-label="Reward">1 diamond</td></tr>
+<tr class="even"><td data-label="Final place"><strong>Everyone else who scored</strong></td><td data-label="Reward">3 iron ingots</td></tr>
+</tbody></table></div>
+<h2 id="chat-games-challenges">Daily and weekly challenges</h2>
+<p>Everyone gets the same challenges. Open <code>/chatgames challenges</code> to see your progress. When one is done it says <strong>Ready to claim</strong>. Type <code>/chatgames claim</code> to collect. <strong>Rewards you don't claim are lost</strong> when the challenges reset.</p>
+<h3 id="chat-games-daily">Daily (3 a day)</h3>
+<p>Each day, 3 challenges are picked at random from this list.</p>
+<div class="tw" style="--tc:#3fa66b"><table class="cards">
+<thead><tr><th>Challenge</th><th>What to do</th><th>Reward</th></tr></thead>
+<tbody>
+<tr class="odd"><td data-label="Challenge"><strong>Warm Up</strong></td><td data-label="What to do">Win 3 chat games</td><td data-label="Reward">8 iron ingots</td></tr>
+<tr class="even"><td data-label="Challenge"><strong>On a Roll</strong></td><td data-label="What to do">Win 8 chat games</td><td data-label="Reward">8 gold ingots</td></tr>
+<tr class="odd"><td data-label="Challenge"><strong>Word Wizard</strong></td><td data-label="What to do">Win 2 Unscramble games</td><td data-label="Reward">8 iron ingots</td></tr>
+<tr class="even"><td data-label="Challenge"><strong>Human Calculator</strong></td><td data-label="What to do">Win 2 Math games</td><td data-label="Reward">8 iron ingots</td></tr>
+<tr class="odd"><td data-label="Challenge"><strong>Quick Fingers</strong></td><td data-label="What to do">Win a chat game in 5 seconds or less</td><td data-label="Reward">2 diamonds</td></tr>
+<tr class="even"><td data-label="Challenge"><strong>Point Collector</strong></td><td data-label="What to do">Earn 5 points</td><td data-label="Reward">8 iron ingots</td></tr>
+<tr class="odd"><td data-label="Challenge"><strong>Team Player</strong></td><td data-label="What to do">Solve a team game in time</td><td data-label="Reward">8 iron ingots</td></tr>
+</tbody></table></div>
+<h3 id="chat-games-weekly">Weekly (all 3, resets Monday)</h3>
+<div class="tw" style="--tc:#9b6bd6"><table class="cards">
+<thead><tr><th>Challenge</th><th>What to do</th><th>Reward</th></tr></thead>
+<tbody>
+<tr class="odd"><td data-label="Challenge"><strong>Weekly Champion</strong></td><td data-label="What to do">Win 25 chat games this week</td><td data-label="Reward">3 diamonds</td></tr>
+<tr class="even"><td data-label="Challenge"><strong>Lightning</strong></td><td data-label="What to do">Win 5 chat games in 4 seconds or less</td><td data-label="Reward">2 diamonds</td></tr>
+<tr class="odd"><td data-label="Challenge"><strong>Crowd Favourite</strong></td><td data-label="What to do">Finish 5 team games in a rewarded place</td><td data-label="Reward">2 diamonds</td></tr>
+</tbody></table></div>
+<h2 id="chat-games-streaks">Streaks</h2>
+<p>Streaks count the days in a row you did something. Each new day adds a reward, and you collect it with <code>/chatgames claim</code>. <strong>Miss a day and the streak starts again from day 1</strong>, and any reward you hadn't claimed is lost. After day 7 you keep getting the day 7 reward every day. Days follow Philippine time. See yours with <code>/chatgames streaks</code>.</p>
+<ul>
+<li><strong>Daily win streak:</strong> win at least one chat game that day.</li>
+<li><strong>Global streak:</strong> solve at least one team game in time that day.</li>
+<li><strong>Challenge streak:</strong> finish every daily challenge that day. It pays double.</li>
+</ul>
+<div class="tw" style="--tc:#e6b800"><table>
+<thead><tr><th>Day</th><th>Daily win and Global streak</th><th>Challenge streak</th></tr></thead>
+<tbody>
+<tr class="odd"><td data-label="Day"><strong>Day 1</strong></td><td data-label="Daily win and Global streak">1 iron ingot</td><td data-label="Challenge streak">2 iron ingots</td></tr>
+<tr class="even"><td data-label="Day"><strong>Day 2</strong></td><td data-label="Daily win and Global streak">2 iron ingots</td><td data-label="Challenge streak">4 iron ingots</td></tr>
+<tr class="odd"><td data-label="Day"><strong>Day 3</strong></td><td data-label="Daily win and Global streak">1 gold ingot</td><td data-label="Challenge streak">2 gold ingots</td></tr>
+<tr class="even"><td data-label="Day"><strong>Day 4</strong></td><td data-label="Daily win and Global streak">2 gold ingots</td><td data-label="Challenge streak">4 gold ingots</td></tr>
+<tr class="odd"><td data-label="Day"><strong>Day 5</strong></td><td data-label="Daily win and Global streak">1 emerald</td><td data-label="Challenge streak">2 emeralds</td></tr>
+<tr class="even"><td data-label="Day"><strong>Day 6</strong></td><td data-label="Daily win and Global streak">2 emeralds</td><td data-label="Challenge streak">4 emeralds</td></tr>
+<tr class="odd"><td data-label="Day"><strong>Day 7 and after</strong></td><td data-label="Daily win and Global streak">1 diamond</td><td data-label="Challenge streak">2 diamonds</td></tr>
+</tbody></table></div>
+<h2 id="chat-games-commands">Chat game commands</h2>
+<div class="tw" style="--tc:#c2457a"><table class="cards">
+<thead><tr><th>Command</th><th>What it does</th></tr></thead>
+<tbody>
+<tr class="odd"><td data-label="Command"><code data-copy="/chatgames menu">/chatgames menu</code></td><td data-label="What it does">Open the menu: your profile, challenges, streaks and leaderboards.</td></tr>
+<tr class="even"><td data-label="Command"><code data-copy="/chatgames challenges">/chatgames challenges</code></td><td data-label="What it does">See your daily and weekly challenges.</td></tr>
+<tr class="odd"><td data-label="Command"><code data-copy="/chatgames claim">/chatgames claim</code></td><td data-label="What it does">Claim finished challenges and streak rewards.</td></tr>
+<tr class="even"><td data-label="Command"><code data-copy="/chatgames streaks">/chatgames streaks</code></td><td data-label="What it does">See your streaks.</td></tr>
+<tr class="odd"><td data-label="Command"><code data-copy="/chatgames top">/chatgames top</code></td><td data-label="What it does">Top 10 players by points.</td></tr>
+<tr class="even"><td data-label="Command"><code data-copy="/chatgames fastest">/chatgames fastest</code></td><td data-label="What it does">Fastest winners. Add a game name to see one game.</td></tr>
+<tr class="odd"><td data-label="Command"><code data-copy="/chatgames profile">/chatgames profile</code></td><td data-label="What it does">Your stats, or add a player name to see theirs.</td></tr>
+<tr class="even"><td data-label="Command"><code data-copy="/chatgames points">/chatgames points</code></td><td data-label="What it does">Your points.</td></tr>
+<tr class="odd"><td data-label="Command"><code data-copy="/chatgames event list">/chatgames event list</code></td><td data-label="What it does">See the game events. Use <code>/chatgames event top &lt;event&gt;</code> for who scored most.</td></tr>
+<tr class="even"><td data-label="Command"><code data-copy="/chatgames toggle">/chatgames toggle</code></td><td data-label="What it does">Turn chat games on or off for you.</td></tr>
+<tr class="odd"><td data-label="Command"><code data-copy="/chatgames togglesound">/chatgames togglesound</code></td><td data-label="What it does">Turn chat game sounds on or off.</td></tr>
+</tbody></table></div>
 <h2 id="chat-games-tips">Tips</h2>
 <ul>
 <li><strong>Trivia pays best.</strong> It is the only game that gives fly time and a key.</li>
+<li><strong>Watch the capitals.</strong> Reaction, Random, Hoverable, Unreverse and Fill Out need the exact capitals. Unscramble, Math and Trivia don't. If chat says "Almost...", fix your capitals and try again.</li>
+<li><strong>Wait for the hint.</strong> Many games show a hint halfway through. The last 10 seconds also show on your action bar.</li>
+<li><strong>Memorize:</strong> read the list fast, then type it back in order.</li>
 <li><strong>Speed matters.</strong> Be ready to type the moment a game starts.</li>
-<li><strong>Reaction Rush</strong> sometimes shows a button. Click it. If it shows several, click the star.</li>
-<li><strong>Math and Quiz</strong> use college-level questions. Keep a calculator handy.</li>
-<li>Spelling counts. Type the answer exactly as asked.</li>
+<li><strong>Too many messages?</strong> Use <code>/chatgames toggle</code> to hide chat games for yourself.</li>
 </ul>
 <p>More ways to earn: <a href="#quests">Quests</a>, <a href="#fishing">Fishing</a> and the daily <code>/calendar</code>.</p>
 <div class="pn"><a href="#fishing">← Fishing</a><a href="#kits">Kits →</a></div></section>
@@ -1813,7 +1927,7 @@ a stack, so you may see a number instead of a crowd.</li>
 <div class="tools"><input type="search" id="fq-q" placeholder="Search questions, like rank or flight" aria-label="Search questions" autocomplete="off"></div>
 <div class="fb" id="fq-f" role="group" aria-label="Filter by topic"><button type="button" class="chip" data-v="" aria-pressed="false" style="--c:var(--ac)">All <span class="cn">19</span></button><button type="button" class="chip" data-v="start" aria-pressed="false" style="--c:#3fa66b"><i class="dt" style="--c:#3fa66b"></i>Getting started <span class="cn">4</span></button><button type="button" class="chip" data-v="prog" aria-pressed="false" style="--c:#d9a400"><i class="dt" style="--c:#d9a400"></i>Ranks and rewards <span class="cn">8</span></button><button type="button" class="chip" data-v="safe" aria-pressed="false" style="--c:#e5484d"><i class="dt" style="--c:#e5484d"></i>Safety and rules <span class="cn">4</span></button><button type="button" class="chip" data-v="world" aria-pressed="false" style="--c:#3b82d6"><i class="dt" style="--c:#3b82d6"></i>Travel and world <span class="cn">3</span></button></div>
 <p class="fs" id="fq-n" role="status" aria-live="polite"></p>
-<details class="fq" data-g="start" data-t="how do i join the server?java players connect to sftblmorg.usga.me:12006 on 1.21.11. bedrock players use 216.163.186.36 with port 12009, on 1.21.11 or newer. the details are on the home page." style="--c:#3fa66b"><summary>How do I join the server?</summary><div class="a"><p>Java players connect to <code data-sb="java">sftblmorg.usga.me:12006</code> on 1.21.11. Bedrock players use <code data-sb="host">216.163.186.36</code> with port <code data-sb="bport">12009</code>, on 1.21.11 or newer. The details are on the <a href="#home">home page</a>.</p></div></details>
+<details class="fq" data-g="start" data-t="how do i join the server?java players connect to sftblmorg.usga.me:12006 on 1.21.11. bedrock players use sftblmorg.usga.me with port 12009, on 1.21.11 or newer. the details are on the home page." style="--c:#3fa66b"><summary>How do I join the server?</summary><div class="a"><p>Java players connect to <code data-sb="java">sftblmorg.usga.me:12006</code> on 1.21.11. Bedrock players use <code data-sb="bhost">216.163.186.36</code> with port <code data-sb="bport">12009</code>, on 1.21.11 or newer. The details are on the <a href="#home">home page</a>.</p></div></details>
 <details class="fq" data-g="start" data-t="i just joined. what do i do first?type /register &amp;lt;password&amp;gt; &amp;lt;password&amp;gt;. next time you join, use /login &amp;lt;password&amp;gt; if the password window doesn&#x27;t appear. then open /kit and claim your starter kit and guide kit. see stage 1." style="--c:#3fa66b"><summary>I just joined. What do I do first?</summary><div class="a"><p>Type <code>/register &lt;password&gt; &lt;password&gt;</code>. Next time you join, use <code>/login &lt;password&gt;</code> if the password window doesn't appear. Then open <code>/kit</code> and claim your Starter kit and Guide kit. See <a href="#1-settle-in">Stage 1</a>.</p></div></details>
 <details class="fq" data-g="safe" data-t="how do i protect my base?stand where you want your base and use /lands create, then /lands claim to claim the chunk you are standing in. no golden shovel needed. you can claim 2 separate lands. claiming more chunks costs money, and lands pay upkeep, so keep money in your land bank." style="--c:#e5484d"><summary>How do I protect my base?</summary><div class="a"><p>Stand where you want your base and use <code>/lands create &lt;name&gt;</code>, then <code>/lands claim</code> to claim the chunk you are standing in. No Golden Shovel needed. You can claim 2 separate lands. Claiming more chunks costs money, and lands pay upkeep, so keep money in your land bank.</p></div></details>
 <details class="fq" data-g="prog" data-t="how do i rank up?you need enough playtime and a minimum level in every skill. type /rankup to see what is missing. rank-ups are free and pay money and fly time. use the rank calculator to see how close you are." style="--c:#d9a400"><summary>How do I rank up?</summary><div class="a"><p>You need enough <strong>playtime</strong> and a minimum level in <strong>every skill</strong>. Type <code>/rankup</code> to see what is missing. Rank-ups are free and pay money and fly time. Use the <a href="#rank-calculator">Rank Calculator</a> to see how close you are.</p></div></details>
@@ -1957,8 +2071,9 @@ a stack, so you may see a number instead of a crowd.</li>
 <script>
 /* ===== SERVER SETTINGS: edit here, nowhere else ===== */
 window.SB={
-  host:"216.163.186.36",      /* server address */
+  host:"sftblmorg.usga.me",      /* server address */
   javaPort:12006,                /* Java port (25565 is hidden automatically) */
+  bedrockHost:"216.163.186.36",  /* Bedrock address (numeric IP) */
   bedrockPort:12009,             /* Bedrock port */
   javaVersion:"1.21.11",
   bedrockVersion:"1.21.11 up to Latest",
@@ -1969,11 +2084,11 @@ window.SB={
 </script>
 <script>
 (function(){
-var C=window.SB||{},host=C.host||"",jp=C.javaPort||25565,bp=C.bedrockPort||19132;
+var C=window.SB||{},host=C.host||"",bh=C.bedrockHost||host,jp=C.javaPort||25565,bp=C.bedrockPort||19132;
 var javaAddr=host+(jp!==25565?":"+jp:"");
 function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
 /* fill every spot that quotes the address (FAQ etc.) */
-var map={java:javaAddr,host:host,bport:String(bp),jport:String(jp)};
+var map={java:javaAddr,host:host,bhost:bh,bport:String(bp),jport:String(jp)};
 Array.prototype.forEach.call(document.querySelectorAll("[data-sb]"),function(n){var v=map[n.getAttribute("data-sb")];if(v!=null)n.textContent=v});
 Array.prototype.forEach.call(document.querySelectorAll(".fq"),function(q){
 if(!q.querySelector("[data-sb]"))return;var s=q.querySelector("summary"),a=q.querySelector(".a");
@@ -2001,7 +2116,7 @@ var g=el("div","ads");g.appendChild(copyRow("Server address",javaAddr,"Java addr
 p.appendChild(steps(["Open Minecraft Java Edition "+(C.javaVersion||"")+" and choose Multiplayer.","Choose Add Server and paste the address above.",login]))}
 else{
 p.appendChild(el("p","ver","Bedrock Edition · "+(C.bedrockVersion||"")));
-var g2=el("div","ads two");g2.appendChild(copyRow("Server address",host,"Bedrock address"));g2.appendChild(copyRow("Port",String(bp),"Bedrock port"));p.appendChild(g2);
+var g2=el("div","ads two");g2.appendChild(copyRow("Server address",bh,"Bedrock address"));g2.appendChild(copyRow("Port",String(bp),"Bedrock port"));p.appendChild(g2);
 p.appendChild(steps(["Open Minecraft Bedrock Edition, then choose Play and open the Servers tab.","Scroll down, choose Add Server, and enter the address and the port above.",login]))}
 });
 box.appendChild(tabs);box.appendChild(pn.java);box.appendChild(pn.be);
