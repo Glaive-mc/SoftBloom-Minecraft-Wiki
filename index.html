@@ -4,7 +4,8 @@
   Search this file for:  SERVER SETTINGS
   Edit the host and port numbers there. The Home join box, the FAQ and the live status all read from it.
 -->
-<html lang="en"><head><meta charset="utf-8">
+<html lang="en"><head>
+<script>try{var u=JSON.parse(localStorage.getItem("sbw-ui")||"null");if(u){var r=document.documentElement;if(u.s>=0&&u.s<5&&u.s!==1)r.setAttribute("data-fs",String(u.s));if(u.w==="n"||u.w==="w")r.setAttribute("data-w",u.w)}}catch(e){}</script><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>SoftBloom Wiki</title>
 <meta name="description" content="The SoftBloom SMP wiki: new player guide, ranks, dungeons, custom enchants, events and a command cheat sheet.">
@@ -26,7 +27,7 @@
 :root[data-theme="dark"]{--bg:#17121a;--sf:#211a25;--tx:#efe8f2;--mu:#a99bb3;--ac:#f08cb6;--bd:#3a2f40;--cd:#2d2433}
 *,*::before,*::after{box-sizing:inherit}
 html{scroll-padding-top:calc(var(--hd) + env(safe-area-inset-top,0px) + 12px)}
-body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+body{margin:0;background:var(--bg);color:var(--tx);font:1rem/1.65 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--sf)}
 header{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;height:var(--hd);display:flex;align-items:center;gap:10px;padding:0 14px;background:var(--sf);border-bottom:1px solid var(--bd)}
 header b{font-size:1.1rem;white-space:nowrap}
@@ -454,10 +455,109 @@ table.cards td:has(> .dt){grid-template-columns:6.5em .75em minmax(0,1fr);align-
 .cd .gl .gt{margin-left:4px;padding:0 7px;border:1px solid var(--bd);border-radius:999px;font-size:.76rem;color:var(--mu)}
 .cd .gl .gt:empty{display:none}
 .cd .gl:empty{display:none}
+
+/* ---- batch 5: callouts v2, shop calculator, reading settings, not-found ---- */
+:root{--in:#2a65c4;--ok:#23804f}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--in:#82b4ff;--ok:#6fd7a0}}
+:root[data-theme="dark"]{--in:#82b4ff;--ok:#6fd7a0}
+.co{--k:var(--in);--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2a10 10 0 100 20 10 10 0 000-20zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z'/%3E%3C/svg%3E");position:relative;padding:12px 14px 12px 54px;border:1px solid color-mix(in srgb,var(--k) 32%,var(--bd));border-left:4px solid var(--k);background:color-mix(in srgb,var(--k) 7%,var(--sf))}
+.co::before{content:"";position:absolute;left:15px;top:13px;width:24px;height:24px;background:var(--k);-webkit-mask:var(--ic) center/contain no-repeat;mask:var(--ic) center/contain no-repeat}
+.co b{margin-bottom:2px;font-size:.76rem;letter-spacing:.07em;text-transform:uppercase}
+.co.warn{--k:var(--wn);--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2L1 21h22L12 2zm1 15h-2v-2h2v2zm0-4h-2V9h2v4z'/%3E%3C/svg%3E")}
+.co.tip{--k:var(--ok);--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 21h6v-1H9v1zm3-19a7 7 0 00-4 12.7V17h8v-2.3A7 7 0 0012 2z'/%3E%3C/svg%3E")}
+.co.ok{--k:var(--ok);--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2a10 10 0 100 20 10 10 0 000-20zm-2 15l-5-5 1.4-1.4L10 14.2l7.6-7.6L19 8l-9 9z'/%3E%3C/svg%3E")}
+/* reading settings */
+html[data-fs="0"]{font-size:88%}
+html[data-fs="2"]{font-size:112%}
+html[data-fs="3"]{font-size:125%}
+html[data-fs="4"]{font-size:140%}
+@media(min-width:1101px){
+html[data-w="n"] main{max-width:36rem;width:100%;margin:0 auto}
+html[data-w="w"] .wrap{max-width:1680px}
+}
+#rs-b{font-weight:700;letter-spacing:-.02em}
+.sb,#q{min-width:0}
+header button,header .btn,header a.btn{flex-shrink:0}
+#theme{min-width:44px}
+header b{min-width:0}
+@media(max-width:560px){header b{font-size:0}header b::before{content:"🌸";font-size:1.3rem}}
+#rs{position:fixed;z-index:30;top:calc(var(--hd) + env(safe-area-inset-top,0px) + 8px);right:12px;width:min(320px,calc(100vw - 24px));padding:14px 16px;border:1px solid var(--bd);border-radius:14px;background:var(--sf);color:var(--tx);box-shadow:0 12px 32px rgba(0,0,0,.22)}
+#rs[hidden]{display:none}
+#rs h2{margin:0 0 10px;padding:0;border:0;font-size:1rem}
+#rs .rs-r{margin:0 0 12px}
+#rs .rs-l{display:block;margin:0 0 6px;color:var(--mu);font-size:.85rem}
+#rs .rs-g{display:flex;gap:6px}
+#rs .rs-g button{flex:1;min-height:44px;border:1px solid var(--bd);border-radius:10px;background:var(--cd);color:var(--tx);font:inherit;cursor:pointer}
+#rs .rs-g button:hover:not(:disabled){border-color:var(--ac)}
+#rs .rs-g button:disabled{opacity:.4;cursor:default}
+#rs .rs-g button[aria-pressed="true"]{border-color:var(--ac);background:color-mix(in srgb,var(--ac) 16%,var(--sf));color:var(--ac);font-weight:700}
+#rs .rs-v{flex:1.2;display:grid;place-items:center;min-height:44px;border:1px solid var(--bd);border-radius:10px;background:var(--sf);font-weight:700}
+#rs .rs-x{margin-top:2px;padding:6px 0;border:0;background:none;color:var(--ac);font:inherit;text-decoration:underline;cursor:pointer}
+@media(max-width:1100px){#rs .rs-w{display:none}}
+#rs button:focus-visible,#rs-b:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+@media print{#rs,#rs-b{display:none!important}}
+/* shop calculator + sortable headers */
+.sc{margin:1rem 0;border:1px solid var(--bd);border-radius:14px;background:var(--sf)}
+.sc>summary{cursor:pointer;padding:12px 16px;font-weight:700;list-style:none}
+.sc>summary::-webkit-details-marker{display:none}
+.sc>summary::before{content:"▸";display:inline-block;width:1.1em;color:var(--ac);transition:transform .15s}
+.sc[open]>summary::before{transform:rotate(90deg)}
+.sc>summary .sc-c{margin-left:8px;padding:1px 9px;border-radius:999px;background:var(--ac);color:var(--bg);font-size:.76rem}
+:root[data-theme="light"] .sc>summary .sc-c{color:#fff}
+@media(prefers-color-scheme:light){:root:not([data-theme="dark"]) .sc>summary .sc-c{color:#fff}}
+.sc>summary .sc-c:empty{display:none}
+.sc-b{padding:0 16px 16px}
+.sc-b>p{margin:0 0 10px;color:var(--mu);font-size:.92rem}
+.sc-f{display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end}
+.sc-f label{display:block;margin:0 0 4px;color:var(--mu);font-size:.85rem}
+.sc-f input{box-sizing:border-box;width:100%;min-height:44px;padding:8px 12px;border:1px solid var(--bd);border-radius:10px;background:var(--bg);color:var(--tx);font:inherit}
+.sc-i{flex:2 1 220px;min-width:0}
+.sc-n{flex:1 1 110px;min-width:0;max-width:180px}
+.sc-f .btn{flex:0 0 auto;min-height:44px;padding:0 18px;cursor:pointer;border:0}
+.sc-q{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 0}
+.sc-pv{margin:10px 0 0;min-height:1.5em;font-weight:600}
+.sc-pv .sell,.sc-t .sell{color:var(--ok)}
+.sc-pv .buy,.sc-t .buy{color:var(--in)}
+.sc-l{margin:12px 0 0;padding:0;list-style:none}
+.sc-r{display:grid;grid-template-columns:minmax(0,1fr) 7rem auto;gap:4px 10px;align-items:center;padding:8px 0;border-top:1px solid var(--bd)}
+.sc-r b{overflow-wrap:anywhere}
+.sc-r input{width:100%;min-height:40px;padding:4px 8px;border:1px solid var(--bd);border-radius:8px;background:var(--bg);color:var(--tx);font:inherit}
+.sc-r .sc-s{grid-column:1/-1;color:var(--mu);font-size:.9rem}
+.sc-r .sc-d{min-width:44px;min-height:40px;border:1px solid var(--bd);border-radius:8px;background:var(--cd);color:var(--tx);font:inherit;cursor:pointer}
+.sc-r .sc-d:hover{border-color:var(--wn);color:var(--wn)}
+.sc-t{margin:12px 0 0;padding:12px 14px;border-radius:12px;background:var(--cd);display:flex;flex-wrap:wrap;gap:6px 24px}
+.sc-t[hidden],.sc-x[hidden]{display:none}
+.sc-t div{font-size:1.05rem}
+.sc-t small{display:block;flex:1 1 100%;color:var(--mu)}
+.sc-x{margin-top:10px}
+.sc input:focus-visible,.sc button:focus-visible,.sc summary:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+.tsb{display:inline-flex;align-items:center;gap:.4em;padding:0;border:0;background:none;color:inherit;font:inherit;font-weight:inherit;cursor:pointer}
+.tsb::after{content:"↕";color:var(--mu);font-size:.85em}
+th[aria-sort="ascending"] .tsb::after{content:"↑";color:var(--ac)}
+th[aria-sort="descending"] .tsb::after{content:"↓";color:var(--ac)}
+.tsb:hover{color:var(--ac)}
+.tsb:focus-visible{outline:2px solid var(--ac);outline-offset:3px;border-radius:4px}
+@media(prefers-reduced-motion:reduce){.sc>summary::before{transition:none}}
+@media print{.sc{display:none}}
+/* page not found */
+.nfp[hidden]{display:none}
+.nfp{padding:8px 0 48px}
+.nfp .eyebrow{margin:0 0 4px;color:var(--ac);font-weight:700;letter-spacing:.04em}
+.nfp h1:focus{outline:none}
+.nfp code{overflow-wrap:anywhere}
+.nfp form{display:flex;gap:8px;max-width:520px;margin:1rem 0}
+.nfp form input{flex:1;min-width:0;min-height:44px;padding:8px 12px;border:1px solid var(--bd);border-radius:10px;background:var(--bg);color:var(--tx);font:inherit}
+.nfp form button{min-height:44px;padding:0 18px;border:0;cursor:pointer}
+.nfp .nf-m{display:flex;flex-wrap:wrap;gap:8px;margin:.4rem 0 1.2rem}
+.nfp .nf-m a{padding:6px 14px;border:1px solid var(--ac);border-radius:999px;font-weight:600;text-decoration:none}
+.nfp .nf-m a:hover{background:color-mix(in srgb,var(--ac) 12%,transparent)}
+.nfp h2{margin-top:1.6rem}
+@media print{.nfp{display:none}}
 </style></head><body><a class="skip" href="#main-content">Skip to content</a>
 <header><button id="menu" aria-label="Menu" aria-controls="nav" aria-expanded="false">☰</button><b>🌸 SoftBloom Wiki</b>
 <div class="sb"><input id="q" type="search" placeholder="Search the wiki" autocomplete="off" aria-keyshortcuts="/"><kbd class="sk" aria-hidden="true">/</kbd><div id="res" hidden></div></div>
-<a class="dc" href="https://discord.com/invite/RKbhhCMbZ5" target="_blank" rel="noopener">Discord</a><button id="theme" aria-label="Toggle theme">◐</button></header>
+<a class="dc" href="https://discord.com/invite/RKbhhCMbZ5" target="_blank" rel="noopener">Discord</a><button id="rs-b" aria-label="Text size and width" aria-expanded="false" aria-controls="rs">Aa</button><button id="theme" aria-label="Toggle theme">◐</button></header>
+<div id="rs" role="group" aria-labelledby="rs-h" hidden><h2 id="rs-h">Reading settings</h2><div class="rs-r"><span class="rs-l" id="rs-sl">Text size</span><div class="rs-g" role="group" aria-labelledby="rs-sl"><button type="button" id="rs-m" aria-label="Smaller text">A−</button><span class="rs-v" id="rs-v" aria-live="polite">100%</span><button type="button" id="rs-p" aria-label="Larger text">A+</button></div></div><div class="rs-r rs-w"><span class="rs-l" id="rs-wl">Page width</span><div class="rs-g" role="group" aria-labelledby="rs-wl"><button type="button" data-w="n" aria-pressed="false">Narrow</button><button type="button" data-w="m" aria-pressed="true">Normal</button><button type="button" data-w="w" aria-pressed="false">Wide</button></div></div><button type="button" class="rs-x" id="rs-r">Reset to default</button></div>
 <div class="wrap"><nav id="nav" aria-label="Wiki pages"><h3>Start here</h3><a href="#home">Home</a><a href="#commands">Command Cheat Sheet</a><a href="#faq">FAQ</a><a href="#community">Community</a><h3>Progression guide</h3><a href="#1-settle-in">1. Settle In</a><a href="#2-skills">2. Skills</a><a href="#3-making-money">3. Making Money</a><a href="#4-ranks">4. Ranks</a><a href="#5-gear-and-enchants">5. Gear and Enchants</a><a href="#custom-enchants-list">All Custom Enchants</a><a href="#datapack-enchantments">Datapack Enchants</a><a href="#6-the-9-dungeons">6. The 9 Dungeons</a><h3>Systems</h3><a href="#pets">Pets</a><a href="#quests">Quests</a><a href="#fishing">Fishing</a><a href="#chat-games">Chat Games</a><a href="#kits">Kits</a><a href="#premium-ranks">Premium Ranks</a><a href="#shop-prices">Shop Prices</a><a href="#rank-calculator">Rank Calculator</a><h3>Explore</h3><a href="#events">Events</a><a href="#exploring-the-world">Exploring the World</a><a href="#the-overworld">The Overworld</a><a href="#katter-s-bosses-and-enchants">Katter’s bosses and enchants</a><a href="#the-deep-blue">The Deep Blue</a><a href="#the-nether">The Nether</a><a href="#the-deeper-dark">The Deeper Dark</a><a href="#the-end">The End</a><a href="#heaven-limbo-and-the-sift">Heaven, Limbo and The Sift</a><a href="#fighting-other-players">Fighting other players</a><h3>Tips</h3><a href="#suggested-path">Suggested Path</a><a href="#good-to-know">Good to Know</a></nav><main id="main-content" tabindex="-1"><section class="page" id="home" data-title="SoftBloom Wiki" hidden><div class="hero2"><p class="eyebrow">🌸 SoftBloom SMP · Java and Bedrock</p><h1>SoftBloom Wiki</h1><p class="lede">SoftBloom is built around steady progress: learn the basics, grow
 your skills, earn money, climb ranks, then take on the dungeons and
 bosses. Go at your own pace. This guide gives you a path, and you can
@@ -1609,7 +1709,7 @@ a stack, so you may see a number instead of a crowd.</li>
 <section class="page" id="pets" data-title="Pets" hidden><h1>Pets</h1>
 <p>Pets follow you, fight for you, carry items and buff you. Every pet levels up as you play and gains new abilities from its <strong>skill tree</strong>.</p>
 <div class="hero"><div class="stat"><b>6</b><span>skill trees</span></div><div class="stat"><b>1 to 6</b><span>pet slots by rank</span></div><div class="stat"><b>100</b><span>max skill level</span></div></div>
-<div class="co" role="note"><b>Getting a pet</b>Capture a mob with a lead to make it your pet. Name it, switch between pets, store them and release them with the pet commands further down.</div>
+<div class="co tip" role="note"><b>Getting a pet</b>Capture a mob with a lead to make it your pet. Name it, switch between pets, store them and release them with the pet commands further down.</div>
 <h2 id="pet-slots">How many pets you can keep</h2>
 <p>Your pet storage grows as you rank up. Premium ranks raise it up to 9. See <a href="#premium-ranks">Premium Ranks</a>.</p>
 <div class="lad l3"><div class="nd pl"><b>Member, Settler</b><span class="dots" aria-label="1 pet slots">●<i>●●●●●</i></span><span>1 pet slot</span></div><div class="nd pl"><b>Explorer</b><span class="dots" aria-label="2 pet slots">●●<i>●●●●</i></span><span>2 pet slots</span></div><div class="nd pl"><b>Adventurer, Pathfinder</b><span class="dots" aria-label="3 pet slots">●●●<i>●●●</i></span><span>3 pet slots</span></div><div class="nd pl"><b>Veteran, Elder</b><span class="dots" aria-label="4 pet slots">●●●●<i>●●</i></span><span>4 pet slots</span></div><div class="nd pl"><b>Pioneer, Ancient</b><span class="dots" aria-label="5 pet slots">●●●●●<i>●</i></span><span>5 pet slots</span></div><div class="nd pl"><b>Eternal</b><span class="dots" aria-label="6 pet slots">●●●●●●<i></i></span><span>6 pet slots</span></div></div>
@@ -1962,8 +2062,8 @@ a stack, so you may see a number instead of a crowd.</li>
 <p>Premium ranks unlock a kit they can claim <strong>every 30 days</strong>. Each one comes with keys, and most include a shulker box of goodies. Every perk is on the <a href="#premium-ranks">Premium Ranks</a> page.</p>
 <div class="cg"><div class="cd" style="--c:#9aa5b1;--on:#fff"><div class="ct">Donator <span class="bdg" style="--c:#9aa5b1">30 days</span></div><p>A Discord Nitro Bag and a 1-Day Fly Voucher</p></div><div class="cd" style="--c:#e6b800;--on:#2a2230"><div class="ct">VIP <span class="bdg" style="--c:#e6b800">30 days</span></div><p>A VIP kit shulker box</p></div><div class="cd" style="--c:#e6b800;--on:#2a2230"><div class="ct">VIP+ <span class="bdg" style="--c:#e6b800">30 days</span></div><p>A VIP+ kit shulker box</p></div><div class="cd" style="--c:#3b82d6;--on:#fff"><div class="ct">Elite <span class="bdg" style="--c:#3b82d6">30 days</span></div><p>1 Verdant Key and an Elite kit shulker box</p></div><div class="cd" style="--c:#3b82d6;--on:#fff"><div class="ct">Elite+ <span class="bdg" style="--c:#3b82d6">30 days</span></div><p>2 Verdant Keys and an Elite+ kit shulker box</p></div><div class="cd" style="--c:#9b6bd6;--on:#fff"><div class="ct">MVP <span class="bdg" style="--c:#9b6bd6">30 days</span></div><p>1 Zephyr Key and an MVP kit shulker box</p></div><div class="cd" style="--c:#9b6bd6;--on:#fff"><div class="ct">MVP+ <span class="bdg" style="--c:#9b6bd6">30 days</span></div><p>2 Zephyr Keys and an MVP+ kit shulker box</p></div><div class="cd" style="--c:#9b6bd6;--on:#fff"><div class="ct">MVP++ <span class="bdg" style="--c:#9b6bd6">30 days</span></div><p>3 Zephyr Keys and an MVP++ kit shulker box</p></div><div class="cd" style="--c:#e5484d;--on:#fff"><div class="ct">God <span class="bdg" style="--c:#e5484d">30 days</span></div><p>1 Glacial Key and a God kit shulker box</p></div></div>
 <h2 id="kits-tips">Tips</h2>
+<div class="co" role="note"><b>Heads up</b>You can only claim the <strong>Starter kit once</strong>, so open it when you are ready to use the gear.</div>
 <ul>
-<li>You can only claim the <strong>Starter kit once</strong>, so open it when you are ready to use the gear.</li>
 <li>Keep your inventory space free. A kit needs room for everything inside it.</li>
 </ul>
 <div class="pn"><a href="#chat-games">← Chat Games</a><a href="#premium-ranks">Premium Ranks →</a></div></section>
@@ -2041,7 +2141,16 @@ a stack, so you may see a number instead of a crowd.</li>
 <p>Everything in <code>/warp shop</code>: what you can sell and what you can buy. All prices are <strong>per item</strong>. A dash means that item can't be sold or can't be bought.</p>
 <div class="hero"><div class="stat"><b>669</b><span>items</span></div><div class="stat"><b>10</b><span>categories</span></div><div class="stat"><b>26</b><span>spawners</span></div><div class="stat"><b>$3K to $450K</b><span>spawner prices</span></div></div>
 <p class="fs"><span class="sell">● Sell for</span> is what you receive. <span class="buy">● Buy for</span> is what you pay.</p>
-<div class="tools"><input type="search" id="sp-q" placeholder="Search items, like diamond or spawner" aria-label="Search shop items" autocomplete="off"><label for="sp-s">Sort</label><select id="sp-s"><option value="n">Name</option><option value="sd">Sell price, high to low</option><option value="bd">Buy price, high to low</option><option value="ba">Buy price, low to high</option></select></div>
+<details class="sc" id="sc"><summary>🧮 Calculator<span class="sc-c" id="sc-c"></span></summary><div class="sc-b">
+<p>Add up a whole haul. Pick an item, say how many, and add it to the list. Prices are per item.</p>
+<div class="sc-f"><div class="sc-i"><label for="sc-item">Item</label><input id="sc-item" list="sc-dl" placeholder="Start typing, like diamond" autocomplete="off"><datalist id="sc-dl"></datalist></div><div class="sc-n"><label for="sc-qty">How many</label><input id="sc-qty" type="number" inputmode="numeric" min="1" max="10000000" value="64"></div><button type="button" class="btn" id="sc-add">Add to list</button></div>
+<div class="sc-q" id="sc-q" role="group" aria-label="Quick amounts"></div>
+<p class="sc-pv" id="sc-pv" role="status" aria-live="polite"></p>
+<ul class="sc-l" id="sc-l" aria-label="Your list"></ul>
+<div class="sc-t" id="sc-t" role="status" aria-live="polite" hidden></div>
+<button type="button" class="chip sc-x" id="sc-x" hidden>Clear list</button>
+</div></details>
+<div class="tools"><input type="search" id="sp-q" placeholder="Search items, like diamond or spawner" aria-label="Search shop items" autocomplete="off"><label for="sp-s">Sort</label><select id="sp-s"><option value="n">Name, A to Z</option><option value="nz">Name, Z to A</option><option value="sd">Sell price, high to low</option><option value="sa">Sell price, low to high</option><option value="bd">Buy price, high to low</option><option value="ba">Buy price, low to high</option></select></div>
 <div class="fb" id="sp-f" role="group" aria-label="Filter by category"><button type="button" class="chip" data-v="" aria-pressed="false" style="--c:var(--ac)">All <span class="cn">669</span></button><button type="button" class="chip" data-v="0" aria-pressed="false" style="--c:#3b82d6"><i class="dt" style="--c:#3b82d6"></i>Ores <span class="cn">45</span></button><button type="button" class="chip" data-v="1" aria-pressed="false" style="--c:#8a6d4f"><i class="dt" style="--c:#8a6d4f"></i>Blocks <span class="cn">141</span></button><button type="button" class="chip" data-v="2" aria-pressed="false" style="--c:#ec5fa0"><i class="dt" style="--c:#ec5fa0"></i>Colour <span class="cn">194</span></button><button type="button" class="chip" data-v="3" aria-pressed="false" style="--c:#3fa66b"><i class="dt" style="--c:#3fa66b"></i>Farming <span class="cn">95</span></button><button type="button" class="chip" data-v="4" aria-pressed="false" style="--c:#e5484d"><i class="dt" style="--c:#e5484d"></i>Drops <span class="cn">32</span></button><button type="button" class="chip" data-v="5" aria-pressed="false" style="--c:#1fa6b8"><i class="dt" style="--c:#1fa6b8"></i>Ocean <span class="cn">42</span></button><button type="button" class="chip" data-v="6" aria-pressed="false" style="--c:#9b6bd6"><i class="dt" style="--c:#9b6bd6"></i>Brewing <span class="cn">18</span></button><button type="button" class="chip" data-v="7" aria-pressed="false" style="--c:#c2457a"><i class="dt" style="--c:#c2457a"></i>Redstone <span class="cn">32</span></button><button type="button" class="chip" data-v="8" aria-pressed="false" style="--c:#7a8591"><i class="dt" style="--c:#7a8591"></i>Misc <span class="cn">44</span></button><button type="button" class="chip" data-v="9" aria-pressed="false" style="--c:#f08a24"><i class="dt" style="--c:#f08a24"></i>Spawners <span class="cn">26</span></button></div>
 <p class="fs" id="sp-n" role="status" aria-live="polite"></p>
 <div class="tw"><table class="cards" id="sp-t"><thead><tr><th>Item</th><th>Category</th><th>Sell for</th><th>Buy for</th></tr></thead><tbody></tbody></table></div>
@@ -2061,6 +2170,12 @@ a stack, so you may see a number instead of a crowd.</li>
 <div class="lad" id="rc-lad"></div>
 <p class="fs">Your playtime and skill levels come from <code>/rankup</code> and <code>/skill:skill</code>. Rank-ups cost nothing. They pay free money and fly time.</p>
 <div class="pn"><a href="#shop-prices">← Shop Prices</a><a href="#home">Home →</a></div></section>
+<section class="nfp" id="not-found" hidden aria-labelledby="nf-h"><p class="eyebrow">🌸 Error 404</p><h1 id="nf-h" tabindex="-1">Page not found</h1>
+<p>We couldn’t find <code id="nf-p"></code>. The link may be old, or the page may have moved.</p>
+<div id="nf-s" hidden><p><strong>Maybe you wanted:</strong></p><div class="nf-m" id="nf-m"></div></div>
+<form role="search" id="nf-f"><input id="nf-q" type="search" placeholder="Search the wiki" aria-label="Search the wiki" autocomplete="off"><button type="submit" class="btn">Search</button></form>
+<h2>Or jump straight in</h2><div id="nf-j"></div>
+<p><a class="btn" href="#home">Go to Home</a></p></section>
 </main><aside id="toc" aria-label="On this page"></aside></div>
 <div id="toast" role="status" aria-live="polite"></div>
 <div id="prog" aria-hidden="true"></div>
@@ -2182,12 +2297,15 @@ g=chipGroup("cm-f",run);q.addEventListener("input",run);run()})();
 /* shop */
 var C=["Ores", "Blocks", "Colour", "Farming", "Drops", "Ocean", "Brewing", "Redstone", "Misc", "Spawners"],D=[[1,"Grass Block",5.0,0.15],[1,"Podzol",10.0,0.2],[1,"Mycelium",10.0,0.5],[1,"Dirt",3.0,null],[1,"Coarse Dirt",5.0,null],[1,"Mud",5.5,null],[1,"Packed Mud",5.5,null],[1,"Clay",5.5,null],[1,"Bricks",7.5,null],[1,"Gravel",10.0,0.25],[1,"Glass",5.0,null],[1,"Sand",10.0,0.25],[1,"Sandstone",5.5,null],[1,"Smooth Sandstone",8.5,null],[1,"Red Sand",8.0,0.3],[1,"Ice",4.5,null],[1,"Packed Ice",4.0,null],[1,"Blue Ice",5.0,null],[1,"Snow Block",7.5,null],[1,"Moss Block",5.5,null],[1,"Stone",7.5,0.2],[1,"Cobblestone",10.0,null],[1,"Stone Bricks",20.0,null],[1,"Mossy Stone Bricks",15.0,null],[1,"Cracked Stone Bricks",10.0,null],[1,"Deepslate",10.5,0.25],[1,"Cobbled Deepslate",5.0,null],[1,"Granite",9.0,0.3],[1,"Diorite",9.0,0.3],[1,"Andesite",7.5,0.3],[1,"Amethyst Block",10.0,0.2],[1,"Calcite",7.5,0.4],[1,"Tuff",5.0,0.3],[1,"Dripstone Block",5.0,null],[1,"Magma Block",10.0,null],[1,"Obsidian",25.0,null],[1,"Crying Obsidian",null,1.0],[1,"Netherrack",10.5,0.05],[1,"Crimson Nylium",10.5,0.2],[1,"Warped Nylium",10.5,0.2],[1,"Nether Bricks",5.0,null],[1,"Red Nether Bricks",5.0,null],[1,"Glowstone",3.0,null],[1,"Quartz Block",5.0,null],[1,"Quartz Bricks",4.5,null],[1,"Quartz Pillar",6.0,null],[1,"Soul Sand",12.0,0.2],[1,"Soul Soil",15.0,0.4],[1,"Blackstone",15.0,0.2],[1,"Polished Blackstone",5.0,null],[1,"Chiseled Polished Blackstone",8.0,null],[1,"Basalt",10.0,0.2],[1,"End Stone",10.0,0.3],[1,"Purpur Block",5.0,null],[1,"Oak Log",null,0.25],[1,"Birch Log",null,0.25],[1,"Spruce Log",null,0.2],[1,"Acacia Log",null,0.25],[1,"Jungle Log",null,0.25],[1,"Dark Oak Log",null,0.25],[1,"Mangrove Log",null,1.0],[1,"Crimson Stem",null,0.5],[1,"Warped Stem",null,0.5],[1,"Cherry Log",null,0.5],[1,"Pale Oak Log",null,0.5],[1,"Bamboo Block",null,0.95],[1,"Oak Leaves",2.5,null],[1,"Birch Leaves",2.5,null],[1,"Spruce Leaves",2.5,null],[1,"Jungle Leaves",2.5,null],[1,"Acacia Leaves",2.5,null],[1,"Dark Oak Leaves",2.5,null],[1,"Mangrove Leaves",2.5,null],[1,"Cherry Leaves",2.5,null],[1,"Mangrove Roots",2.5,null],[1,"Ochre Froglight",75.0,null],[1,"Verdant Froglight",75.0,null],[1,"Pearlescent Froglight",75.0,null],[1,"Rooted Dirt",6.0,null],[1,"Muddy Mangrove Roots",6.0,null],[1,"Mud Bricks",7.0,null],[1,"Smooth Stone",9.0,null],[1,"Mossy Cobblestone",12.5,null],[1,"Chiseled Stone Bricks",22.0,null],[1,"Polished Andesite",9.0,null],[1,"Polished Diorite",11.0,null],[1,"Polished Granite",11.0,null],[1,"Polished Deepslate",8.0,null],[1,"Deepslate Bricks",9.0,null],[1,"Cracked Deepslate Bricks",7.5,null],[1,"Deepslate Tiles",9.5,null],[1,"Cracked Deepslate Tiles",8.0,null],[1,"Chiseled Deepslate",10.0,null],[1,"Polished Tuff",6.0,null],[1,"Tuff Bricks",6.5,null],[1,"Chiseled Tuff",7.0,null],[1,"Chiseled Tuff Bricks",7.5,null],[1,"Smooth Basalt",12.0,null],[1,"Polished Basalt",12.0,null],[1,"Pointed Dripstone",4.0,null],[1,"Cut Sandstone",6.5,null],[1,"Chiseled Sandstone",7.0,null],[1,"Red Sandstone",6.0,null],[1,"Smooth Red Sandstone",9.0,null],[1,"Cut Red Sandstone",7.0,null],[1,"Chiseled Red Sandstone",7.5,null],[1,"Tinted Glass",15.0,null],[1,"Glass Pane",2.0,null],[1,"Cracked Nether Bricks",6.0,null],[1,"Chiseled Nether Bricks",6.5,null],[1,"Nether Wart Block",8.0,null],[1,"Warped Wart Block",8.0,null],[1,"Shroomlight",25.0,null],[1,"Bone Block",8.0,null],[1,"Polished Blackstone Bricks",6.0,null],[1,"Cracked Polished Blackstone Bricks",5.5,null],[1,"Smooth Quartz",6.0,null],[1,"Chiseled Quartz Block",6.0,null],[1,"End Stone Bricks",11.0,null],[1,"Purpur Pillar",6.0,null],[1,"End Rod",15.0,null],[1,"Cut Copper",12.0,null],[1,"Chiseled Copper",14.0,null],[1,"Copper Grate",14.0,null],[1,"Pale Moss Block",6.0,null],[1,"Oak Planks",4.0,null],[1,"Spruce Planks",4.0,null],[1,"Birch Planks",4.0,null],[1,"Jungle Planks",4.0,null],[1,"Acacia Planks",4.0,null],[1,"Dark Oak Planks",4.0,null],[1,"Mangrove Planks",4.0,null],[1,"Cherry Planks",4.0,null],[1,"Bamboo Planks",4.0,null],[1,"Crimson Planks",4.0,null],[1,"Warped Planks",4.0,null],[1,"Pale Oak Planks",4.0,null],[1,"Bamboo Mosaic",5.0,null],[1,"Pale Oak Leaves",2.5,null],[1,"Azalea Leaves",2.5,null],[1,"Flowering Azalea Leaves",2.5,null],[6,"Brewing Stand",10.0,null],[6,"Cauldron",25.0,null],[6,"Glass Bottle",5.0,null],[6,"Spider Eye",15.0,0.3],[6,"Rabbit Foot",12.0,1.0],[6,"Pufferfish",15.0,0.4],[6,"Phantom Membrane",3.0,1.0],[6,"Ghast Tear",20.0,2.0],[6,"Blaze Powder",4.0,0.1],[6,"Sugar",1.5,0.05],[6,"Gunpowder",10.0,0.2],[6,"Glowstone Dust",6.0,0.15],[6,"Nether Wart",25.0,0.3],[6,"Magma Cream",4.0,0.2],[6,"Glistering Melon Slice",7.5,null],[6,"Golden Carrot",10.0,null],[6,"Fermented Spider Eye",20.0,null],[6,"Honey Bottle",8.0,0.4],[2,"White Wool",2.5,null],[2,"Light Gray Wool",2.5,null],[2,"Gray Wool",2.5,null],[2,"Black Wool",2.5,null],[2,"Brown Wool",2.5,null],[2,"Red Wool",2.5,null],[2,"Orange Wool",2.5,null],[2,"Yellow Wool",2.5,null],[2,"Lime Wool",2.5,null],[2,"Green Wool",2.5,null],[2,"Cyan Wool",2.5,null],[2,"Light Blue Wool",2.5,null],[2,"Blue Wool",2.5,null],[2,"Purple Wool",2.5,null],[2,"Magenta Wool",2.5,null],[2,"Pink Wool",2.5,null],[2,"White Terracotta",2.5,null],[2,"Light Gray Terracotta",2.5,null],[2,"Gray Terracotta",2.5,null],[2,"Black Terracotta",2.5,null],[2,"Brown Terracotta",2.5,null],[2,"Red Terracotta",2.5,null],[2,"Orange Terracotta",2.5,null],[2,"Yellow Terracotta",2.5,null],[2,"Lime Terracotta",2.5,null],[2,"Green Terracotta",2.5,null],[2,"Cyan Terracotta",2.5,null],[2,"Light Blue Terracotta",2.5,null],[2,"Blue Terracotta",2.5,null],[2,"Purple Terracotta",2.5,null],[2,"Magenta Terracotta",2.5,null],[2,"Pink Terracotta",2.5,null],[2,"White Concrete",2.5,null],[2,"Light Gray Concrete",2.5,null],[2,"Gray Concrete",2.5,null],[2,"Black Concrete",2.5,null],[2,"Brown Concrete",2.5,null],[2,"Red Concrete",2.5,null],[2,"Orange Concrete",2.5,null],[2,"Yellow Concrete",2.5,null],[2,"Lime Concrete",2.5,null],[2,"Green Concrete",2.5,null],[2,"Cyan Concrete",2.5,null],[2,"Light Blue Concrete",2.5,null],[2,"Blue Concrete",2.5,null],[2,"Purple Concrete",2.5,null],[2,"Magenta Concrete",2.5,null],[2,"Pink Concrete",2.5,null],[2,"White Stained Glass",2.5,null],[2,"Light Gray Stained Glass",2.5,null],[2,"Gray Stained Glass",2.5,null],[2,"Black Stained Glass",2.5,null],[2,"Brown Stained Glass",2.5,null],[2,"Red Stained Glass",2.5,null],[2,"Orange Stained Glass",2.5,null],[2,"Yellow Stained Glass",2.5,null],[2,"Lime Stained Glass",2.5,null],[2,"Green Stained Glass",2.5,null],[2,"Cyan Stained Glass",2.5,null],[2,"Light Blue Stained Glass",2.5,null],[2,"Blue Stained Glass",2.5,null],[2,"Purple Stained Glass",2.5,null],[2,"Magenta Stained Glass",2.5,null],[2,"Pink Stained Glass",2.5,null],[2,"White Dye",5.0,null],[2,"Light Gray Dye",5.0,null],[2,"Gray Dye",5.0,null],[2,"Black Dye",5.0,null],[2,"Brown Dye",5.0,null],[2,"Red Dye",5.0,null],[2,"Orange Dye",5.0,null],[2,"Yellow Dye",5.0,null],[2,"Lime Dye",5.0,null],[2,"Green Dye",5.0,null],[2,"Cyan Dye",5.0,null],[2,"Light Blue Dye",5.0,null],[2,"Blue Dye",5.0,null],[2,"Purple Dye",5.0,null],[2,"Magenta Dye",5.0,null],[2,"Pink Dye",5.0,null],[2,"Terracotta",2.5,null],[2,"White Glazed Terracotta",3.5,null],[2,"Light Gray Glazed Terracotta",3.5,null],[2,"Gray Glazed Terracotta",3.5,null],[2,"Black Glazed Terracotta",3.5,null],[2,"Brown Glazed Terracotta",3.5,null],[2,"Red Glazed Terracotta",3.5,null],[2,"Orange Glazed Terracotta",3.5,null],[2,"Yellow Glazed Terracotta",3.5,null],[2,"Lime Glazed Terracotta",3.5,null],[2,"Green Glazed Terracotta",3.5,null],[2,"Cyan Glazed Terracotta",3.5,null],[2,"Light Blue Glazed Terracotta",3.5,null],[2,"Blue Glazed Terracotta",3.5,null],[2,"Purple Glazed Terracotta",3.5,null],[2,"Magenta Glazed Terracotta",3.5,null],[2,"Pink Glazed Terracotta",3.5,null],[2,"White Concrete Powder",2.5,null],[2,"Light Gray Concrete Powder",2.5,null],[2,"Gray Concrete Powder",2.5,null],[2,"Black Concrete Powder",2.5,null],[2,"Brown Concrete Powder",2.5,null],[2,"Red Concrete Powder",2.5,null],[2,"Orange Concrete Powder",2.5,null],[2,"Yellow Concrete Powder",2.5,null],[2,"Lime Concrete Powder",2.5,null],[2,"Green Concrete Powder",2.5,null],[2,"Cyan Concrete Powder",2.5,null],[2,"Light Blue Concrete Powder",2.5,null],[2,"Blue Concrete Powder",2.5,null],[2,"Purple Concrete Powder",2.5,null],[2,"Magenta Concrete Powder",2.5,null],[2,"Pink Concrete Powder",2.5,null],[2,"White Carpet",1.5,null],[2,"Light Gray Carpet",1.5,null],[2,"Gray Carpet",1.5,null],[2,"Black Carpet",1.5,null],[2,"Brown Carpet",1.5,null],[2,"Red Carpet",1.5,null],[2,"Orange Carpet",1.5,null],[2,"Yellow Carpet",1.5,null],[2,"Lime Carpet",1.5,null],[2,"Green Carpet",1.5,null],[2,"Cyan Carpet",1.5,null],[2,"Light Blue Carpet",1.5,null],[2,"Blue Carpet",1.5,null],[2,"Purple Carpet",1.5,null],[2,"Magenta Carpet",1.5,null],[2,"Pink Carpet",1.5,null],[2,"White Stained Glass Pane",1.0,null],[2,"Light Gray Stained Glass Pane",1.0,null],[2,"Gray Stained Glass Pane",1.0,null],[2,"Black Stained Glass Pane",1.0,null],[2,"Brown Stained Glass Pane",1.0,null],[2,"Red Stained Glass Pane",1.0,null],[2,"Orange Stained Glass Pane",1.0,null],[2,"Yellow Stained Glass Pane",1.0,null],[2,"Lime Stained Glass Pane",1.0,null],[2,"Green Stained Glass Pane",1.0,null],[2,"Cyan Stained Glass Pane",1.0,null],[2,"Light Blue Stained Glass Pane",1.0,null],[2,"Blue Stained Glass Pane",1.0,null],[2,"Purple Stained Glass Pane",1.0,null],[2,"Magenta Stained Glass Pane",1.0,null],[2,"Pink Stained Glass Pane",1.0,null],[2,"Candle",5.0,null],[2,"White Candle",7.5,null],[2,"Light Gray Candle",7.5,null],[2,"Gray Candle",7.5,null],[2,"Black Candle",7.5,null],[2,"Brown Candle",7.5,null],[2,"Red Candle",7.5,null],[2,"Orange Candle",7.5,null],[2,"Yellow Candle",7.5,null],[2,"Lime Candle",7.5,null],[2,"Green Candle",7.5,null],[2,"Cyan Candle",7.5,null],[2,"Light Blue Candle",7.5,null],[2,"Blue Candle",7.5,null],[2,"Purple Candle",7.5,null],[2,"Magenta Candle",7.5,null],[2,"Pink Candle",7.5,null],[2,"White Bed",12.0,null],[2,"Light Gray Bed",12.0,null],[2,"Gray Bed",12.0,null],[2,"Black Bed",12.0,null],[2,"Brown Bed",12.0,null],[2,"Red Bed",12.0,null],[2,"Orange Bed",12.0,null],[2,"Yellow Bed",12.0,null],[2,"Lime Bed",12.0,null],[2,"Green Bed",12.0,null],[2,"Cyan Bed",12.0,null],[2,"Light Blue Bed",12.0,null],[2,"Blue Bed",12.0,null],[2,"Purple Bed",12.0,null],[2,"Magenta Bed",12.0,null],[2,"Pink Bed",12.0,null],[2,"White Banner",8.0,null],[2,"Light Gray Banner",8.0,null],[2,"Gray Banner",8.0,null],[2,"Black Banner",8.0,null],[2,"Brown Banner",8.0,null],[2,"Red Banner",8.0,null],[2,"Orange Banner",8.0,null],[2,"Yellow Banner",8.0,null],[2,"Lime Banner",8.0,null],[2,"Green Banner",8.0,null],[2,"Cyan Banner",8.0,null],[2,"Light Blue Banner",8.0,null],[2,"Blue Banner",8.0,null],[2,"Purple Banner",8.0,null],[2,"Magenta Banner",8.0,null],[2,"Pink Banner",8.0,null],[4,"Bone",null,0.05],[4,"Arrow",null,0.15],[4,"Rotten Flesh",null,0.15],[4,"String",null,0.2],[4,"Feather",null,0.15],[4,"Leather",null,0.3],[4,"Slime Ball",null,0.3],[4,"Ender Pearl",null,0.25],[4,"Blaze Rod",null,0.25],[4,"Gold Nugget",null,0.05],[4,"Iron Nugget",null,0.05],[4,"Flint",null,0.1],[4,"Clay Ball",null,0.1],[4,"Cobweb",null,0.2],[4,"Resin Clump",null,0.4],[4,"Rabbit Hide",null,0.5],[4,"Ink Sac",null,0.3],[4,"Prismarine Shard",null,0.75],[4,"Prismarine Crystals",null,0.5],[4,"Nautilus Shell",null,1.0],[4,"Turtle Scute",null,1.0],[4,"Armadillo Scute",null,0.3],[4,"Shulker Shell",null,1.0],[4,"Wither Skeleton Skull",null,3.5],[4,"Skeleton Skull",null,5.0],[4,"Creeper Head",null,5.0],[4,"Zombie Head",null,5.0],[4,"Piglin Head",null,5.0],[4,"Turtle Egg",null,1.0],[4,"Wither Rose",null,0.25],[4,"Nether Star",null,7.0],[4,"Dragon Breath",null,1.0],[3,"Oak Sapling",null,0.1],[3,"Spruce Sapling",null,0.1],[3,"Birch Sapling",null,0.1],[3,"Dark Oak Sapling",null,0.1],[3,"Acacia Sapling",null,0.1],[3,"Jungle Sapling",null,0.1],[3,"Mangrove Propagule",null,0.2],[3,"Cherry Sapling",null,0.15],[3,"Pale Oak Sapling",null,0.15],[3,"Wheat",null,0.2],[3,"Wheat Seeds",null,0.02],[3,"Carrot",null,0.2],[3,"Potato",null,0.2],[3,"Beetroot",null,0.2],[3,"Beetroot Seeds",null,0.02],[3,"Sugar Cane",null,0.25],[3,"Bamboo",null,0.1],[3,"Cactus",null,0.12],[3,"Cocoa Beans",null,0.15],[3,"Pumpkin Seeds",null,0.02],[3,"Melon Seeds",null,0.02],[3,"Pumpkin",null,0.4],[3,"Melon Slice",null,0.1],[3,"Melon",null,0.4],[3,"Sweet Berries",null,0.1],[3,"Glow Berries",null,0.14],[3,"Torchflower Seeds",null,0.5],[3,"Pitcher Pod",null,0.25],[3,"Brown Mushroom",null,0.15],[3,"Red Mushroom",null,0.15],[3,"Dandelion",null,0.05],[3,"Poppy",null,0.05],[3,"Blue Orchid",null,0.05],[3,"Allium",null,0.05],[3,"Azure Bluet",null,0.05],[3,"Red Tulip",null,0.05],[3,"Orange Tulip",null,0.05],[3,"White Tulip",null,0.05],[3,"Pink Tulip",null,0.05],[3,"Oxeye Daisy",null,0.05],[3,"Cornflower",null,0.05],[3,"Lily Of The Valley",null,0.05],[3,"Sunflower",null,0.1],[3,"Lilac",null,0.1],[3,"Rose Bush",null,0.1],[3,"Peony",null,0.1],[3,"Torchflower",null,0.15],[3,"Mutton",null,0.5],[3,"Beef",null,0.75],[3,"Porkchop",null,0.75],[3,"Chicken",null,0.4],[3,"Rabbit",null,0.55],[3,"Cooked Mutton",null,0.9],[3,"Cooked Beef",null,1.1],[3,"Cooked Porkchop",null,1.1],[3,"Cooked Chicken",null,0.9],[3,"Cooked Rabbit",null,1.0],[3,"Cod",null,0.5],[3,"Salmon",null,0.65],[3,"Tropical Fish",null,0.4],[3,"Cooked Cod",null,0.75],[3,"Cooked Salmon",null,0.8],[3,"Egg",null,0.25],[3,"Milk Bucket",null,2.0],[3,"Apple",null,0.55],[3,"Bread",null,0.5],[3,"Baked Potato",null,0.3],[3,"Pumpkin Pie",null,0.75],[3,"Cookie",null,0.15],[3,"Beetroot Soup",null,0.75],[3,"Mushroom Stew",null,0.75],[3,"Rabbit Stew",null,2.0],[3,"Honeycomb",null,0.3],[3,"Hay Block",null,1.6],[3,"Poisonous Potato",null,0.05],[3,"Chorus Fruit",null,0.15],[3,"Popped Chorus Fruit",null,0.3],[3,"Azalea",null,0.2],[3,"Flowering Azalea",null,0.2],[3,"Spore Blossom",null,0.3],[3,"Pink Petals",null,0.05],[3,"Open Eyeblossom",null,0.15],[3,"Wildflowers",null,0.05],[3,"Cactus Flower",null,0.1],[3,"Firefly Bush",null,0.1],[3,"Big Dripleaf",null,0.1],[3,"Small Dripleaf",null,0.05],[3,"Vine",null,0.05],[3,"Crimson Fungus",null,0.15],[3,"Warped Fungus",null,0.15],[3,"Crimson Roots",null,0.05],[3,"Warped Roots",null,0.05],[3,"Nether Sprouts",null,0.05],[3,"Weeping Vines",null,0.1],[3,"Twisting Vines",null,0.1],[8,"Chest",10.0,null],[8,"Trapped Chest",12.5,null],[8,"Barrel",5.0,null],[8,"Slime Block",15.0,null],[8,"Honey Block",20.0,null],[8,"Enchanting Table",250.0,null],[8,"Bucket",50.0,null],[8,"Water Bucket",100.0,null],[8,"Lava Bucket",150.0,null],[8,"Note Block",20.0,null],[8,"Campfire",15.0,null],[8,"Beacon",null,15.0],[8,"Bell",90.0,null],[8,"Lectern",10.0,null],[8,"Loom",15.0,null],[8,"Blast Furnace",25.0,null],[8,"Smithing Table",30.0,null],[8,"Cartography Table",25.0,null],[8,"Fletching Table",25.0,null],[8,"Flower Pot",10.0,null],[8,"Bookshelf",15.0,null],[8,"Chiseled Bookshelf",20.0,null],[8,"Decorated Pot",40.0,null],[8,"Glow Ink Sac",10.0,0.5],[8,"Amethyst Shard",null,0.02],[8,"Crafting Table",5.0,null],[8,"Furnace",10.0,null],[8,"Smoker",20.0,null],[8,"Stonecutter",25.0,null],[8,"Grindstone",25.0,null],[8,"Composter",10.0,null],[8,"Torch",1.0,null],[8,"Soul Torch",1.5,null],[8,"Lantern",8.0,null],[8,"Soul Lantern",9.0,null],[8,"Ladder",3.0,null],[8,"Scaffolding",5.0,null],[8,"Item Frame",5.0,null],[8,"Glow Item Frame",12.0,null],[8,"Painting",6.0,null],[8,"Armor Stand",15.0,null],[8,"Iron Bars",3.0,null],[8,"Honeycomb Block",12.0,null],[8,"Soul Campfire",17.5,null],[5,"Kelp",1.0,0.25],[5,"Dried Kelp",2.0,0.3],[5,"Dried Kelp Block",15.0,2.5],[5,"Seagrass",2.0,0.05],[5,"Sea Pickle",8.0,0.25],[5,"Sponge",50.0,2.0],[5,"Wet Sponge",60.0,null],[5,"Prismarine",10.0,null],[5,"Prismarine Bricks",15.0,null],[5,"Dark Prismarine",20.0,null],[5,"Sea Lantern",75.0,null],[5,"Tube Coral Block",12.0,null],[5,"Brain Coral Block",12.0,null],[5,"Bubble Coral Block",12.0,null],[5,"Fire Coral Block",12.0,null],[5,"Horn Coral Block",12.0,null],[5,"Dead Tube Coral Block",8.0,null],[5,"Dead Brain Coral Block",8.0,null],[5,"Dead Bubble Coral Block",8.0,null],[5,"Dead Fire Coral Block",8.0,null],[5,"Dead Horn Coral Block",8.0,null],[5,"Tube Coral",5.0,null],[5,"Brain Coral",5.0,null],[5,"Bubble Coral",5.0,null],[5,"Fire Coral",5.0,null],[5,"Horn Coral",5.0,null],[5,"Tube Coral Fan",6.0,null],[5,"Brain Coral Fan",6.0,null],[5,"Bubble Coral Fan",6.0,null],[5,"Fire Coral Fan",6.0,null],[5,"Horn Coral Fan",6.0,null],[5,"Dead Tube Coral",4.0,null],[5,"Dead Brain Coral",4.0,null],[5,"Dead Bubble Coral",4.0,null],[5,"Dead Fire Coral",4.0,null],[5,"Dead Horn Coral",4.0,null],[5,"Dead Tube Coral Fan",5.0,null],[5,"Dead Brain Coral Fan",5.0,null],[5,"Dead Bubble Coral Fan",5.0,null],[5,"Dead Fire Coral Fan",5.0,null],[5,"Dead Horn Coral Fan",5.0,null],[5,"Lily Pad",2.0,0.05],[0,"Coal",null,0.25],[0,"Iron Ingot",null,0.4],[0,"Gold Ingot",null,0.7],[0,"Lapis Lazuli",null,0.3],[0,"Diamond",null,2.5],[0,"Emerald",null,0.25],[0,"Netherite Ingot",null,7.0],[0,"Copper Ingot",null,0.4],[0,"Coal Ore",null,1.0],[0,"Iron Ore",null,1.2],[0,"Gold Ore",null,1.3],[0,"Redstone Ore",null,2.0],[0,"Lapis Ore",null,2.0],[0,"Diamond Ore",null,4.0],[0,"Emerald Ore",null,10.0],[0,"Ancient Debris",null,4.5],[0,"Copper Ore",null,0.6],[0,"Coal Block",null,1.9],[0,"Iron Block",null,3.7],[0,"Gold Block",null,7.0],[0,"Redstone Block",null,2.4],[0,"Lapis Block",null,2.4],[0,"Diamond Block",null,10.0],[0,"Emerald Block",null,3.0],[0,"Netherite Block",null,60.0],[0,"Copper Block",null,5.0],[0,"Raw Iron",null,0.5],[0,"Raw Gold",null,0.6],[0,"Raw Copper",null,0.3],[0,"Quartz",null,0.3],[0,"Netherite Scrap",null,2.0],[0,"Charcoal",null,0.2],[0,"Raw Iron Block",null,4.5],[0,"Raw Gold Block",null,5.4],[0,"Raw Copper Block",null,2.7],[0,"Deepslate Coal Ore",null,1.0],[0,"Deepslate Iron Ore",null,1.2],[0,"Deepslate Gold Ore",null,1.3],[0,"Deepslate Redstone Ore",null,2.0],[0,"Deepslate Lapis Ore",null,2.0],[0,"Deepslate Diamond Ore",null,4.0],[0,"Deepslate Emerald Ore",null,10.0],[0,"Deepslate Copper Ore",null,0.6],[0,"Nether Gold Ore",null,0.5],[0,"Nether Quartz Ore",null,0.6],[7,"Hopper",100.0,null],[7,"Dropper",15.0,null],[7,"Dispenser",20.0,null],[7,"Observer",10.0,null],[7,"Piston",10.0,null],[7,"Sticky Piston",7.5,null],[7,"Redstone Torch",2.5,null],[7,"Redstone Lamp",25.0,null],[7,"Repeater",25.0,null],[7,"Comparator",25.0,null],[7,"Redstone",15.0,0.3],[7,"Lever",2.5,null],[7,"Stone Button",2.0,null],[7,"Stone Pressure Plate",3.0,null],[7,"Oak Button",2.0,null],[7,"Oak Pressure Plate",3.0,null],[7,"Tripwire Hook",4.0,null],[7,"Target",15.0,null],[7,"Light Weighted Pressure Plate",10.0,null],[7,"Heavy Weighted Pressure Plate",10.0,null],[7,"Daylight Detector",30.0,null],[7,"Lightning Rod",12.0,null],[7,"Copper Bulb",30.0,null],[7,"Crafter",40.0,null],[7,"Rail",2.0,null],[7,"Powered Rail",6.0,null],[7,"Detector Rail",5.0,null],[7,"Activator Rail",5.0,null],[7,"Minecart",15.0,null],[7,"Chest Minecart",25.0,null],[7,"Iron Door",12.0,null],[7,"Iron Trapdoor",12.0,null],[9,"Chicken Spawner",3000,null],[9,"Pig Spawner",4500,null],[9,"Sheep Spawner",3000,null],[9,"Cow Spawner",6000,null],[9,"Spider Spawner",35000,null],[9,"Zombie Spawner",44000,null],[9,"Skeleton Spawner",44000,null],[9,"Creeper Spawner",52500,null],[9,"Blaze Spawner",140000,null],[9,"Iron Golem Spawner",250000,null],[9,"Slime Spawner",90000,null],[9,"Enderman Spawner",120000,null],[9,"Witch Spawner",215000,null],[9,"Cave Spider Spawner",52500,null],[9,"Magma Cube Spawner",180000,null],[9,"Piglin Spawner",190000,null],[9,"Guardian Spawner",300000,null],[9,"Shulker Spawner",450000,null],[9,"Squid Spawner",3500,null],[9,"Rabbit Spawner",4000,null],[9,"Mooshroom Spawner",8000,null],[9,"Husk Spawner",44000,null],[9,"Stray Spawner",44000,null],[9,"Zombified Piglin Spawner",75000,null],[9,"Hoglin Spawner",110000,null],[9,"Ghast Spawner",260000,null]];
 var CC=["#3b82d6", "#8a6d4f", "#ec5fa0", "#3fa66b", "#e5484d", "#1fa6b8", "#9b6bd6", "#c2457a", "#7a8591", "#f08a24"];
+window.sbShop={D:D,C:C};
 var q=document.getElementById("sp-q"),ss=document.getElementById("sp-s"),tb=document.querySelector("#sp-t tbody"),cnt=document.getElementById("sp-n"),sg;
 function money(v){return v==null?"":"$"+v.toLocaleString("en-US",{maximumFractionDigits:2})}
 function draw(){
 var v=lo(q.value.trim()),c=sg?sg.get():"",s=ss.value;
 var r=D.filter(function(x){return(c===""||String(x[0])===c)&&(v===""||lo(x[1]).indexOf(v)>=0||lo(C[x[0]]).indexOf(v)>=0)});
 r.sort(function(a,b){
+if(s==="nz")return b[1].localeCompare(a[1]);
+if(s==="sa")return((a[3]==null)-(b[3]==null))||(a[3]-b[3])||a[1].localeCompare(b[1]);
 if(s==="sd")return(b[3]||-1)-(a[3]||-1)||a[1].localeCompare(b[1]);
 if(s==="bd")return(b[2]||-1)-(a[2]||-1)||a[1].localeCompare(b[1]);
 if(s==="ba")return((a[2]==null)-(b[2]==null))||(a[2]-b[2])||a[1].localeCompare(b[1]);
@@ -2631,6 +2749,101 @@ var a=el("a",null,"Check your numbers in the Rank Calculator");a.href="#rank-cal
 var k0=-1;try{var sv=parseInt(localStorage.getItem("sbw-rank"),10);if(sv>=0&&sv<R.length)k0=sv}catch(e){}
 sl.value=String(k0);paint(k0);
 sl.addEventListener("change",function(){var k=parseInt(sl.value,10);paint(k);try{if(k<0)localStorage.removeItem("sbw-rank");else localStorage.setItem("sbw-rank",String(k))}catch(e){}});
+})();
+</script>
+<script>
+(function(){
+function $(id){return document.getElementById(id)}
+function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
+/* ---------- reading settings ---------- */
+(function(){var b=$("rs-b"),p=$("rs"),r=document.documentElement,S=[88,100,112,125,140],st={s:1,w:"m"};
+try{var u=JSON.parse(localStorage.getItem("sbw-ui")||"null");if(u){if(u.s>=0&&u.s<S.length)st.s=u.s;if(u.w==="n"||u.w==="w")st.w=u.w}}catch(e){}
+function save(){try{if(st.s===1&&st.w==="m")localStorage.removeItem("sbw-ui");else localStorage.setItem("sbw-ui",JSON.stringify(st))}catch(e){}}
+function apply(){if(st.s===1)r.removeAttribute("data-fs");else r.setAttribute("data-fs",String(st.s));
+if(st.w==="m")r.removeAttribute("data-w");else r.setAttribute("data-w",st.w);
+$("rs-v").textContent=S[st.s]+"%";$("rs-m").disabled=st.s===0;$("rs-p").disabled=st.s===S.length-1;
+Array.prototype.forEach.call(p.querySelectorAll("[data-w]"),function(x){x.setAttribute("aria-pressed",x.getAttribute("data-w")===st.w?"true":"false")});
+b.classList.toggle("on",st.s!==1||st.w!=="m")}
+function open(o){p.hidden=!o;b.setAttribute("aria-expanded",o?"true":"false");if(o)$("rs-p").disabled?$("rs-m").focus():$("rs-p").focus()}
+b.addEventListener("click",function(){open(p.hidden)});
+$("rs-m").addEventListener("click",function(){if(st.s>0){st.s--;apply();save()}});
+$("rs-p").addEventListener("click",function(){if(st.s<S.length-1){st.s++;apply();save()}});
+Array.prototype.forEach.call(p.querySelectorAll("[data-w]"),function(x){x.addEventListener("click",function(){st.w=x.getAttribute("data-w");apply();save()})});
+$("rs-r").addEventListener("click",function(){st={s:1,w:"m"};apply();save()});
+document.addEventListener("keydown",function(e){if(e.key==="Escape"&&!p.hidden){open(false);b.focus()}});
+document.addEventListener("click",function(e){if(!p.hidden&&!p.contains(e.target)&&e.target!==b&&!b.contains(e.target))open(false)});
+apply()})();
+/* ---------- shop: calculator + sortable headers ---------- */
+(function(){var d=window.sbShop,box=$("sc");if(!d||!box)return;var D=d.D,C=d.C,by={};
+D.forEach(function(x){var k=x[1].toLowerCase();if(!by[k])by[k]=x});
+var dl=$("sc-dl");D.slice().sort(function(a,b){return a[1].localeCompare(b[1])}).forEach(function(x){var o=document.createElement("option");o.value=x[1];dl.appendChild(o)});
+var item=$("sc-item"),qty=$("sc-qty"),pv=$("sc-pv"),list=$("sc-l"),tot=$("sc-t"),clr=$("sc-x"),cnt=$("sc-c"),L=[];
+function money(v){return "$"+v.toLocaleString("en-US",{maximumFractionDigits:2})}
+function nq(v){v=Math.floor(parseFloat(v));return isFinite(v)&&v>0?Math.min(v,1e7):0}
+function find(v){v=v.trim().toLowerCase();if(!v)return null;if(by[v])return by[v];var m=D.filter(function(x){return x[1].toLowerCase().indexOf(v)>=0});return m.length===1?m[0]:null}
+function sp(cls,t){var s=el("span",cls,t);return s}
+function line(x,q){var f=document.createDocumentFragment();
+f.appendChild(document.createTextNode(q.toLocaleString("en-US")+" × "+x[1]+": "));
+if(x[3]!=null){f.appendChild(sp("sell","sell for "+money(q*x[3])))}else f.appendChild(document.createTextNode("can’t be sold"));
+f.appendChild(document.createTextNode(" · "));
+if(x[2]!=null){f.appendChild(sp("buy","buy for "+money(q*x[2])))}else f.appendChild(document.createTextNode("can’t be bought"));return f}
+function preview(){pv.textContent="";var q=nq(qty.value),v=item.value.trim();
+if(!v)return;var x=find(v);
+if(!x){pv.appendChild(document.createTextNode(D.some(function(y){return y[1].toLowerCase().indexOf(v.toLowerCase())>=0})?"Pick an item from the list to see its price.":"No item with that name."));return}
+if(!q){pv.appendChild(document.createTextNode("Enter how many."));return}
+pv.appendChild(line(x,q))}
+function save(){try{localStorage.setItem("sbw-basket",JSON.stringify(L.map(function(r){return[r.x[1],r.q]})))}catch(e){}}
+function render(){list.textContent="";var ts=0,tb=0,ns=0,nb=0;
+L.forEach(function(r,i){var li=el("li","sc-r"),nm=el("b",null,r.x[1]),qi=el("input");qi.type="number";qi.min="1";qi.max="10000000";qi.value=String(r.q);qi.setAttribute("aria-label","How many "+r.x[1]);
+var del=el("button","sc-d","✕");del.type="button";del.setAttribute("aria-label","Remove "+r.x[1]);
+var s=el("div","sc-s");s.appendChild(line(r.x,r.q));
+qi.addEventListener("change",function(){var q=nq(qi.value);if(!q){L.splice(i,1)}else r.q=q;save();render()});
+del.addEventListener("click",function(){L.splice(i,1);save();render()});
+li.appendChild(nm);li.appendChild(qi);li.appendChild(del);li.appendChild(s);list.appendChild(li);
+if(r.x[3]!=null)ts+=r.q*r.x[3];else ns++;if(r.x[2]!=null)tb+=r.q*r.x[2];else nb++});
+cnt.textContent=L.length?String(L.length):"";tot.textContent="";
+if(!L.length){tot.hidden=true;clr.hidden=true;return}
+var a=el("div");a.appendChild(document.createTextNode("Sell everything: "));a.appendChild(sp("sell",money(ts)));
+var b=el("div");b.appendChild(document.createTextNode("Buy everything: "));b.appendChild(sp("buy",money(tb)));
+tot.appendChild(a);tot.appendChild(b);
+if(ns||nb)tot.appendChild(el("small",null,"Items marked “can’t be sold” or “can’t be bought” count as $0 in that total."));
+tot.hidden=false;clr.hidden=false}
+function add(){var x=find(item.value),q=nq(qty.value);
+if(!x){preview();item.focus();return}if(!q){preview();qty.focus();return}
+var f=L.filter(function(r){return r.x===x})[0];if(f)f.q=Math.min(f.q+q,1e7);else L.push({x:x,q:q});
+save();render();item.value="";preview();item.focus()}
+[1,16,64,1728].forEach(function(n){var b=el("button","chip",n.toLocaleString("en-US"));b.type="button";b.style.setProperty("--c","var(--ac)");b.setAttribute("aria-label","Set amount to "+n);
+b.addEventListener("click",function(){qty.value=String(n);preview()});$("sc-q").appendChild(b)});
+$("sc-add").addEventListener("click",add);
+[item,qty].forEach(function(e){e.addEventListener("input",preview);e.addEventListener("keydown",function(ev){if(ev.key==="Enter"){ev.preventDefault();add()}})});
+item.addEventListener("change",preview);
+clr.addEventListener("click",function(){L=[];save();render();item.focus()});
+try{var sv=JSON.parse(localStorage.getItem("sbw-basket")||"[]");if(Array.isArray(sv))sv.forEach(function(p){var x=by[String(p[0]).toLowerCase()],q=nq(p[1]);if(x&&q)L.push({x:x,q:q})})}catch(e){}
+render();
+/* sortable column headers, in step with the Sort menu */
+var ss=$("sp-s"),ths=document.querySelectorAll("#sp-t thead th"),M=[{i:0,a:"n",d:"nz",first:"n"},{i:2,a:"sa",d:"sd",first:"sd"},{i:3,a:"ba",d:"bd",first:"bd"}];
+M.forEach(function(m){var th=ths[m.i];if(!th)return;var t=th.textContent,b=el("button","tsb",t);b.type="button";b.setAttribute("aria-label","Sort by "+t.toLowerCase());th.textContent="";th.appendChild(b);m.th=th;
+b.addEventListener("click",function(){var v=ss.value;ss.value=(v===m.first)?(m.first===m.a?m.d:m.a):m.first;ss.dispatchEvent(new Event("input",{bubbles:true}))})});
+function sync(){M.forEach(function(m){if(!m.th)return;var v=ss.value;m.th.setAttribute("aria-sort",v===m.a?"ascending":v===m.d?"descending":"none")})}
+ss.addEventListener("input",sync);ss.addEventListener("change",sync);sync()})();
+/* ---------- page not found ---------- */
+(function(){var nf=$("not-found");if(!nf)return;
+var j=document.querySelector("#home nav.jump");if(j)$("nf-j").appendChild(j.cloneNode(true));
+Array.prototype.forEach.call(nf.querySelectorAll("#nf-j [id]"),function(e){e.removeAttribute("id")});
+var pages=Array.prototype.slice.call(document.querySelectorAll(".page")).map(function(p){return{id:p.id,t:p.getAttribute("data-title")||p.id}});
+function known(s){if(!s||s==="home")return true;var e=document.getElementById(s);if(!e)return false;if(e.classList&&e.classList.contains("page"))return true;return !!(e.closest&&e.closest(".page"))}
+function words(s){return s.toLowerCase().split(/[^a-z0-9]+/).filter(function(w){return w.length>=3})}
+function check(){var s="";try{s=decodeURIComponent(location.hash.slice(1))}catch(e){s=location.hash.slice(1)}
+if(known(s)||s==="main-content"){if(!nf.hidden)nf.hidden=true;return}
+Array.prototype.forEach.call(document.querySelectorAll(".page"),function(p){p.hidden=true});
+nf.hidden=false;$("nf-p").textContent="#"+s;document.title="Page not found · SoftBloom Wiki";
+var tc=document.getElementById("toc");if(tc)tc.innerHTML="";
+Array.prototype.forEach.call(document.querySelectorAll("#nav a.on"),function(a){a.classList.remove("on")});
+var w=words(s),sc=pages.map(function(p){var hay=(p.id+" "+p.t).toLowerCase(),n=0;w.forEach(function(x){if(hay.indexOf(x)>=0)n++});return{p:p,n:n}}).filter(function(x){return x.n>0}).sort(function(a,b){return b.n-a.n}).slice(0,3);
+var m=$("nf-m");m.textContent="";sc.forEach(function(x){var a=el("a",null,x.p.t);a.href="#"+x.p.id;m.appendChild(a)});$("nf-s").hidden=!sc.length;
+window.scrollTo(0,0);$("nf-h").focus({preventScroll:true})}
+window.addEventListener("hashchange",check);check();
+$("nf-f").addEventListener("submit",function(e){e.preventDefault();var q=$("q"),v=$("nf-q").value.trim();if(!q)return;q.value=v;q.dispatchEvent(new Event("input",{bubbles:true}));q.focus()})})();
 })();
 </script>
 </body></html>
